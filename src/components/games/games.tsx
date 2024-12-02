@@ -12,18 +12,11 @@ import { GameCategoryType, GamesInOnePage, GetGameCategoryConfig, favoriteGameId
 import { ViewMode } from "../shared/game-base/type";
 import { WinningStreak } from "../winning-streak";
 import { WinningStreakItem } from "../winning-streak/winning-streak.type";
-import Baccarat from "./baccarat";
-import BigSmall from "./big-small";
-import DragonTiger from "./dragon-tiger/";
-import FishPrawnCrab from "./fish-prawn-crab";
+
 import styles from "./games.module.scss";
 import KenoMatch from "./keno-match";
 import KenoPower from "./keno-power";
-import KenoProMax from "./keno-pro-max";
-import MiniSeDie from "./mini-sedie";
-import SeDie from "./se-die/se-die";
-import SpecialSeDie from "./special-sedie";
-import ThreeCards from "./three-cards";
+
 import MiniKeno from "./mini-keno";
 import { KenoMatchProps } from "../games/keno-match/type";
 import { Props } from "./type";
@@ -152,27 +145,6 @@ export const Games: React.FC<Props> = ({
         };
 
         switch (gameId) {
-            case 2:
-            case 22:
-                return <SeDie key={`game-${gameId}`} {...gameProps} />;
-            case 9:
-                return <MiniSeDie key={`game-${gameId}`} {...gameProps} />;
-            case 24:
-                return <SpecialSeDie key={`game-${gameId}`} {...gameProps} />;
-            case 3:
-                return <FishPrawnCrab key={`game-${gameId}`} {...gameProps} />;
-            case 7:
-                return <DragonTiger key={`game-${gameId}`} {...gameProps} />;
-            case 8:
-                return <KenoProMax key={`game-${gameId}`} {...gameProps} />;
-            case 10:
-            case 27:
-                return <Baccarat key={`game-${gameId}`} {...gameProps} />;
-            case 1:
-            case 4:
-                return <BigSmall key={`game-${gameId}`} {...gameProps} />;
-            case 35:
-                return <ThreeCards key={`game-${gameId}`} {...gameProps} />;
             case 36:
             case 37:
                 return <KenoMatch key={`game-${gameId}`} {...(gameProps as KenoMatchProps)} />;
@@ -250,9 +222,8 @@ export const Games: React.FC<Props> = ({
 
     return (
         <div
-            className={`game-container ${!isMobileOnly ? "game-wrapper" : "game-wapper-mobile"} ${
-                isShowSlidingChip ? styles["open-chips"] : styles["close-chips"]
-            }`}
+            className={`game-container ${!isMobileOnly ? "game-wrapper" : "game-wapper-mobile"} ${isShowSlidingChip ? styles["open-chips"] : styles["close-chips"]
+                }`}
         >
             {enabledWinningStreakNotification && <WinningStreak ref={winningStreakRef}></WinningStreak>}
             <GameCategory
