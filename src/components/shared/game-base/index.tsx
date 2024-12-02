@@ -8,7 +8,7 @@ import { getAppSettings } from "../../../common/app-settings";
 import { LanguageLocaleMapper } from "../../../common/constants";
 import * as LocalStorageManager from "../../../common/local-storage";
 import { CommonResourceKeys, GameResourceKeys } from "../../../common/resources";
-import { AuthContext } from "../../../contexts/auth";
+import { AuthContext, AuthContextModel } from "../../../contexts/auth";
 import { GameActionsContextProvider } from "../../../contexts/game-actions-context";
 import { GameContextProvider } from "../../../contexts/game-context/game-context";
 import { GetLocalizedErrorMessage } from "../../../helpers/notice-helper";
@@ -161,7 +161,7 @@ abstract class GameBase<P extends GameBaseProps, S extends GameBaseState<any, an
 
     protected initSocket() {
         const { socketInfo } = this.props;
-        const { session } = this.context;
+        const { session } = this.context as any;
         const { proxy, enableMsgpackParser } = getAppSettings();
         const socketUri = buildServerUrl(socketInfo.namespace);
         const socket = io(socketUri, {
@@ -314,7 +314,7 @@ abstract class GameBase<P extends GameBaseProps, S extends GameBaseState<any, an
     handleKickOut(errorCode: string) {
         (errorCode === "1001" || errorCode === "1002") &&
             setTimeout(() => {
-                this.context.signOut();
+                (this.context as AuthContextModel).signOut();
             }, 10000);
     }
 
@@ -391,7 +391,7 @@ abstract class GameBase<P extends GameBaseProps, S extends GameBaseState<any, an
         }, this.animationTime);
     }
 
-    removeAcceptedBetQueue(key: number) {
+    removeAcceptedBetQueue(key: any) {
         const { acceptedBetQueue } = this.state;
         delete acceptedBetQueue[key];
         this.setState({ acceptedBetQueue });
@@ -410,7 +410,7 @@ abstract class GameBase<P extends GameBaseProps, S extends GameBaseState<any, an
     };
 
     handleUserData({ user, gameConfigs }) {
-        this.context.setBalance(user.red);
+        (this.context as AuthContextModel).setBalance(user.red);
         gameConfigs && this.setState({ rate: user.rate });
     }
 
@@ -543,10 +543,10 @@ abstract class GameBase<P extends GameBaseProps, S extends GameBaseState<any, an
     }
 
     async updateUserBalance() {
-        const balanceResponse = await getBalance(this.context.session);
+        const balanceResponse = await getBalance(this.context["session"]);
 
         if (balanceResponse.isSuccessful) {
-            this.context.setBalance(balanceResponse.balance);
+            (this.context as AuthContextModel).setBalance(balanceResponse.balance);
         } else {
             this.props.setApiErrorMessage(balanceResponse.errorCode);
         }
@@ -1006,10 +1006,10 @@ abstract class GameBase<P extends GameBaseProps, S extends GameBaseState<any, an
         const { md5, md5ResultKey, showMD5ResultKey } = this.state;
 
         let md5Text = (
-                <div>
-                    <strong>{this.props.t("common:md5Key")}:</strong> {md5}
-                </div>
-            ),
+            <div>
+                <strong>{this.props.t("common:md5Key")}:</strong> {md5}
+            </div>
+        ),
             md5ClassName = "md5-key";
         if ((showMD5ResultKey || !md5) && md5ResultKey) {
             md5Text = this.renderRawValueMD5();

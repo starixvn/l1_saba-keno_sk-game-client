@@ -86,7 +86,7 @@ const Timer = () => {
     );
 };
 
-const GameStatus: React.FC = ({ children }) => {
+const GameStatus = ({ children }) => {
     const { gameSetting } = useGameContext();
     const gameName = gameSetting.gameName.toLocaleLowerCase();
     return <div className={`${styles["game-status"]} ${styles[gameName]}`}>{children}</div>;

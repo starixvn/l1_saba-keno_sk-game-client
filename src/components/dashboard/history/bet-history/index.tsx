@@ -17,7 +17,7 @@ import { buildUrlWithPath } from "../../../../helpers/url-helper";
 
 let totalPage = 0;
 let isFetchingHistory = false;
-export const FormatNumber: React.FC = ({ children }) => {
+export const FormatNumber = ({ children }) => {
     return <span className={`font-number nowrap ${Styles["number-text"]}`}>{children}</span>;
 };
 

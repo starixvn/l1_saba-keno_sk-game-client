@@ -6,7 +6,7 @@ import RenderRowKenoPower from "../../../games/keno-power/bet-history/bet-histor
 import { KenoMatchId, GetTranslateMapping } from "../../keno.helper";
 import Styles from "../bet-history.module.scss";
 
-export const RenderCell: React.FC<{ isHighligh: boolean; name: string }> = ({ isHighligh, name, children }) => {
+export const RenderCell: React.FC<{ isHighligh: boolean; name: string, children: any }> = ({ isHighligh, name, children }) => {
     const classHighligh = isHighligh ? "highlight" : "";
     return (
         <td className={`${Styles[name]} ${classHighligh}`} data-testid={name}>

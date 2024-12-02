@@ -106,7 +106,7 @@ export const Timer = ({ duration, initialRemainingTime, lockingBet }: TimerProps
     );
 };
 
-export const GameStatus: React.FC = ({ children }) => {
+export const GameStatus = ({ children }) => {
     return <div className={Styles["game-status"]}>{children}</div>;
 };
 

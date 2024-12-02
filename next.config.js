@@ -1,10 +1,10 @@
-const basePath = "";
 const gameSettings = require("./game-settings.json");
 const configs = require("./configs.json");
 const { i18n } = require("./next-i18next.config");
 const { v4: uuidv4 } = require("uuid");
 const { withSentryConfig } = require("@sentry/nextjs");
 
+const basePath = "";
 const appSettings = {
     ...configs,
     gameSettings,

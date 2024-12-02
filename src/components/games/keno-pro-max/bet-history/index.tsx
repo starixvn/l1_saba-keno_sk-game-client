@@ -29,7 +29,7 @@ export const renderResult = (bet: BetLogs, roundId: number, setIsShowResultDetai
     return <></>;
 };
 
-let interval: NodeJS.Timer = null;
+
 export const RenderTotalPoint: React.FC<{ result: Result; textTranslate; customizeClass?: string; isAnimation?: boolean }> = ({
     result,
     textTranslate,
@@ -37,6 +37,7 @@ export const RenderTotalPoint: React.FC<{ result: Result; textTranslate; customi
     isAnimation,
 }) => {
     const [total, setTotal] = useState<number>(0);
+    let interval: NodeJS.Timeout = null;
     useEffect(() => {
         if (isAnimation) {
             let currentTotal = 0;

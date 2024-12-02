@@ -4,6 +4,7 @@ import React, { useEffect, useRef } from "react";
 type Props = {
     isOpen: boolean;
     onClose: Function;
+    children: any;
 };
 
 export const ContainerToolTip: React.FC<Props> = ({ isOpen, onClose, children }) => {

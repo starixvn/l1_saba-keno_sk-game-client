@@ -1,7 +1,7 @@
 import React from "react";
 import { SSOResponse } from "sc-user-service-client/dist/auth";
 
-type AuthContextModel = {
+export type AuthContextModel = {
     session: SSOResponse;
     currencyGroup: string;
     setBalance: (balance: number) => void;

@@ -49,7 +49,7 @@ export default function ProgressBar({
     const [showWinningTeam, setShowWinningTeam] = useState(false);
     const [totalBlue, setTotalBlue] = useState<number>(0);
     const [totalRed, setTotalRed] = useState<number>(0);
-    let interval: NodeJS.Timer = null;
+    let interval: NodeJS.Timeout = null;
     let percent = 50;
 
     useEffect(() => {

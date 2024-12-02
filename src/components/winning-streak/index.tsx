@@ -5,23 +5,9 @@ import { GameResourceKeys } from "../../common/resources";
 import styles from "./winning-streak.module.scss";
 import { WinningStreakItem } from "./winning-streak.type";
 
-const FishPrawnCrabIconMapper = {
-    fish: "icon-ca",
-    prawn: "icon-tom",
-    crab: "icon-cua",
-    stag: "icon-nai",
-    gourd: "icon-bau",
-    rooster: "icon-ga",
-};
-
-const GamesHaveNoTextOnIcon = ["fishprawncrab", "sedie", "vipsedie", "minisedie", "specialsedie", "threecards"];
-
 const getIconClassName = (gameName: string, choice: string) => {
     const gameNameLower = gameName.toLocaleLowerCase();
     switch (gameNameLower) {
-        case "fishprawncrab":
-            return `${styles.dice} ${FishPrawnCrabIconMapper[choice]}`;
-        case "kenopromax":
         case "kenomatch1":
         case "kenomatch2":
         case "kenopower1":
@@ -43,15 +29,13 @@ const getIconClassName = (gameName: string, choice: string) => {
 
 const getTextOnIconChoice = (gameName: string, choice: string, translate: Function) => {
     const gameNameLowerCase = gameName.toLocaleLowerCase();
-    if (GamesHaveNoTextOnIcon.includes(gameNameLowerCase)) {
-        return "";
-    }
 
     return translate(`${gameNameLowerCase}:${choice}TextDot`);
 };
 
 const winningStreak = {};
 
+/* eslint-disable react/display-name */
 export const WinningStreak = forwardRef((props, ref) => {
     const { t } = useTranslation();
     const [winningStreakQueue, setWinningStreakQueue] = useState<{ [key: string]: WinningStreakItem }>({});

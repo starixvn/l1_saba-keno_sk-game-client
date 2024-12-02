@@ -111,8 +111,8 @@ class AnimationComponent extends React.PureComponent<
         currentIndex: number;
     }
 > {
-    private animationInterval: NodeJS.Timer;
-    private animationTimeOut: NodeJS.Timer;
+    private animationInterval: NodeJS.Timeout;
+    private animationTimeOut: NodeJS.Timeout;
     constructor(props) {
         super(props);
         this.state = {

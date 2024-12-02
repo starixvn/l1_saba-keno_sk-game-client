@@ -2,7 +2,7 @@ import React from "react";
 
 import Styles from "./text-block.module.scss";
 
-const TextBlock: React.FC = ({ children }) => {
+const TextBlock = ({ children }) => {
     return <div className={Styles["welcome"]}>{children}</div>;
 };
 
