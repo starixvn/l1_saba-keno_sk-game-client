@@ -10,6 +10,7 @@ const appSettings = {
     gameSettings,
 };
 
+const buildVersion = new Date().getTime();
 module.exports = withSentryConfig({
     i18n,
     publicRuntimeConfig: appSettings,
@@ -47,4 +48,8 @@ module.exports = withSentryConfig({
             },
         ];
     },
+    sassOptions: {
+        prependData: `$version-image: '${buildVersion}';`,
+    },
+    output: "standalone",
 });
