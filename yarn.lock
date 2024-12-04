@@ -5798,11 +5798,6 @@ queue-microtask@^1.2.2:
   resolved "http://npm.lumigame.com/queue-microtask/-/queue-microtask-1.2.3.tgz#4929228bbc724dfac43e0efb058caf7b6cfb6243"
   integrity sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==
 
-react-addons-test-utils@^15.6.2:
-  version "15.6.2"
-  resolved "http://npm.lumigame.com/react-addons-test-utils/-/react-addons-test-utils-15.6.2.tgz#c12b6efdc2247c10da7b8770d185080a7b047156"
-  integrity sha1-wStu/cIkfBDae4dw0YUICnsEcVY=
-
 react-countdown-circle-timer@^2.5.1:
   version "2.5.4"
   resolved "http://npm.lumigame.com/react-countdown-circle-timer/-/react-countdown-circle-timer-2.5.4.tgz#95cb58e5e734deffd9087a13279d8924463cc239"
