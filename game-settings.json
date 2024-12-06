@@ -1,7 +1,7 @@
 {
     "1509": {
         "id": 1509,
-        "gameName": "SkKenoPower",
+        "gameName": "KenoPower",
         "socketInfo": {
             "namespace": "skkenopower",
             "path": "skkenopower"
@@ -18,7 +18,7 @@
     },
     "1510": {
         "id": 1510,
-        "gameName": "SkKenoPower2",
+        "gameName": "KenoPower2",
         "socketInfo": {
             "namespace": "skkenopower2",
             "path": "skkenopower"

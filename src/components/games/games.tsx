@@ -7,7 +7,7 @@ import MsgpackParser from "socket.io-msgpack-parser";
 import { getAppSettings } from "../../common/app-settings";
 import { SocketState } from "../../types";
 import { GameCategory } from "../game-category";
-import { GameCategoryType, GamesInOnePage, GetGameCategoryConfig, favoriteGameIdIgnore } from "../../helpers/category-helper";
+import { Categories, GameCategoryType, GamesInOnePage, GetGameCategoryConfig, favoriteGameIdIgnore } from "../../helpers/category-helper";
 import { ViewMode } from "../shared/game-base/type";
 import { WinningStreak } from "../winning-streak";
 import { WinningStreakItem } from "../winning-streak/winning-streak.type";
@@ -48,7 +48,7 @@ const getCategoryByGameId = (gameId: number, currencyGroup: string) => {
 };
 
 const getDefaultCategory = () => {
-    return "megakeno";
+    return Categories.keno;
 };
 
 const getCategoryByQueryGameId = (gameId: number, currencyGroup: string) => {
@@ -85,6 +85,8 @@ export const Games: React.FC<Props> = ({
     openGameId,
 }) => {
     const { currencyGroup } = useAuthContext();
+
+    // const currencyGroup = "GrUSD";
     const [playPlaceBetSound] = useSound("./static/sounds/place-bet.mp3");
     const urlHashtag = window.location.hash.replace("#", "").split("_");
     const queryCategory = isJoinGame
@@ -138,21 +140,21 @@ export const Games: React.FC<Props> = ({
         };
 
         switch (gameId) {
-            case 36:
-            case 37:
-                return <KenoMatch key={`game-${gameId}`} {...(gameProps as KenoMatchProps)} />;
-            case 40:
-            case 41:
-                return <KenoPower key={`game-${gameId}`} {...gameProps}></KenoPower>;
-            case 14:
-            case 15:
-            case 16:
-            case 17:
-            case 18:
-            case 19:
-            case 52:
-            case 53:
+            case 1501:
+            case 1502:
+            case 1503:
+            case 1504:
+            case 1505:
+            case 1506:
+            case 1507:
+            case 1508:
                 return <MiniKeno key={`game-${gameId}`} {...gameProps}></MiniKeno>;
+            case 1509:
+            case 1510:
+                return <KenoPower key={`game-${gameId}`} {...gameProps}></KenoPower>;
+            case 1511:
+            case 1512:
+                return <KenoMatch key={`game-${gameId}`} {...(gameProps as KenoMatchProps)} />;
             default:
                 return null;
         }

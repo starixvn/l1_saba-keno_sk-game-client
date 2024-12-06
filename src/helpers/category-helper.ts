@@ -7,32 +7,65 @@ export const isMegaKenoLobby = () => {
     return getAppSettings().appType === 1;
 };
 
+const isIncludeMegaCategory = () => {
+    return !!getAppSettings().isIncludeMegaCategory;
+};
+
 export enum GameCategoryType {
+    hot,
     megakeno,
     keno,
+    favorite,
 }
 
-const Categories = {
+export const Categories = {
+    hot: "hot",
     megakeno: "megakeno",
     keno: "keno",
+    favorite: "favorite",
 };
 
 const KenoCategoryConfig = {
     [Categories.megakeno]: [
         GameIds.MegaKeno,
         GameIds.MegaKeno2,
-        GameIds.KenoMini,
-        GameIds.KenoMini2,
-        GameIds.KenoEast,
-        GameIds.KenoWest,
-        GameIds.KenoSouth,
-        GameIds.KenoNorth,
+        GameIds.SkKenoMini,
+        GameIds.SkKenoMini2,
+        GameIds.SkKenoEast,
+        GameIds.SkKenoWest,
+        GameIds.SkKenoSouth,
+        GameIds.SkKenoNorth,
     ],
-    [Categories.keno]: [GameIds.KenoPower1, GameIds.KenoPower2, GameIds.KenoSoccer, GameIds.KenoSoccer2],
+    [Categories.keno]: [GameIds.KenoPower, GameIds.KenoPower2, GameIds.SkKenoSoccer, GameIds.SkKenoSoccer2],
+};
+
+const GrUSDCategoryConfig = {
+    [Categories.hot]: [
+    ],
+
+    ...KenoCategoryConfig,
+    [Categories.favorite]: [],
+};
+
+const OtherCurrencyGroupCategoryConfig = {
+    [Categories.hot]: [
+    ],
+    ...KenoCategoryConfig,
+    [Categories.favorite]: [],
 };
 
 export const GetGameCategoryConfig = (currencyGroupName: string) => {
-    return KenoCategoryConfig;
+    if (isMegaKenoLobby()) {
+        return KenoCategoryConfig;
+    }
+
+    const groups = ["Cash_INH", "GrUSD"];
+    const configs = groups.includes(currencyGroupName) ? GrUSDCategoryConfig : OtherCurrencyGroupCategoryConfig;
+    if (!isIncludeMegaCategory()) {
+        delete configs[Categories.megakeno];
+        delete configs[Categories.keno];
+    }
+    return configs;
 };
 
 export const GetOfferedGames = (currencyGroupName: string, offerGames: number[]) => {
@@ -45,4 +78,4 @@ export const GetAllGameByCurrencyGroup = (currencyGroupName: string) => {
         .filter((gameId, index, array) => array.indexOf(gameId) === index);
 };
 
-export const favoriteGameIdIgnore = [GameIds.KenoPower1, GameIds.KenoPower2, GameIds.KenoSoccer, GameIds.KenoSoccer2];
+export const favoriteGameIdIgnore = [GameIds.KenoPower, GameIds.KenoPower2, GameIds.SkKenoSoccer, GameIds.SkKenoSoccer2];

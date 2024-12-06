@@ -5,12 +5,12 @@ window.envConfig = {
     },
     proxy: {
         ssl: true,
-        subDomain: "gn-proxy",
+        subDomain: "gn-proxy1",
         path: "",
     },
     sentry: {
         dsn: "",
-        environment: "LOCAL",
+        environment: "",
     },
     enableSourceMap: true,
     subGuideDomain: "gn-guide",
@@ -19,5 +19,5 @@ window.envConfig = {
     appType: 1,
     useTolgeeStatic: false,
     googleAnalyticId: "G-F4HZV0YQ73",
-      socketGatewayPath: "gateway"
+    socketGatewayPath: "gateway"
 };

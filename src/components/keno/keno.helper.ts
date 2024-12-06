@@ -28,7 +28,7 @@ export const StatisticRuleEntriesBlueRed = Object.entries({
         (countResult[Choices.tie] ? Math.round((countResult[Choices.tie] * 100) / total) : 0),
 });
 
-export const GetTranslateMapping = (t: TFunction, gameName = "kenomatch1") => {
+export const GetTranslateMapping = (t: TFunction, gameName = "kenosoccer") => {
     return {
         firstHalf: t(`${gameName}:firstHalf`),
         fullTime: t(`${gameName}:fullTime`),
