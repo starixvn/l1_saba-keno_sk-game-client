@@ -34,8 +34,7 @@ const getRenderGames = (
     userOfferGames: number[]
 ) => {
     const gameCategoryConfig = GetGameCategoryConfig(currencyGroup);
-    const gamesInCategory =
-        selectedCategory !== GameCategoryType.favorite ? gameCategoryConfig[GameCategoryType[selectedCategory]] : favoriteGames;
+    const gamesInCategory = gameCategoryConfig[GameCategoryType[selectedCategory]];
     const favoriteGamesInCategory = favoriteGames.filter((gameId) => gamesInCategory.includes(gameId));
     const unfavoriteGamesInCategory = gamesInCategory.filter((gameId) => !favoriteGames.includes(gameId));
 
@@ -111,11 +110,7 @@ export const Games: React.FC<Props> = ({
             userOfferGames
         );
 
-        return renderGames.length === 0 && selectedCategory === GameCategoryType.favorite ? (
-            <FavoriteGuide />
-        ) : (
-            renderGames.map((gameId, index) => getGameComponentById(gameId, index))
-        );
+        return renderGames.map((gameId, index) => getGameComponentById(gameId, index));
     };
 
     const getGameComponentById = (gameId: number, index: number) => {

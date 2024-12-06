@@ -1,18 +1,4 @@
 export enum GameIds {
-    BigSmall = 1,
-    SeDie = 2,
-    FishPrawnCrab = 3,
-    BigSmallTurbo = 4,
-    DragonTiger = 7,
-    KenoProMax = 8,
-    MiniSeDie = 9,
-    Baccarat = 10,
-
-    VipSeDie = 22,
-    SpecialSeDie = 24,
-    VipBaccarat = 27,
-    ThreeCards = 35,
-
     MegaKeno = 1501,
     MegaKeno2 = 1502,
 
