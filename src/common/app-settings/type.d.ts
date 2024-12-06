@@ -14,10 +14,10 @@ interface SentryOptions {
 
 export default interface AppSettings {
     serverDomainMapper: Array<string>;
-    subSocketGatewayDomain: string;
+    socketGatewayPath: string;
     proxy: ProxySetting;
     sentry: SentryOptions;
-    gameSettings: { [id: string]: GameBaseProps | KenoMatchProps };
+    gameSettings: { [id: string]: GameBaseProps | KenoMatchProps | GameSettings };
     subGuideDomain: string;
     googleAnalyticId: string;
     enableMsgpackParser: boolean;
@@ -25,4 +25,5 @@ export default interface AppSettings {
     appType: number;
     subPromotionDomain: string;
     isIncludeMegaCategory: boolean?;
+    gamePath: string;
 }

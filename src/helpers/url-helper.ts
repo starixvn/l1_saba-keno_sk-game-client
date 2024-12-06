@@ -1,5 +1,6 @@
 import { getAppSettings } from "../common/app-settings";
 
+
 export const buildUrl = (subDomain = getAppSettings().proxy?.subDomain, path = "/") => {
     const { proxy } = getAppSettings();
     const domain = getRootDomain();
@@ -25,18 +26,6 @@ export const extractDomainFromHostName = (hostName: string) => {
 
 export const buildGameGuideUrl = () => {
     return buildUrl(getAppSettings().subGuideDomain, "");
-};
-
-export const buildPromotionSiteUrl = () => {
-    const subPromotionDomain = getAppSettings().subPromotionDomain;
-    if (subPromotionDomain) {
-        return buildUrl(getAppSettings().subPromotionDomain, "");
-    }
-    return buildUrlWithPath("/promotion");
-};
-
-export const buildSocketGatewayUrl = () => {
-    return buildUrl(getAppSettings().subSocketGatewayDomain, "");
 };
 
 export const buildServerUrl = (path: string) => {

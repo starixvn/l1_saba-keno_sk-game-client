@@ -8,7 +8,6 @@ import { SystemType } from "../../../common/constants/system";
 import { FavoriteSetting } from "../../favorite-setting";
 import { getLogoName } from "../../header";
 import { Tooltip } from "../tooltip";
-import IconPromotionTournament from "./icon-promotion-tournament";
 import { Menu } from "./menu";
 import styles from "./settings.module.scss";
 import { Props } from "./types";
@@ -39,8 +38,6 @@ export const Settings: React.FC<Props> = ({
     const toggleSoundBtnRef = useRef<HTMLDivElement>(null);
     const favoriteToggleBtnRef = useRef<HTMLDivElement>(null);
     const specialClassByDevice = !isMobileOnly ? "desktop-style" : "";
-    const supportPromotionTournament = getAppSettings().system === SystemType.L2;
-    const isShowPromotion = !(isShowToolbarGuide && isMobileOnly && isSafari);
     return useMemo(() => {
         return (
             <div className={styles["settings-container"]}>
@@ -56,7 +53,6 @@ export const Settings: React.FC<Props> = ({
                 )}
 
                 <div className={`${styles["setting-right"]} ${styles[getLogoName()]}`}>
-                    {supportPromotionTournament && isShowPromotion && <IconPromotionTournament />}
                     <div
                         ref={toggleAnnouncementBtnRef}
                         className={`${styles[ButtonSettingClassName]} ${styles[specialClassByDevice]}`}

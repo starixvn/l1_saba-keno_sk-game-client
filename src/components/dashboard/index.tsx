@@ -30,7 +30,6 @@ import { ToolbarGuide } from "../hide-toolbar-guide";
 import { buildUrl } from "../../helpers/url-helper";
 import { SystemContextProvider } from "../../contexts/system";
 import { GetOfferedGames } from "../../helpers/category-helper";
-import { PromotionTournament } from "./promotion-tournament";
 import { ModalContextProvider } from "../../contexts/modal-context";
 
 const orientationType = { portrait: "portrait", landscape: "landscape" };
@@ -575,7 +574,6 @@ class Dashboard extends React.PureComponent<Props, State> {
                                     openGame={this.openGame}
                                 />
                             )}
-                            <PromotionTournament />
                             {isShowGuide && (
                                 <GameGuideModal
                                     userStakeLevel={userStakeLevel}

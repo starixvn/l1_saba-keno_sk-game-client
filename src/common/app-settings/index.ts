@@ -20,3 +20,21 @@ export const getAppSettings = () => {
 
     return mergedAppSettings;
 };
+
+export const getGameSettings = (gameId?: number) => {
+    const { gameSettings } = getAppSettings();
+
+    return gameSettings[gameId];
+};
+
+export const getGamesPath = () => {
+    const { gameSettings } = getAppSettings();
+
+    return Array.from(new Set(Object.values(gameSettings).map((item) => item.gamePath)));
+};
+
+export const getGameIdsSetting = () => {
+    const { gameSettings } = getAppSettings();
+
+    return Object.keys(gameSettings);
+};

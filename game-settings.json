@@ -1,62 +1,10 @@
 {
-    "36": {
-        "id": 36,
-        "gameName": "KenoMatch1",
+    "1509": {
+        "id": 1509,
+        "gameName": "SkKenoPower",
         "socketInfo": {
-            "namespace": "kenomatch1",
-            "path": "kenomatch"
-        },
-        "supportMD5": true,
-        "durations": {
-            "wholeRound": 78,
-            "showFullTimeSettlementResult": 73,
-            "halfTimePlacingBets": 69,
-            "halfTimeLockingBet": 39,
-            "showHalfTimeResult": 34,
-            "showHalfTimeSettlementResult": 30,
-            "beforeStartFullTimePlacingBet": 26,
-            "fullTimePlacingBets": 25,
-            "fullTimeLockingBet": 5,
-            "showFullTimeResult": 0,
-            "showResult": 6,
-            "halfTimeDuration": 35,
-            "fullTimeDuration": 25,
-            "resultAnimation": 8,
-            "settlementWinning": 6
-        }
-    },
-    "37": {
-        "id": 37,
-        "gameName": "KenoMatch2",
-        "socketInfo": {
-            "namespace": "kenomatch2",
-            "path": "kenomatch"
-        },
-        "supportMD5": true,
-        "durations": {
-            "wholeRound": 86,
-            "showFullTimeSettlementResult": 81,
-            "halfTimePlacingBets": 73,
-            "halfTimeLockingBet": 43,
-            "showHalfTimeResult": 38,
-            "showHalfTimeSettlementResult": 34,
-            "beforeStartFullTimePlacingBet": 26,
-            "fullTimePlacingBets": 25,
-            "fullTimeLockingBet": 5,
-            "showFullTimeResult": 0,
-            "showResult": 6,
-            "halfTimeDuration": 35,
-            "fullTimeDuration": 25,
-            "resultAnimation": 8,
-            "settlementWinning": 6
-        }
-    },
-    "40": {
-        "id": 40,
-        "gameName": "KenoPower1",
-        "socketInfo": {
-            "namespace": "kenopower1",
-            "path": "kenopower"
+            "namespace": "skkenopower",
+            "path": "skkenopower"
         },
         "supportMD5": true,
         "durations": {
@@ -68,12 +16,12 @@
             "beforeStartRound": 0
         }
     },
-    "41": {
-        "id": 41,
-        "gameName": "KenoPower2",
+    "1510": {
+        "id": 1510,
+        "gameName": "SkKenoPower2",
         "socketInfo": {
-            "namespace": "kenopower2",
-            "path": "kenopower"
+            "namespace": "skkenopower2",
+            "path": "skkenopower"
         },
         "supportMD5": true,
         "durations": {
@@ -82,142 +30,6 @@
             "lockingBet": 5,
             "showResult": 12,
             "resultAnimation": 4,
-            "beforeStartRound": 0
-        }
-    },
-    "14": {
-        "id": 14,
-        "gameName": "KenoMini",
-        "supportMD5": true,
-        "socketInfo": {
-            "namespace": "kenomini",
-            "path": "minikeno"
-        },
-        "durations": {
-            "wholeRound": 52,
-            "placingBets": 40,
-            "lockingBet": 5,
-            "showResult": 8,
-            "resultAnimation": 5,
-            "beforeStartRound": 0
-        }
-    },
-    "15": {
-        "id": 15,
-        "gameName": "KenoMini2",
-        "supportMD5": true,
-        "socketInfo": {
-            "namespace": "kenomini2",
-            "path": "minikeno"
-        },
-        "durations": {
-            "wholeRound": 42,
-            "placingBets": 30,
-            "lockingBet": 5,
-            "showResult": 8,
-            "resultAnimation": 5,
-            "beforeStartRound": 0
-        }
-    },
-    "16": {
-        "id": 16,
-        "gameName": "KenoEast",
-        "supportMD5": true,
-        "socketInfo": {
-            "namespace": "kenoeast",
-            "path": "minikeno"
-        },
-        "durations": {
-            "wholeRound": 44,
-            "placingBets": 30,
-            "lockingBet": 5,
-            "showResult": 10,
-            "resultAnimation": 7,
-            "beforeStartRound": 0
-        }
-    },
-    "17": {
-        "id": 17,
-        "gameName": "KenoWest",
-        "supportMD5": true,
-        "socketInfo": {
-            "namespace": "kenowest",
-            "path": "minikeno"
-        },
-        "durations": {
-            "wholeRound": 44,
-            "placingBets": 30,
-            "lockingBet": 5,
-            "showResult": 10,
-            "resultAnimation": 7,
-            "beforeStartRound": 0
-        }
-    },
-    "18": {
-        "id": 18,
-        "gameName": "KenoSouth",
-        "supportMD5": true,
-        "socketInfo": {
-            "namespace": "kenosouth",
-            "path": "minikeno"
-        },
-        "durations": {
-            "wholeRound": 44,
-            "placingBets": 30,
-            "lockingBet": 5,
-            "showResult": 10,
-            "resultAnimation": 7,
-            "beforeStartRound": 0
-        }
-    },
-    "19": {
-        "id": 19,
-        "gameName": "KenoNorth",
-        "supportMD5": true,
-        "socketInfo": {
-            "namespace": "kenonorth",
-            "path": "minikeno"
-        },
-        "durations": {
-            "wholeRound": 44,
-            "placingBets": 30,
-            "lockingBet": 5,
-            "showResult": 10,
-            "resultAnimation": 7,
-            "beforeStartRound": 0
-        }
-    },
-    "52": {
-        "id": 52,
-        "gameName": "MegaKeno",
-        "supportMD5": true,
-        "socketInfo": {
-            "namespace": "megakeno",
-            "path": "minikeno"
-        },
-        "durations": {
-            "wholeRound": 59,
-            "placingBets": 45,
-            "lockingBet": 5,
-            "showResult": 10,
-            "resultAnimation": 7,
-            "beforeStartRound": 0
-        }
-    },
-    "53": {
-        "id": 53,
-        "gameName": "MegaKeno2",
-        "supportMD5": true,
-        "socketInfo": {
-            "namespace": "megakeno2",
-            "path": "minikeno"
-        },
-        "durations": {
-            "wholeRound": 44,
-            "placingBets": 30,
-            "lockingBet": 5,
-            "showResult": 10,
-            "resultAnimation": 7,
             "beforeStartRound": 0
         }
     }

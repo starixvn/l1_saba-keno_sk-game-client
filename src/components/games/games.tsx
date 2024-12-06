@@ -6,7 +6,6 @@ import useSound from "use-sound";
 import MsgpackParser from "socket.io-msgpack-parser";
 import { getAppSettings } from "../../common/app-settings";
 import { SocketState } from "../../types";
-import { FavoriteGuide } from "../favorite-guide";
 import { GameCategory } from "../game-category";
 import { GameCategoryType, GamesInOnePage, GetGameCategoryConfig, favoriteGameIdIgnore } from "../../helpers/category-helper";
 import { ViewMode } from "../shared/game-base/type";
@@ -21,8 +20,7 @@ import MiniKeno from "./mini-keno";
 import { KenoMatchProps } from "../games/keno-match/type";
 import { Props } from "./type";
 import messageTransmitter from "../../helpers/message-transmitter";
-import { AppTypes } from "../../common/constants";
-import { buildSocketGatewayUrl } from "../../helpers/url-helper";
+import { buildUrl } from "../../helpers/url-helper";
 import { useAuthContext } from "../../contexts/auth";
 
 let gamesOrder = [];
@@ -34,8 +32,7 @@ const getRenderGames = (
     userOfferGames: number[]
 ) => {
     const gameCategoryConfig = GetGameCategoryConfig(currencyGroup);
-    const gamesInCategory =
-        selectedCategory !== GameCategoryType.favorite ? gameCategoryConfig[GameCategoryType[selectedCategory]] : favoriteGames;
+    const gamesInCategory = gameCategoryConfig[GameCategoryType[selectedCategory]];
     const favoriteGamesInCategory = favoriteGames.filter((gameId) => gamesInCategory.includes(gameId));
     const unfavoriteGamesInCategory = gamesInCategory.filter((gameId) => !favoriteGames.includes(gameId));
 
@@ -51,12 +48,12 @@ const getCategoryByGameId = (gameId: number, currencyGroup: string) => {
 };
 
 const getDefaultCategory = () => {
-    return getAppSettings().appType === AppTypes.mobile ? "hot" : "megakeno";
+    return "megakeno";
 };
 
 const getCategoryByQueryGameId = (gameId: number, currencyGroup: string) => {
     const categories = GetGameCategoryConfig(currencyGroup);
-    return Object.keys(categories).find((category) => category !== "hot" && categories[category].includes(gameId)) ?? getDefaultCategory();
+    return Object.keys(categories).find((category) => categories[category].includes(gameId)) ?? getDefaultCategory();
 };
 
 const getCategoryHashTag = (category: string, pageIndex: number) => {
@@ -111,11 +108,7 @@ export const Games: React.FC<Props> = ({
             userOfferGames
         );
 
-        return renderGames.length === 0 && selectedCategory === GameCategoryType.favorite ? (
-            <FavoriteGuide />
-        ) : (
-            renderGames.map((gameId, index) => getGameComponentById(gameId, index))
-        );
+        return renderGames.map((gameId, index) => getGameComponentById(gameId, index));
     };
 
     const getGameComponentById = (gameId: number, index: number) => {
@@ -173,15 +166,24 @@ export const Games: React.FC<Props> = ({
     };
 
     const connectSocket = () => {
-        const { enableMsgpackParser } = getAppSettings();
-        const socketGatewayUrl = buildSocketGatewayUrl();
-        const socket = io(socketGatewayUrl, {
+        // const { enableMsgpackParser } = getAppSettings();
+        // const socketGatewayUrl = buildSocketGatewayUrl();
+        // const socket = io(socketGatewayUrl, {
+        //     forceNew: true,
+        //     transports: ["websocket"],
+        //     upgrade: false,
+        //     parser: enableMsgpackParser ? MsgpackParser : undefined,
+        // });
+        const { proxy, enableMsgpackParser, socketGatewayPath } = getAppSettings();
+        const socketUri = buildUrl();
+        const socketOption = {
             forceNew: true,
             transports: ["websocket"],
+            path: `${proxy.path}/${socketGatewayPath}/socket.io`,
             upgrade: false,
             parser: enableMsgpackParser ? MsgpackParser : undefined,
-        });
-
+        };
+        const socket = io(socketUri, socketOption);
         socket.on("connect", () => {
             setSocketState(SocketState.Connected);
         });

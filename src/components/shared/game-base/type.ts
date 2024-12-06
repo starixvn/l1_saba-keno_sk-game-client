@@ -34,6 +34,7 @@ export interface GameSettings {
     gameName: string;
     socketInfo: SocketInfo;
     durations: GameDurations;
+    gamePath?: string;
 }
 
 export type GatewayGameBaseProps = {

@@ -9,7 +9,7 @@ describe("Test UrlHelper", () => {
 
     const getAppSettingsMock = jest.spyOn(appSettings, "getAppSettings");
     getAppSettingsMock.mockReturnValue({
-        subSocketGatewayDomain: "gws",
+        socketGatewayPath: "gws",
         proxy: {
             ssl: "true",
             subDomain: "proxy",

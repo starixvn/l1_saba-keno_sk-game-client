@@ -1,5 +1,5 @@
 window.envConfig = {
-    subSocketGatewayDomain: "l1-gw3",
+    socketGatewayPath: "l1-gw3",
     proxy: {
         ssl: true,
         subDomain: "l1-proxy3",

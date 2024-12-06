@@ -1,20 +1,23 @@
 {
-    "subSocketGatewayDomain": "l1-gw",
     "serverDomainMapper": {
         "localhost": "lumigame.com"
     },
     "proxy": {
         "ssl": true,
-        "subDomain": "l1-proxy",
+        "subDomain": "gn-proxy",
         "path": ""
     },
     "sentry": {
-        "dsn": "https://234faaab51664e48a2e75c1964a42ca0@sentry.lumigame.com/32",
-        "environment": "LOCAL_1"
+        "dsn": "",
+        "environment": "",
+        "tracesSampleRate": 1
     },
     "enableSourceMap": true,
-    "subGuideDomain": "l1-guide",
+    "subGuideDomain": "gn-guide",
     "enableMsgpackParser": false,
-    "system": "L1",
-    "appType": 4
+    "system": "GN",
+    "appType": 1,
+    "useTolgeeStatic": false,
+    "enableDebugLogs": true,
+    "socketGatewayPath": "gateway"
 }
