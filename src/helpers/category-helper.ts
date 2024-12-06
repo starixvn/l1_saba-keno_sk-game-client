@@ -37,14 +37,14 @@ const KenoCategoryConfig = {
     [Categories.megakeno]: [
         GameIds.MegaKeno,
         GameIds.MegaKeno2,
-        GameIds.KenoMini,
-        GameIds.KenoMini2,
-        GameIds.KenoEast,
-        GameIds.KenoWest,
-        GameIds.KenoSouth,
-        GameIds.KenoNorth,
+        GameIds.SkKenoMini,
+        GameIds.SkKenoMini2,
+        GameIds.SkKenoEast,
+        GameIds.SkKenoWest,
+        GameIds.SkKenoSouth,
+        GameIds.SkKenoNorth,
     ],
-    [Categories.keno]: [GameIds.KenoPower1, GameIds.KenoPower2, GameIds.KenoSoccer, GameIds.KenoSoccer2],
+    [Categories.keno]: [GameIds.SkKenoPower, GameIds.SkKenoPower2, GameIds.SkKenoSoccer, GameIds.SkKenoSoccer2],
 };
 
 const GrUSDCategoryConfig = {
@@ -113,4 +113,4 @@ export const GetAllGameByCurrencyGroup = (currencyGroupName: string) => {
         .filter((gameId, index, array) => array.indexOf(gameId) === index);
 };
 
-export const favoriteGameIdIgnore = [GameIds.KenoPower1, GameIds.KenoPower2, GameIds.KenoSoccer, GameIds.KenoSoccer2];
+export const favoriteGameIdIgnore = [GameIds.SkKenoPower, GameIds.SkKenoPower2, GameIds.SkKenoSoccer, GameIds.SkKenoSoccer2];
