@@ -116,7 +116,7 @@ describe("KenoPower bet-history bet logs detail", () => {
     const gameId = 40;
     describe("Users have  bet, should render data on bet-history ", () => {
         // Arrange
-        const gameName = "kenopower1";
+        const gameName = "kenopower";
         const betLogDetails = [{ time: "2021-09-27T04:37:09.353Z", choice: "blueSmall", amount: 1 }];
         const odds = {
             banker: 1.96,

@@ -48,7 +48,7 @@ const getCategoryByGameId = (gameId: number, currencyGroup: string) => {
 };
 
 const getDefaultCategory = () => {
-    return Categories.keno;
+    return Categories.megakeno;
 };
 
 const getCategoryByQueryGameId = (gameId: number, currencyGroup: string) => {

@@ -5,31 +5,35 @@
     --term-border-color: #d1dbf8;
 }
 
-.main-result{
+.main-result {
     height: 100%;
     background: var(--result-team-bg-color);
-    // &.kenopower1 {
+
+    // &.kenopower {
     //     height: 14.9rem;
     // }
     &.result-animation {
-        .main-content  {
+        .main-content {
             display: flex;
             justify-content: space-between;
             height: auto;
         }
     }
-    
+
 }
+
 .main-content {
     display: grid;
     grid-template-columns: 12rem 1fr 12rem;
     padding: 0.3rem 0.8rem 0;
-    height: 100%;    
+    height: 100%;
+
     .row {
         display: grid;
         grid-template-columns: repeat(5, 1fr);
         grid-template-rows: repeat(2, 2rem);
         grid-row-gap: 0.3rem;
+
         .number {
             justify-self: center;
         }
@@ -42,6 +46,7 @@
     position: relative;
     justify-self: center;
     width: 100%;
+
     .score-wrapper {
         position: absolute;
         bottom: 0;
@@ -54,6 +59,7 @@
         border-top-left-radius: 16px;
         border-top-right-radius: 16px;
         margin-left: calc(50% - 3.2rem);
+
         .score {
             font: 500 2rem var(--font-number);
             line-height: 2rem;

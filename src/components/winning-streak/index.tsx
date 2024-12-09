@@ -10,7 +10,7 @@ const getIconClassName = (gameName: string, choice: string) => {
     switch (gameNameLower) {
         case "kenosoccer":
         case "kenosoccer2":
-        case "kenopower1":
+        case "kenopower":
         case "kenopower2":
         case "kenomini":
         case "kenomini2":

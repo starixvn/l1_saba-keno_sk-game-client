@@ -2,9 +2,9 @@ import { GameState, ViewMode } from "../../../shared/game-base/type";
 
 const gameSetting = {
     id: 40,
-    gameName: "KenoPower1",
+    gameName: "KenoPower",
     socketInfo: {
-        namespace: "kenopower1",
+        namespace: "kenopower",
         path: "kenopower",
     },
     supportMD5: false,

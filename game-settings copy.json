@@ -137,9 +137,9 @@
     },
     "1509": {
         "id": 1509,
-        "gameName": "KenoPower1",
+        "gameName": "KenoPower",
         "socketInfo": {
-            "namespace": "kenopower1",
+            "namespace": "kenopower",
             "path": "kenopower"
         },
         "supportMD5": true,

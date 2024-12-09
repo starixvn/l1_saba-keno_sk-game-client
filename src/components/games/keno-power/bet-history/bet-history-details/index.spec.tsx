@@ -6,7 +6,7 @@ import { GetTranslateMapping } from "../../../../keno/keno.helper";
 
 describe("KenoSoccer Info Bet History Detail", () => {
     const tableRow = document.createElement("tr");
-    const gameName = "kenopower1";
+    const gameName = "kenopower";
     const odds = {
         big: 1.96,
         blue: 1.96,

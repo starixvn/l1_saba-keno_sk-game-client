@@ -52,7 +52,7 @@ describe("KenoPower bet-history Result detail", () => {
     const gameId = 40;
     describe("Users have  bet, should render data on bet-history ", () => {
         // Arrange
-        const gameName = "kenopower1";
+        const gameName = "kenopower";
         const resultDetail = {
             bet: {
                 result: {
