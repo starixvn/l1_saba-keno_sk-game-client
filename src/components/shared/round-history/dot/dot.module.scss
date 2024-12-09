@@ -78,10 +78,10 @@
     &:before {
         background: var(--dot-even-background);
     }
-          
+
     &.kenopromax,
-    &.kenomatch1,
-    &.kenomatch2,
+    &.kenosoccer,
+    &.kenosoccer2,
     &.kenopower1,
     &.kenopower2,
     &.megakeno,
@@ -105,17 +105,18 @@
 .dot-grid-even {
     @extend %dot;
     background: linear-gradient(180deg, #F7F7F7 0%, #B5B5B5 100%);
-    
-        
+
+
     color: var(--dot-even-text-color);
     font-weight: 500;
 
     &:before {
         background: linear-gradient(180deg, #EEEEEE 0%, #CCCCCC 100%);
     }
+
     &.kenopromax,
-    &.kenomatch1,
-    &.kenomatch2,
+    &.kenosoccer,
+    &.kenosoccer2,
     &.kenopower1,
     &.kenopower2,
     &.megakeno,
@@ -146,8 +147,8 @@
     }
 
     &.kenopromax,
-    &.kenomatch1,
-    &.kenomatch2,
+    &.kenosoccer,
+    &.kenosoccer2,
     &.kenopower1,
     &.kenopower2 {
         color: #fff;
@@ -164,12 +165,12 @@
 
 .dot-grid-odd {
     @extend %dot;
-    background: linear-gradient(180deg, rgba(255,86,97,1) 0%, rgba(190,28,40,1) 100%);    
+    background: linear-gradient(180deg, rgba(255, 86, 97, 1) 0%, rgba(190, 28, 40, 1) 100%);
     color: var(--dot-odd-text-color);
 
     &:before {
-        background: linear-gradient(180deg, rgba(250,55,68,1) 6.04%, rgba(205,13,27,1) 100%);
-    }    
+        background: linear-gradient(180deg, rgba(250, 55, 68, 1) 6.04%, rgba(205, 13, 27, 1) 100%);
+    }
 }
 
 // dragon-tiger
@@ -185,7 +186,7 @@
 
 .dot-grid-dragon {
     @extend %dot;
-    background: var(--dragonTiger-dot-dragon-border);   
+    background: var(--dragonTiger-dot-dragon-border);
 
     &:before {
         background: var(--dragonTiger-dot-dragon-background);
@@ -204,7 +205,7 @@
 
 .dot-grid-tiger {
     @extend %dot;
-    background: var(--dragonTiger-dot-tiger-border);    
+    background: var(--dragonTiger-dot-tiger-border);
 
     &:before {
         background: var(--dragonTiger-dot-tiger-background);
@@ -219,6 +220,7 @@
     &:before {
         background: var(--baccarat-dot-tie-background);
     }
+
     &.dragontiger {
         background: var(--dragonTiger-dot-tie-border);
         box-shadow: var(--dragonTiger-dot-tie-shadow);
@@ -231,13 +233,14 @@
 
 .dot-grid-tie {
     @extend %dot;
-    background: var(--baccarat-dot-tie-border);    
+    background: var(--baccarat-dot-tie-border);
 
     &:before {
         background: var(--baccarat-dot-tie-background);
     }
+
     &.dragontiger {
-        background: var(--dragonTiger-dot-tie-border);       
+        background: var(--dragonTiger-dot-tie-border);
 
         &:before {
             background: var(--dragonTiger-dot-tie-background);
@@ -297,7 +300,7 @@
 
 .dot-grid-banker {
     @extend %dot;
-    background: var(--baccarat-dot-banker-border);    
+    background: var(--baccarat-dot-banker-border);
 
     &:before {
         background: var(--baccarat-dot-banker-background);
@@ -338,6 +341,7 @@
     @extend %dot;
     background: var(--keno-pro-dot-gold-border);
     box-shadow: var(--keno-pro-dot-gold-shadow);
+
     &:before {
         background: var(--keno-pro-dot-gold-background);
     }
@@ -350,7 +354,8 @@
 
 .dot-grid-gold {
     @extend %dot;
-    background: var(--keno-pro-dot-gold-border);    
+    background: var(--keno-pro-dot-gold-border);
+
     &:before {
         background: var(--keno-pro-dot-gold-background);
     }
@@ -365,9 +370,11 @@
     @extend %dot;
     background: var(--keno-pro-dot-wood-border);
     box-shadow: var(--keno-pro-dot-wood-shadow);
+
     &:before {
         background: var(--keno-pro-dot-wood-background);
     }
+
     &:after {
         @extend %icon-keno-promax;
         background-image: url(/static/images/keno-promax/icon-wood.svg);
@@ -377,10 +384,11 @@
 .dot-grid-wood {
     @extend %dot;
     background: var(--keno-pro-dot-wood-border);
-    
+
     &:before {
         background: var(--keno-pro-dot-wood-background);
     }
+
     &:after {
         @extend %icon-keno-promax;
         background-image: url(/static/images/keno-promax/icon-wood.svg);
@@ -391,9 +399,11 @@
     @extend %dot;
     background: var(--keno-pro-dot-water-border);
     box-shadow: var(--keno-pro-dot-water-shadow);
+
     &:before {
         background: var(--keno-pro-dot-water-background);
     }
+
     &:after {
         @extend %icon-keno-promax;
         background-image: url(/static/images/keno-promax/icon-water.svg);
@@ -407,6 +417,7 @@
     &:before {
         background: var(--keno-pro-dot-water-background);
     }
+
     &:after {
         @extend %icon-keno-promax;
         background-image: url(/static/images/keno-promax/icon-water.svg);
@@ -417,9 +428,11 @@
     @extend %dot;
     background: var(--keno-pro-dot-fire-border);
     box-shadow: var(--keno-pro-dot-fire-shadow);
+
     &:before {
         background: var(--keno-pro-dot-fire-background);
     }
+
     &:after {
         @extend %icon-keno-promax;
         background-image: url(/static/images/keno-promax/icon-fire.svg);
@@ -429,10 +442,11 @@
 .dot-grid-fire {
     @extend %dot;
     background: var(--keno-pro-dot-fire-border);
-   
+
     &:before {
         background: var(--keno-pro-dot-fire-background);
     }
+
     &:after {
         @extend %icon-keno-promax;
         background-image: url(/static/images/keno-promax/icon-fire.svg);
@@ -443,9 +457,11 @@
     @extend %dot;
     background: var(--keno-pro-dot-earth-border);
     box-shadow: var(--keno-pro-dot-earth-shadow);
+
     &:before {
         background: var(--keno-pro-dot-earth-background);
     }
+
     &:after {
         @extend %icon-keno-promax;
         background-image: url(/static/images/keno-promax/icon-earth.svg);
@@ -455,9 +471,11 @@
 .dot-grid-earth {
     @extend %dot;
     background: var(--keno-pro-dot-earth-border);
+
     &:before {
         background: var(--keno-pro-dot-earth-background);
     }
+
     &:after {
         @extend %icon-keno-promax;
         background-image: url(/static/images/keno-promax/icon-earth.svg);
@@ -499,7 +517,7 @@
 
 .dot-grid-black {
     @extend %dot;
-    background: var(--threeCards-dot-black-border);    
+    background: var(--threeCards-dot-black-border);
     color: var(--threeCards-black-text-color);
 
     &:before {
@@ -537,6 +555,7 @@
 .dot-redBig {
     @extend .dot-big;
 }
+
 .dot-blueSmall,
 .dot-redSmall {
     @extend .dot-small;
@@ -546,6 +565,7 @@
 .dot-grid-redBig {
     @extend .dot-grid-big;
 }
+
 .dot-grid-blueSmall,
 .dot-grid-redSmall {
     @extend .dot-grid-small;
@@ -557,15 +577,19 @@
     0% {
         transform: scale(0.85);
     }
+
     25% {
         transform: scale(1);
     }
+
     50% {
         transform: scale(0.85);
     }
+
     75% {
         transform: scale(1);
     }
+
     100% {
         transform: scale(0.85);
     }

@@ -5,8 +5,8 @@ const buildGameContext = (gameState = GameState.InRound) => {
         id: 36,
         gameName: "KenoMatch1",
         socketInfo: {
-            namespace: "kenomatch1",
-            path: "kenomatch",
+            namespace: "kenosoccer",
+            path: "kenosoccer",
         },
         supportMD5: true,
         durations: {

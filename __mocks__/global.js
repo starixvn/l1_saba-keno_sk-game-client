@@ -253,8 +253,8 @@ jest.mock("next/config", () => () => ({
                 id: 36,
                 gameName: "KenoMatch1",
                 socketInfo: {
-                    namespace: "kenomatch1",
-                    path: "kenomatch",
+                    namespace: "kenosoccer",
+                    path: "kenosoccer",
                 },
                 supportMD5: false,
                 durations: {
@@ -283,8 +283,8 @@ jest.mock("next/config", () => () => ({
                 id: 37,
                 gameName: "KenoMatch2",
                 socketInfo: {
-                    namespace: "kenomatch2",
-                    path: "kenomatch",
+                    namespace: "kenosoccer2",
+                    path: "kenosoccer",
                 },
                 supportMD5: true,
                 durations: {

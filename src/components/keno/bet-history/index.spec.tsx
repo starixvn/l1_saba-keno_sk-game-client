@@ -5,7 +5,7 @@ import { authContextValue } from "../__tests__/test-helper";
 import KenoMatchBetHistory from "./";
 import { AuthContextProvider } from "../../../contexts/auth";
 
-describe("KenoMatch BetHistory", () => {
+describe("KenoSoccer BetHistory", () => {
     test("should render correctly", () => {
         // Arrange
         const resource = {

@@ -61,7 +61,7 @@ describe("KenoMatchBetOptions", () => {
 
         expect(document.querySelector(".title-wrapper")).toBeTruthy();
         expect(document.querySelector(".title-left")).toBeTruthy();
-        expect(document.querySelector(".layout-kenomatch1")).toBeTruthy();
+        expect(document.querySelector(".layout-kenosoccer")).toBeTruthy();
 
         expect(document.getElementsByClassName("total-row").length).toEqual(2);
         expect(document.querySelectorAll('div[class^="choice-"]').length).toEqual(12);
@@ -79,7 +79,7 @@ describe("KenoMatchBetOptions", () => {
             </GameContextProvider>
         );
 
-        expect(document.getElementsByClassName("layout-kenomatch1 disabled").length).toEqual(expectedDisabledContainer);
+        expect(document.getElementsByClassName("layout-kenosoccer disabled").length).toEqual(expectedDisabledContainer);
         expect(document.querySelectorAll('div[class^="choice-"].disabled').length).toEqual(expectedDisabledChoice);
     });
 

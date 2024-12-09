@@ -13,7 +13,7 @@ import { WinningStreak } from "../winning-streak";
 import { WinningStreakItem } from "../winning-streak/winning-streak.type";
 
 import styles from "./games.module.scss";
-import KenoMatch from "./keno-match";
+import KenoSoccer from "./keno-match";
 import KenoPower from "./keno-power";
 
 import MiniKeno from "./mini-keno";
@@ -154,7 +154,7 @@ export const Games: React.FC<Props> = ({
                 return <KenoPower key={`game-${gameId}`} {...gameProps}></KenoPower>;
             case 1511:
             case 1512:
-                return <KenoMatch key={`game-${gameId}`} {...(gameProps as KenoMatchProps)} />;
+                return <KenoSoccer key={`game-${gameId}`} {...(gameProps as KenoMatchProps)} />;
             default:
                 return null;
         }

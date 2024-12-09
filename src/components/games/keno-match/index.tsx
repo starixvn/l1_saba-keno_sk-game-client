@@ -21,7 +21,7 @@ import AnimationResult from "./round-result/animation-result";
 import MainFrameResult from "./round-result/main-frame-result";
 import { KenoMatchGameBaseState, KenoMatchProps, KenoMatchRound, Result, SeparateRoundHistoryProps, SettlementResult } from "./type";
 
-export class KenoMatch extends GameBase<KenoMatchProps, KenoMatchGameBaseState<Result, SettlementResult>> {
+export class KenoSoccer extends GameBase<KenoMatchProps, KenoMatchGameBaseState<Result, SettlementResult>> {
     protected showResultInfoH1Timeout: NodeJS.Timeout;
     private winStreakCollectorFH: WinStreakCollectorModel;
     private winStreakCollectorFT: WinStreakCollectorModel;
@@ -759,4 +759,4 @@ export class KenoMatch extends GameBase<KenoMatchProps, KenoMatchGameBaseState<R
     }
 }
 
-export default withRouter(withTranslation()(KenoMatch));
+export default withRouter(withTranslation()(KenoSoccer));

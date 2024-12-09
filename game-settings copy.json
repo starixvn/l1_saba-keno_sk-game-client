@@ -173,8 +173,8 @@
         "id": 1511,
         "gameName": "KenoMatch1",
         "socketInfo": {
-            "namespace": "kenomatch1",
-            "path": "kenomatch"
+            "namespace": "kenosoccer",
+            "path": "kenosoccer"
         },
         "supportMD5": true,
         "durations": {
@@ -199,8 +199,8 @@
         "id": 1512,
         "gameName": "SkKenoSoccer2",
         "socketInfo": {
-            "namespace": "kenomatch2",
-            "path": "kenomatch"
+            "namespace": "kenosoccer2",
+            "path": "kenosoccer"
         },
         "supportMD5": true,
         "durations": {

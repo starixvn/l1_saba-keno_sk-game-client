@@ -8,8 +8,8 @@ import { WinningStreakItem } from "./winning-streak.type";
 const getIconClassName = (gameName: string, choice: string) => {
     const gameNameLower = gameName.toLocaleLowerCase();
     switch (gameNameLower) {
-        case "kenomatch1":
-        case "kenomatch2":
+        case "kenosoccer":
+        case "kenosoccer2":
         case "kenopower1":
         case "kenopower2":
         case "kenomini":

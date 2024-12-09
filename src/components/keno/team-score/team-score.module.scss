@@ -9,15 +9,18 @@
     position: relative;
     top: -0.1rem;
     padding: 0 0 0.4rem;
-    &.kenomatch2,
-    &.kenomatch1 {
+
+    &.kenosoccer2,
+    &.kenosoccer {
         height: 1.9rem;
         padding: 0;
     }
+
     &.kenopower2,
     &.kenopower1 {
         top: 1.2rem;
     }
+
     .score {
         font: 500 1.6rem var(--font-number);
         padding-left: 0.2rem;
@@ -31,6 +34,7 @@
         position: relative;
         margin-right: 0.3rem;
         top: 0.1rem;
+
         &:before {
             content: url("/static/images/check.svg");
             position: absolute;
@@ -41,6 +45,7 @@
 
     &.blue {
         color: var(--blue-team-color);
+
         .map-winning {
             background-color: var(--blue-team-color);
         }
@@ -48,6 +53,7 @@
 
     &.red {
         color: #ff4352;
+
         .map-winning {
             background-color: #ff4352;
         }

@@ -3,11 +3,11 @@ import { useTranslation } from "next-i18next";
 
 import ResultDetail from "./";
 
-describe("KenoMatch bet-history Result detail", () => {
+describe("KenoSoccer bet-history Result detail", () => {
     const gameId = 36;
     describe("Users have  bet, should render data on bet-history ", () => {
         // Arrange
-        const gameName = "kenomatch1";
+        const gameName = "kenosoccer";
         const firstHalf = {
             result: { blue: [14, 32, 34, 35, 41, 60, 66, 68, 72, 80], red: [3, 7, 22, 27, 43, 44, 56, 63, 64, 66] },
             settlementResult: { blue: true, even: false, odd: true, over: true, red: false, tie: false, under: false },

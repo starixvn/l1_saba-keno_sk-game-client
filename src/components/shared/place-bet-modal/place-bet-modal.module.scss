@@ -30,31 +30,39 @@
         z-index: var(--popup-index);
     }
 
-    &.kenomatch1, &.kenomatch2, &.kenopower1, &.kenopower2{
+    &.kenosoccer,
+    &.kenosoccer2,
+    &.kenopower1,
+    &.kenopower2 {
         height: 25rem;
+
         @media (min-width: 768px) {
             width: 32rem;
             height: 24.6rem;
         }
-     
+
         font-size: 1.6rem;
+
         .general-info {
             font-size: 2rem;
             height: 6rem;
+
             .font-weight-bold {
-                font-size: 1.4rem;       
-                display: block;    
+                font-size: 1.4rem;
+                display: block;
                 font-weight: normal;
                 color: var(--bettype-choice-color);
                 line-height: 1.8rem;
                 margin-top: .6rem;
+
                 &.choice {
                     display: inline-block;
                     font-weight: 700;
                     font-size: 2rem;
                     color: var(--success-color);
-                }     
+                }
             }
+
             .info {
                 font-weight: 600;
             }
@@ -149,9 +157,12 @@
         margin-bottom: 0.5rem;
         font-size: 2rem;
         text-transform: capitalize;
-        .font-weight-bold, .info {
+
+        .font-weight-bold,
+        .info {
             display: inline-block;
         }
+
         .font-weight-bold {
             font-weight: 700;
         }

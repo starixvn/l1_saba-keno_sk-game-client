@@ -10,7 +10,7 @@ jest.mock("../../../common/constants", () => ({
     systemName: () => {
         "l1";
     },
-    isL1System: () => {},
+    isL1System: () => { },
     AppTypes: {
         mobile: 2,
         megaKeno: 4,
@@ -45,8 +45,8 @@ describe("HistoryModal", () => {
         ${9}        | ${"vipbaccarat:game_name"}
         ${10}       | ${"baccarat:game_name"}
         ${11}       | ${"threecards:game_name"}
-        ${12}       | ${"kenomatch1:game_name"}
-        ${13}       | ${"kenomatch2:game_name"}
+        ${12}       | ${"kenosoccer:game_name"}
+        ${13}       | ${"kenosoccer2:game_name"}
     `("render each Component History when selected game selector", async ({ optionOrder, expectedResult }) => {
         // Act
         const { getByTestId, getAllByTestId } = render(

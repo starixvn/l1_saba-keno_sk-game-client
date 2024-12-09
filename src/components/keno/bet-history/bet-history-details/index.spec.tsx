@@ -3,11 +3,11 @@ import { useTranslation } from "next-i18next";
 
 import BetLogsDetails from "./";
 
-describe("KenoMatch bet-history bet logs detail", () => {
+describe("KenoSoccer bet-history bet logs detail", () => {
     const gameId = 36;
     describe("Users have  bet, should render data on bet-history ", () => {
         // Arrange
-        const gameName = "kenomatch1";
+        const gameName = "kenosoccer";
         const firstHalf = {
             result: { blue: [14, 32, 34, 35, 41, 60, 66, 68, 72, 80], red: [3, 7, 22, 27, 43, 44, 56, 63, 64, 66] },
             settlementResult: { blue: true, even: false, odd: true, over: false, red: false, tie: true, under: true },
@@ -79,7 +79,7 @@ describe("KenoMatch bet-history bet logs detail", () => {
 
     describe("User without bet", () => {
         // Arrange
-        const gameName = "kenomatch1";
+        const gameName = "kenosoccer";
 
         const { t } = useTranslation(["bethistory", gameName]);
         const resource = { betLog: [], gameName, t, setIsShowResultDetail: jest.fn, gameId };

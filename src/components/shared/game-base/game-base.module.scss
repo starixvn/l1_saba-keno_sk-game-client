@@ -18,9 +18,10 @@
     padding-top: 0.1rem;
     background-color: var(--border-color);
     border-bottom: 1px solid var(--border-color);
+
     &.bet-options-kenopromax,
-    &.bet-options-kenomatch1,
-    &.bet-options-kenomatch2,
+    &.bet-options-kenosoccer,
+    &.bet-options-kenosoccer2,
     &.bet-options-kenopower1,
     &.bet-options-kenopower2,
     &.bet-options-megakeno,
@@ -59,7 +60,8 @@
     font-size: 1.2rem;
     cursor: auto;
 
-    @media print, screen and (min-width: 992px) {
+    @media print,
+    screen and (min-width: 992px) {
         font-size: 1.4rem;
     }
 }
@@ -85,16 +87,19 @@
             animation: fadeIn 0.3s linear forwards;
             animation-delay: 0;
         }
+
         &.md5-result {
             animation: shakeX 0.3s linear forwards;
             animation-delay: 0;
         }
     }
+
     .copy-box {
         position: relative;
         cursor: pointer;
         width: 4rem;
         height: 1.6rem;
+
         .copy-text {
             position: relative;
             display: block;
@@ -114,6 +119,7 @@
             bottom: 0;
             border-radius: 5px;
         }
+
         &:after {
             content: "";
             background: linear-gradient(180deg, #ffc964 0%, #ee9505 100%);
@@ -128,6 +134,7 @@
 }
 
 @keyframes shakeX {
+
     from,
     to {
         -webkit-transform: translate3d(0, 0, 0);
@@ -156,6 +163,7 @@
     from {
         opacity: 0;
     }
+
     to {
         opacity: 1;
     }

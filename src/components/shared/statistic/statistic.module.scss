@@ -14,6 +14,7 @@
         margin-left: 0.8rem;
         margin-right: 0;
     }
+
     @media (max-width: 350px) {
         margin-left: 0.4rem;
     }
@@ -83,11 +84,13 @@
 .tie {
     @extend %title;
     color: var(--baccarat-tie-statistic-text-color);
+
     &.dragontiger {
         color: var(--dragonTiger-tie-text-color);
     }
-    &.kenomatch1,
-    &.kenomatch2 {
+
+    &.kenosoccer,
+    &.kenosoccer2 {
         color: var(--keno-match-tie-statistic-text-color);
     }
 }

@@ -1,12 +1,10 @@
 @import "../../../assets/components/settlement-info";
 
 [data-theme="light"] .half-round-settlement {
-    --bg-img: url("/static/images/kenomatch/settlebg-kenomatch-light.png");
-    background-image: image-set(
-        url("/static/images/kenomatch/settlebg-kenomatch-light.png") 1x,
-        url("/static/images/kenomatch/settlebg-kenomatch-light-2x.png") 2x,
-        url("/static/images/kenomatch/settlebg-kenomatch-light-3x.png") 3x
-    );
+    --bg-img: url("/static/images/kenosoccer/settlebg-kenosoccer-light.png");
+    background-image: image-set(url("/static/images/kenosoccer/settlebg-kenosoccer-light.png") 1x,
+            url("/static/images/kenosoccer/settlebg-kenosoccer-light-2x.png") 2x,
+            url("/static/images/kenosoccer/settlebg-kenosoccer-light-3x.png") 3x);
 }
 
 .half-round-settlement {
@@ -21,33 +19,40 @@
     background-repeat: no-repeat;
     background-size: cover;
     text-align: center;
-    &.kenomatch2,
+
+    &.kenosoccer2,
     &.kenopower2 {
         animation-delay: 0s, 8s;
-    }    
-    &.kenomatch1 {
+    }
+
+    &.kenosoccer {
         &.half-time {
             animation-delay: 0s, 5s;
         }
     }
-    &.kenomatch2 {
+
+    &.kenosoccer2 {
         animation-delay: 0s, 9s;
+
         &.half-time {
             animation-delay: 0s, 10s;
         }
     }
+
     &.first-half-settlement {
         animation-duration: 0.2s, 1s;
     }
+
     .header {
         opacity: 0;
         font-weight: 500;
         animation: run-text 0.3s linear forwards;
         animation-delay: 0.2s;
     }
-        &.half-time {
-            animation-delay: 0s, 5s;
-        }
+
+    &.half-time {
+        animation-delay: 0s, 5s;
+    }
 }
 
 .result-wrapper {
@@ -59,27 +64,34 @@
     text-align: center;
     animation: fadeIn 0.3s linear forwards;
     animation-delay: 0.8s;
+
     &.teamBlueWin {
         background-color: #cde9fc;
         border: 1px solid #67a4eb;
+
         .winning-name {
             color: #2e73c3;
         }
     }
+
     &.teamRedWin {
         background-color: #ffe2e2;
         border: 1px solid #ff5664;
+
         .winning-name {
             color: #ff4352;
         }
     }
+
     &.tie {
         background-color: #f3ffe9;
         border: 1px solid #63ed33;
+
         .winning-name {
             color: #27b636;
         }
     }
+
     .winning-name {
         font-size: 2rem;
         font-weight: bold;
@@ -98,10 +110,12 @@
         .winning-team {
             font-size: 1.3rem;
             margin-top: 0.4rem;
+
             .team-label {
                 line-height: 1.6rem;
             }
         }
+
         .result-info-red,
         .result-info-blue {
             height: 2.6rem;

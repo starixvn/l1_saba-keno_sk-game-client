@@ -4,7 +4,7 @@ import { useTranslation } from "next-i18next";
 import RenderRowKenoMatch from "./";
 import { GetTranslateMapping } from "../../../../keno/keno.helper";
 
-describe("KenoMatch Info Bet History Detail", () => {
+describe("KenoSoccer Info Bet History Detail", () => {
     const tableRow = document.createElement("tr");
     const gameName = "kenopower1";
     const odds = {

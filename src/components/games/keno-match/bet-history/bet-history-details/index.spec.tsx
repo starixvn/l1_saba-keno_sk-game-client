@@ -4,11 +4,11 @@ import { useTranslation } from "next-i18next";
 import RenderRowKenoPower from "./";
 import { GetTranslateMapping } from "../../../../keno/keno.helper";
 
-describe("KenoMatch Info Bet History Detail", () => {
+describe("KenoSoccer Info Bet History Detail", () => {
     const tableRow = document.createElement("tr");
     describe("Users have  bet, should render data on bet-history ", () => {
         // Arrange
-        const gameName = "kenomatch1";
+        const gameName = "kenosoccer";
         const firstHalf = {
             result: { blue: [14, 32, 34, 35, 41, 60, 66, 68, 72, 80], red: [3, 7, 22, 27, 43, 44, 56, 63, 64, 66] },
             settlementResult: { blue: true, even: false, odd: true, over: false, red: false, tie: true, under: true },

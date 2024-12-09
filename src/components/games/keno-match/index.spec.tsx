@@ -2,7 +2,7 @@ import { render } from "@testing-library/react";
 import React from "react";
 import { GameContextProvider } from "../../../contexts/game-context/game-context";
 import buildGameContext from "./__test__/test-helper";
-import KenoMatch from "./";
+import KenoSoccer from "./";
 import { ViewMode } from "../../shared/game-base/type";
 import { KenoMatchGameDurations, KenoMatchProps } from "./type";
 import { i18n } from "next-i18next";
@@ -30,10 +30,10 @@ const buildProps = () => {
 
     return {
         id: 36,
-        gameName: "kenomatch1",
+        gameName: "kenosoccer",
         socketInfo: {
-            namespace: "kenomatch1",
-            path: "kenomatch",
+            namespace: "kenosoccer",
+            path: "kenosoccer",
         },
         durations,
         notifyWinStreak: () => { },
@@ -52,11 +52,11 @@ const buildProps = () => {
     } as KenoMatchProps;
 };
 
-describe("KenoMatch", () => {
+describe("KenoSoccer", () => {
     test("should be render correctly", () => {
         // let socket = new MockedSocket();
 
-        const fakeURL = "ws://localhost/user/kenomatch1";
+        const fakeURL = "ws://localhost/user/kenosoccer";
         const socket = new Server(fakeURL);
 
         // socket.on('message', function (message) {
@@ -144,7 +144,7 @@ describe("KenoMatch", () => {
         render(
             <AuthContextProvider value={AuthContextValueDefault}>
                 <GameContextProvider value={buildGameContext() as any}>
-                    <KenoMatch {...buildProps()} />
+                    <KenoSoccer {...buildProps()} />
                 </GameContextProvider>
             </AuthContextProvider>
         );
