@@ -11,4 +11,4 @@ export enum GameIds {
     KenoPower2 = 1510,
     KenoSoccer = 1511,
     KenoSoccer2 = 1512,
-}
+} 

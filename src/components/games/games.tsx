@@ -120,6 +120,7 @@ export const Games: React.FC<Props> = ({
             viewMode = gameId === openGameId ? ViewMode.full : ViewMode.collapse;
         }
 
+        console.log({ aa: gameSettings[gameId] })
         const gameProps = {
             ...gameSettings[gameId],
             viewMode,

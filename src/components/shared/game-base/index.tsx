@@ -156,7 +156,7 @@ abstract class GameBase<P extends GameBaseProps, S extends GameBaseState<any, an
         );
         this.clearDisconnectTimeout();
         this.socket = this.initSocket();
-        this.socket && this.socket.off(`Sk${this.props.gameName}`).on(`Sk${this.props.gameName}`, this.messageTransmitter.broadcast.bind(this));
+        this.socket && this.socket.off(this.props.gameName).on(this.props.gameName, this.messageTransmitter.broadcast.bind(this));
     }
 
     protected initSocket() {

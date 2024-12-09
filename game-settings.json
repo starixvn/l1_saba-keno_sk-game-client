@@ -2,10 +2,11 @@
     "1501": {
         "id": 1501,
         "gameName": "MegaKeno",
+        "serviceName": "mini-keno",
         "supportMD5": true,
         "socketInfo": {
-            "namespace": "skminikeno",
-            "path": "skminikeno"
+            "namespace": "minikeno",
+            "path": "minikeno"
         },
         "durations": {
             "wholeRound": 59,
@@ -20,8 +21,8 @@
         "id": 1509,
         "gameName": "KenoPower",
         "socketInfo": {
-            "namespace": "skkenopower",
-            "path": "skkenopower"
+            "namespace": "kenopower",
+            "path": "kenopower"
         },
         "supportMD5": true,
         "durations": {
@@ -37,8 +38,8 @@
         "id": 1510,
         "gameName": "KenoPower2",
         "socketInfo": {
-            "namespace": "skkenopower2",
-            "path": "skkenopower"
+            "namespace": "kenopower2",
+            "path": "kenopower"
         },
         "supportMD5": true,
         "durations": {
@@ -54,8 +55,8 @@
         "id": 1511,
         "gameName": "KenoSoccer",
         "socketInfo": {
-            "namespace": "skkenosoccer",
-            "path": "skkenosoccer"
+            "namespace": "kenosoccer",
+            "path": "kenosoccer"
         },
         "supportMD5": true,
         "durations": {
@@ -80,8 +81,8 @@
         "id": 1512,
         "gameName": "KenoSoccer2",
         "socketInfo": {
-            "namespace": "skkenosoccer2",
-            "path": "skkenosoccer"
+            "namespace": "kenosoccer2",
+            "path": "kenosoccer"
         },
         "supportMD5": true,
         "durations": {

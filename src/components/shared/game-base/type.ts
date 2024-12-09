@@ -46,6 +46,7 @@ export type GatewayGameBaseProps = {
 export type GameBaseProps = {
     id: number;
     gameName: string;
+    serviceName?: string;
     socketInfo: SocketInfo;
     durations: GameDurations;
     notifyWinStreak: Function;
