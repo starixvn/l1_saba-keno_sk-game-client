@@ -37,7 +37,7 @@ export class MiniKeno extends KenoProMax {
 
     isKenoMini(): boolean {
         const { id } = this.props;
-        return id === 14 || id === 15;
+        return id === 1503 || id === 1504;
     }
 }
 

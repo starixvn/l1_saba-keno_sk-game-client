@@ -1,4 +1,21 @@
 {
+    "1501": {
+        "id": 1501,
+        "gameName": "MegaKeno",
+        "supportMD5": true,
+        "socketInfo": {
+            "namespace": "skminikeno",
+            "path": "skminikeno"
+        },
+        "durations": {
+            "wholeRound": 59,
+            "placingBets": 45,
+            "lockingBet": 5,
+            "showResult": 10,
+            "resultAnimation": 7,
+            "beforeStartRound": 0
+        }
+    },
     "1509": {
         "id": 1509,
         "gameName": "KenoPower",
