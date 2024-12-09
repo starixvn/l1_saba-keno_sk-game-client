@@ -104,7 +104,7 @@ export const getStaticProps = async ({ locale }) => {
                 "kenopromax",
                 "kenomatch1",
                 "kenomatch2",
-                "kenopower1",
+                "kenopower",
                 "kenopower2",
                 "megakeno",
                 "megakeno2",
