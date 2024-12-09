@@ -202,6 +202,7 @@ class Dashboard extends React.PureComponent<Props, State> {
 
     async updateChipsSettings() {
         const { offeredGames } = this.state;
+        console.log({ offeredGames })
         if (offeredGames.length > 0) {
             const setting = await getChipSettings(this.props.session, offeredGames);
             this.setState({ chipSettings: setting });
@@ -215,6 +216,7 @@ class Dashboard extends React.PureComponent<Props, State> {
     }
 
     getOfferedGames(authorizeInfo: AuthorizeResponse) {
+        console.log({ currencyGroup: authorizeInfo?.user?.currencyGroup, offerGames: authorizeInfo?.user?.offerGames });
         if (authorizeInfo?.user?.currencyGroup && authorizeInfo?.user?.offerGames) {
             let offeredGames = [];
             offeredGames = GetOfferedGames(
@@ -396,6 +398,8 @@ class Dashboard extends React.PureComponent<Props, State> {
 
         this.getOfferedGames(authorizeInfo);
         this.updateChipsSettings();
+
+        console.log(`handleRegister`)
         this.updateAuthorizeInfo(authorizeInfo);
     }
 

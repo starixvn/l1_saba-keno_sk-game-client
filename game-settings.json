@@ -32,5 +32,57 @@
             "resultAnimation": 4,
             "beforeStartRound": 0
         }
+    },
+    "1511": {
+        "id": 1511,
+        "gameName": "KenoSoccer",
+        "socketInfo": {
+            "namespace": "skkenosoccer",
+            "path": "skkenosoccer"
+        },
+        "supportMD5": true,
+        "durations": {
+            "wholeRound": 78,
+            "showFullTimeSettlementResult": 73,
+            "halfTimePlacingBets": 69,
+            "halfTimeLockingBet": 39,
+            "showHalfTimeResult": 34,
+            "showHalfTimeSettlementResult": 30,
+            "beforeStartFullTimePlacingBet": 26,
+            "fullTimePlacingBets": 25,
+            "fullTimeLockingBet": 5,
+            "showFullTimeResult": 0,
+            "showResult": 6,
+            "halfTimeDuration": 35,
+            "fullTimeDuration": 25,
+            "resultAnimation": 8,
+            "settlementWinning": 6
+        }
+    },
+    "1512": {
+        "id": 1512,
+        "gameName": "KenoSoccer2",
+        "socketInfo": {
+            "namespace": "skkenosoccer2",
+            "path": "skkenosoccer"
+        },
+        "supportMD5": true,
+        "durations": {
+            "wholeRound": 86,
+            "showFullTimeSettlementResult": 81,
+            "halfTimePlacingBets": 73,
+            "halfTimeLockingBet": 43,
+            "showHalfTimeResult": 38,
+            "showHalfTimeSettlementResult": 34,
+            "beforeStartFullTimePlacingBet": 26,
+            "fullTimePlacingBets": 25,
+            "fullTimeLockingBet": 5,
+            "showFullTimeResult": 0,
+            "showResult": 6,
+            "halfTimeDuration": 35,
+            "fullTimeDuration": 25,
+            "resultAnimation": 8,
+            "settlementWinning": 6
+        }
     }
 }

@@ -1,4 +1,4 @@
-export const GamesIdKenoMatch = [36, 37, 40, 41];
-export const GamesIdMiniKeno = [12, 13, 14, 15, 16, 17, 18, 19, 52, 53];
+export const GamesIdKenoMatch = [1509, 1510, 1511, 1512];
+export const GamesIdMiniKeno = [1501, 1502, 1503, 1504, 1505, 1506, 1507, 1508, 1509, 1510];
 export const NUMBER_ROWS_DISPLAY = 30;
 export const InfiniteLoadBeginEdgeOffset = 20;
