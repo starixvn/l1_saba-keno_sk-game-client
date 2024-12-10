@@ -228,6 +228,12 @@ class Dashboard extends React.PureComponent<Props, State> {
         }
     }
 
+    async componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<State>) {
+        if (prevState.offeredGames !== this.state.offeredGames) {
+            await this.updateChipsSettings();
+        }
+    }
+
     async componentDidMount() {
         const { session, i18n } = this.props;
         const authorizeResponse = await authorize(session);
@@ -242,7 +248,6 @@ class Dashboard extends React.PureComponent<Props, State> {
         const authorizeInfo = authorizeResponse as AuthorizeResponse;
 
         this.getOfferedGames(authorizeInfo);
-        this.updateChipsSettings();
         this.updateAuthorizeInfo(authorizeInfo);
         this.getFavoriteGames();
         this.updateUserBalance(authorizeInfo?.user?.red);
