@@ -22,8 +22,8 @@ class SabaMobiApp extends App<KenoSoccerAppProps> {
         return (
             <ThemeProvider defaultTheme={Themes.light}>
                 <AppTilte />
-                <AnalyticTool />
                 <Component {...pageProps} err={err} />
+                <AnalyticTool />
             </ThemeProvider>
         );
     }
