@@ -1,9 +1,7 @@
 import { useTranslation } from "next-i18next";
 import React, { useMemo, useRef, useState } from "react";
-import { isMobileOnly, isSafari } from "react-device-detect";
+import { isMobileOnly } from "react-device-detect";
 
-import { getAppSettings } from "../../../common/app-settings";
-import { AppTypes } from "../../../common/constants";
 import { FavoriteSetting } from "../../favorite-setting";
 import { getLogoName } from "../../header";
 import { Tooltip } from "../tooltip";
@@ -24,8 +22,6 @@ export const Settings: React.FC<Props> = ({
     favoriteGames,
     offerGames,
     updateFavoriteGames,
-    enabledQuickBet,
-    updateEnabledQuickBet,
     isShowQuickBet = false,
     promotionNotifications,
     isShowToolbarGuide,
@@ -42,12 +38,6 @@ export const Settings: React.FC<Props> = ({
             <div className={styles["settings-container"]}>
                 {isShowQuickBet && isMobileOnly && (
                     <div className={styles["setting-left"]}>
-                        {/* <QuickBetBtn
-                            enabledQuickBet={enabledQuickBet}
-                            updateEnabledQuickBet={(enabled) => updateEnabledQuickBet(enabled)}
-                            isHeaderSetting={true}
-                            isShowToolbarGuide={isShowToolbarGuide}
-                        /> */}
                     </div>
                 )}
 
@@ -89,19 +79,6 @@ export const Settings: React.FC<Props> = ({
                         <span className={`icon-history ${styles["icon-history"]}`}></span>
                         <Tooltip message={t("popupTitleHistory")} hoverWrapper={toggleHistoryBtnRef} />
                     </div>
-
-                    {getAppSettings().appType !== AppTypes.megaKeno && (
-                        <div
-                            id="favorite-setting"
-                            className={`${styles[ButtonSettingClassName]} ${styles[specialClassByDevice]}`}
-                            onClick={() => setShowFavoriteSetting(!showFavoriteSetting)}
-                            ref={favoriteToggleBtnRef}
-                        >
-                            <span className={`icon-favorite-normal ${styles["icon-favorite-normal"]}`}></span>
-                            <Tooltip message={t("menu-favorite-setting")} hoverWrapper={favoriteToggleBtnRef} />
-                        </div>
-                    )}
-
                     <Menu
                         handleToggleNotification={onToggleNotification}
                         enabledNotification={enabledNotification}

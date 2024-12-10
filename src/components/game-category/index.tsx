@@ -2,11 +2,8 @@ import React, { useEffect, useRef } from "react";
 import { useTranslation } from "next-i18next";
 import { isMobileOnly } from "react-device-detect";
 
-import { getAppSettings } from "../../common/app-settings";
-
 import { GameCategoryType, GamesInOnePage, GetGameCategoryConfig } from "../../helpers/category-helper";
 import styles from "./game-category.module.scss";
-import { AppTypes } from "../../common/constants";
 import { useAuthContext } from "../../contexts/auth";
 
 const renderPagingCategory = (
@@ -22,9 +19,8 @@ const renderPagingCategory = (
         result.push(
             <span
                 onClick={() => onSelectPage(category, i + 1)}
-                className={`${styles["category-page"]} ${
-                    GameCategoryType[category] === selectedCategory && selectedPage - 1 === i ? styles["selected"] : ""
-                }`}
+                className={`${styles["category-page"]} ${GameCategoryType[category] === selectedCategory && selectedPage - 1 === i ? styles["selected"] : ""
+                    }`}
                 key={i}
             >
                 {i + 1}
@@ -53,7 +49,7 @@ export const GameCategory: React.FC<{
         return result;
     }, {});
 
-    const appTypeClass = getAppSettings().appType === AppTypes.mobile ? "SM" : "MK";
+    const appTypeClass = "MK";
 
     useEffect(() => {
         if (wrapperRef?.current) {

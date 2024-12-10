@@ -29,8 +29,4 @@ export const vGamingName = "Vgaming";
 export const sabaKenoName = "Saba Keno";
 
 export const buildVersion = process.env.buildVersion;
-export const AppTypes = {
-    mobile: 2,
-    megaKeno: 4,
-};
 export const maximumAvatarId = 172;

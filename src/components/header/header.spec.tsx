@@ -7,10 +7,6 @@ jest.mock("../../common/constants", () => ({
     systemName: () => {
         "sk";
     },
-    AppTypes: {
-        mobile: 2,
-        megaKeno: 4,
-    },
 }));
 
 jest.mock("../shared/settings", () => {

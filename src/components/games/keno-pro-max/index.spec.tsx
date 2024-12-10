@@ -20,10 +20,6 @@ jest.mock("../../../common/constants", () => ({
             "10": "chip-1",
         },
     },
-    AppTypes: {
-        mobile: 2,
-        megaKeno: 4,
-    },
 }));
 
 const roundHistory = [

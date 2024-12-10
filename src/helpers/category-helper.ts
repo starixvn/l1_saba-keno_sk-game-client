@@ -1,15 +1,6 @@
-import { getAppSettings } from "../common/app-settings";
 import { GameIds } from "../common/constants/gameIds";
 
 export const GamesInOnePage = 20;
-
-export const isMegaKenoLobby = () => {
-    return getAppSettings().appType === 1;
-};
-
-const isIncludeMegaCategory = () => {
-    return !!getAppSettings().isIncludeMegaCategory;
-};
 
 export enum GameCategoryType {
     hot,
@@ -39,30 +30,8 @@ const KenoCategoryConfig = {
     [Categories.keno]: [GameIds.KenoPower, GameIds.KenoPower2, GameIds.KenoSoccer, GameIds.KenoSoccer2],
 };
 
-const GrUSDCategoryConfig = {
-    [Categories.hot]: [],
-    ...KenoCategoryConfig,
-    [Categories.favorite]: [],
-};
-
-const OtherCurrencyGroupCategoryConfig = {
-    [Categories.hot]: [],
-    ...KenoCategoryConfig,
-    [Categories.favorite]: [],
-};
-
 export const GetGameCategoryConfig = (currencyGroupName: string) => {
-    if (isMegaKenoLobby()) {
-        return KenoCategoryConfig;
-    }
-
-    const groups = ["Cash_INH", "GrUSD"];
-    const configs = groups.includes(currencyGroupName) ? GrUSDCategoryConfig : OtherCurrencyGroupCategoryConfig;
-    if (!isIncludeMegaCategory()) {
-        delete configs[Categories.megakeno];
-        delete configs[Categories.keno];
-    }
-    return configs;
+    return KenoCategoryConfig;
 };
 
 export const GetOfferedGames = (currencyGroupName: string, offerGames: number[]) => {
