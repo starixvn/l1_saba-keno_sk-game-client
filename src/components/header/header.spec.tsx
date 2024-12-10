@@ -5,9 +5,8 @@ import Header from ".";
 
 jest.mock("../../common/constants", () => ({
     systemName: () => {
-        "l1";
+        "sk";
     },
-    isL1System: () => {},
     AppTypes: {
         mobile: 2,
         megaKeno: 4,
@@ -27,12 +26,12 @@ describe("Header", () => {
         user: { UID: 1, name: "name", avatarId: 1, currency: "UUS", red: 2000, isSignedInSM: true, settings: { theme: "light" } },
         enabledSound: true,
         enabledNotification: true,
-        onToggleSound: () => {},
-        onToggleNotification: () => {},
-        toggleHistoryModal: () => {},
-        toggleAnnouncementModal: () => {},
-        toggleGuideModal: () => {},
-        updateFavoriteGames: () => {},
+        onToggleSound: () => { },
+        onToggleNotification: () => { },
+        toggleHistoryModal: () => { },
+        toggleAnnouncementModal: () => { },
+        toggleGuideModal: () => { },
+        updateFavoriteGames: () => { },
         favoriteGames: [],
         promotionNotifications: [],
         offerGames: [],

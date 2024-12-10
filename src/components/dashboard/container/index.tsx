@@ -1,10 +1,10 @@
 import React from "react";
 import { isMobileOnly } from "react-device-detect";
-import { buildVersion, isL1System } from "../../../common/constants";
+import { buildVersion } from "../../../common/constants";
 import Styles from "./container.module.scss";
 
 const FirstLoginContainer = ({ children }) => {
-    const logoTheme = isL1System() ? "logo-custom-saba-orange" : "logo-custom-vgaming";
+    const logoTheme = "logo-custom-saba-orange";
 
     return (
         <div className={`${Styles["wrapper"]} ${isMobileOnly ? Styles["mobile"] : ""}`}>
@@ -13,7 +13,7 @@ const FirstLoginContainer = ({ children }) => {
                     <div className={Styles["logo"]}>
                         <img
                             src={`/static/images/${logoTheme}.svg?v=${buildVersion}`}
-                            className={`img-fluid ${isL1System() ? "" : Styles["logo-customize"]}`}
+                            className={`img-fluid`}
                             alt="logo"
                         />
                     </div>

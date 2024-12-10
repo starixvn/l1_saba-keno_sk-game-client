@@ -2,10 +2,6 @@ import { getAppSettings } from "../app-settings";
 
 export const systemName = getAppSettings().system.toLocaleLowerCase();
 
-export const isL1System = () => {
-    return systemName === "l1";
-};
-
 export const locales = { en: "en", vi: "vi", th: "th", id: "id", zh_cn: "zh_cn", zh_tw: "zh_tw" };
 
 export const languageMapper = { "en-US": "en", "vi-VN": "vi", "th-TH": "th", "id-ID": "id", "zh-CN": "zh_cn", "zh-TW": "zh_tw" };
@@ -29,6 +25,8 @@ export const sabaMobileName = "Saba.mobi";
 export const sabaClubName = "Saba.games";
 export const vGamingMobileName = "Vgaming Mobi";
 export const vGamingName = "Vgaming";
+
+export const sabaKenoName = "Saba Keno";
 
 export const buildVersion = process.env.buildVersion;
 export const AppTypes = {

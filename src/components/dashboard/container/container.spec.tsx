@@ -4,8 +4,7 @@ import * as rdd from "react-device-detect";
 
 import FirstLoginContainer from ".";
 jest.mock("../../../common/constants", () => ({
-    systemName: "l1",
-    isL1System: () => {},
+    systemName: "sk",
 }));
 describe("FirstLoginContainer", () => {
     test.each`

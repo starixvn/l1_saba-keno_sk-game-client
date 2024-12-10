@@ -4,10 +4,7 @@ import React from "react";
 import SplashScreen from ".";
 import { locales } from "../../common/constants";
 jest.mock("../../common/constants", () => ({
-    systemName: "l1",
-    isL1System: () => {
-        return "l1";
-    },
+    systemName: "sk",
     locales: { vi: "vi" },
 }));
 

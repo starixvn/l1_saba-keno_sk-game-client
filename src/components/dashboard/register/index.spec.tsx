@@ -14,8 +14,7 @@ const setup = () => {
 };
 
 jest.mock("../../../common/constants", () => ({
-    systemName: "l1",
-    isL1System: () => {},
+    systemName: "sk",
     maximumAvatarId: 10,
 }));
 

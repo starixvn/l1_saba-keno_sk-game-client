@@ -10,8 +10,7 @@ import { KenoProMax } from "./index";
 import { DefaultGameContext, AuthContextValueDefault, SystemContextValue, kenoProps } from "./__tests__/test-helper";
 
 jest.mock("../../../common/constants", () => ({
-    systemName: "l1",
-    isL1System: () => {},
+    systemName: "sk",
     ChipMapper: {
         l1: {
             "1": "chip-1",
@@ -74,7 +73,7 @@ describe("KenoProMax", () => {
                     playResultAnimation: false,
                     isShowBlink: false,
                     notice: {} as Notice,
-                    removeBetChoiceFocus: () => {},
+                    removeBetChoiceFocus: () => { },
                     betOptionElement: document.createElement("p"),
                     betChoiceElement: document.createElement("p"),
                     activeScoreboardTab: 0,
@@ -129,7 +128,7 @@ describe("KenoProMax", () => {
                     playResultAnimation: false,
                     isShowBlink: false,
                     notice: {} as Notice,
-                    removeBetChoiceFocus: () => {},
+                    removeBetChoiceFocus: () => { },
                     betOptionElement: document.createElement("p"),
                     betChoiceElement: document.createElement("p"),
                     activeScoreboardTab: 0,

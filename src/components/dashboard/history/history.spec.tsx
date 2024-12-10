@@ -8,9 +8,8 @@ import { authContextValue, offerGames } from "../__test__/test-helper";
 jest.mock("axios");
 jest.mock("../../../common/constants", () => ({
     systemName: () => {
-        "l1";
+        "sk";
     },
-    isL1System: () => { },
     AppTypes: {
         mobile: 2,
         megaKeno: 4,

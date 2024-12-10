@@ -5,13 +5,10 @@ import { AuthorizeResponse, Response, SSOResponse } from "sc-user-service-client
 import { getAppSettings } from "../../../common/app-settings";
 import {
     Themes,
-    isL1System,
     maximumAvatarId,
     sabaClubName,
     sabaMobileName,
     systemName,
-    vGamingMobileName,
-    vGamingName,
 } from "../../../common/constants";
 import { GetLocalizedErrorMessage } from "../../../helpers/notice-helper";
 import { randomInteger } from "../../../helpers/number-helper";
@@ -101,7 +98,7 @@ export default function Register({ session, handleStateLogin }: Props) {
                     <Trans t={t}>
                         {t(
                             `register:registerTitle1-${systemName}-apptype${getAppSettings().appType}`,
-                            isL1System() ? { sabaMobileName: sabaMobileName } : { vGamingMobileName: vGamingMobileName }
+                            { sabaMobileName: sabaMobileName }
                         )}
                     </Trans>
                 </TextBlock>
@@ -109,9 +106,7 @@ export default function Register({ session, handleStateLogin }: Props) {
                     <Trans t={t}>
                         {t(
                             `register:registerTitle2-${systemName}-apptype${getAppSettings().appType}`,
-                            isL1System()
-                                ? { sabaMobileName: sabaMobileName, sabaClubName: sabaClubName }
-                                : { vGamingMobileName: vGamingMobileName, vGamingName: vGamingName }
+                            { sabaMobileName: sabaMobileName, sabaClubName: sabaClubName }
                         )}
                     </Trans>
                 </TextBlock>
@@ -119,7 +114,7 @@ export default function Register({ session, handleStateLogin }: Props) {
                     <Trans t={t}>
                         {t(
                             `register:registerTitle3-${systemName}-apptype${getAppSettings().appType}`,
-                            isL1System() ? { sabaClubName: sabaClubName } : { vGamingName: vGamingName }
+                            { sabaClubName: sabaClubName }
                         )}
                     </Trans>
                 </TextBlock>
