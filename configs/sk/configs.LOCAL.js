@@ -13,5 +13,7 @@ window.envConfig = {
     subGuideDomain: "sk-guide",
     enableMsgpackParser: false,
     system: "GN",
-    appType:1,
+    appType: 1,
+    analyticId: "67579a9a07b3365ec84e5638",
+    enableAnalyticTool: true,
 };

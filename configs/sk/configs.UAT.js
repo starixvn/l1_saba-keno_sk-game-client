@@ -11,8 +11,8 @@ window.envConfig = {
     },
     enableSourceMap: false,
     subGuideDomain: "skuatguides",
-    googleAnalyticId: "",
+    analyticId: "",
     enableMsgpackParser: true,
     system: "GN",
-    appType:1,
+    appType: 1,
 };

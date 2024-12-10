@@ -9,6 +9,7 @@ import Head from "next/head";
 import { buildVersion, systemName, Themes } from "../common/constants";
 import { getAppSettings } from "../common/app-settings";
 import { useEffect, useState } from "react";
+import AnalyticTool from "../components/shared/tools/analytic-tool";
 
 interface KenoSoccerAppProps extends AppProps {
     err: any;
@@ -21,6 +22,7 @@ class SabaMobiApp extends App<KenoSoccerAppProps> {
         return (
             <ThemeProvider defaultTheme={Themes.light}>
                 <AppTilte />
+                <AnalyticTool />
                 <Component {...pageProps} err={err} />
             </ThemeProvider>
         );

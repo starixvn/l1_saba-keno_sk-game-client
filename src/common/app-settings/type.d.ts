@@ -19,11 +19,12 @@ export default interface AppSettings {
     sentry: SentryOptions;
     gameSettings: { [id: string]: GameBaseProps | KenoMatchProps | GameSettings };
     subGuideDomain: string;
-    googleAnalyticId: string;
+    analyticId: string;
     enableMsgpackParser: boolean;
     system: string;
     appType: number;
     subPromotionDomain: string;
     isIncludeMegaCategory: boolean?;
     gamePath: string;
+    enableAnalyticTool: boolean;
 }

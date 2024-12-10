@@ -1,5 +1,4 @@
 import { Trans, withTranslation } from "next-i18next";
-import Head from "next/head";
 import { withRouter } from "next/router";
 import React from "react";
 import { isMobileOnly, isMobile } from "react-device-detect";
@@ -202,7 +201,7 @@ class Dashboard extends React.PureComponent<Props, State> {
 
     async updateChipsSettings() {
         const { offeredGames } = this.state;
-        console.log({ offeredGames })
+        console.log({ offeredGames });
         if (offeredGames.length > 0) {
             const setting = await getChipSettings(this.props.session, offeredGames);
             this.setState({ chipSettings: setting });
@@ -404,7 +403,7 @@ class Dashboard extends React.PureComponent<Props, State> {
         this.getOfferedGames(authorizeInfo);
         this.updateChipsSettings();
 
-        console.log(`handleRegister`)
+        console.log(`handleRegister`);
         this.updateAuthorizeInfo(authorizeInfo);
     }
 
@@ -629,30 +628,6 @@ class Dashboard extends React.PureComponent<Props, State> {
         return <Register session={this.props.session} handleStateLogin={this.handleRegister} />;
     }
 
-    renderGoogleAnalytic() {
-        if (getAppSettings().googleAnalyticId == null) {
-            return <></>;
-        }
-
-        return (
-            <>
-                <script async src={`https://www.googletagmanager.com/gtag/js?id=${getAppSettings().googleAnalyticId}`}></script>
-                <script
-                    dangerouslySetInnerHTML={{
-                        __html: `
-                            window.dataLayer = window.dataLayer || [];
-                            function gtag(){dataLayer.push(arguments);}
-                            gtag('js', new Date());
-                            gtag('config', '${getAppSettings().googleAnalyticId}', {
-                            page_path: window.location.pathname,
-                            });
-                        `,
-                    }}
-                />
-            </>
-        );
-    }
-
     render() {
         const { orientation, authorizeInfo, isShowToolbarGuide } = this.state;
 
@@ -662,7 +637,6 @@ class Dashboard extends React.PureComponent<Props, State> {
 
         return authorizeInfo ? (
             <>
-                <Head>{this.renderGoogleAnalytic()}</Head>
                 {this.renderComponents(authorizeInfo)}
                 {authorizeInfo.authorized && (
                     <ToolbarGuide isShowToolbarGuide={isShowToolbarGuide} onCloseGuide={this.closeToolbarGuide}></ToolbarGuide>

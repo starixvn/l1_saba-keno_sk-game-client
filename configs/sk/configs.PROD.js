@@ -11,7 +11,7 @@ window.envConfig = {
     },
     enableSourceMap: false,
     subGuideDomain: "skguide",
-    googleAnalyticId: "",
+    analyticId: "",
     enableMsgpackParser: true,
     system: "GN",
     appType: 1,
