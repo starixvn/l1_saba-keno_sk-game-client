@@ -5,12 +5,138 @@
         "serviceName": "mini-keno",
         "supportMD5": true,
         "socketInfo": {
-            "namespace": "minikeno",
+            "namespace": "megakeno",
             "path": "minikeno"
         },
         "durations": {
             "wholeRound": 59,
             "placingBets": 45,
+            "lockingBet": 5,
+            "showResult": 10,
+            "resultAnimation": 7,
+            "beforeStartRound": 0
+        }
+    },
+    "1502": {
+        "id": 1502,
+        "gameName": "MegaKeno2",
+        "serviceName": "mini-keno",
+        "supportMD5": true,
+        "socketInfo": {
+            "namespace": "megakeno2",
+            "path": "minikeno"
+        },
+        "durations": {
+            "wholeRound": 44,
+            "placingBets": 30,
+            "lockingBet": 5,
+            "showResult": 10,
+            "resultAnimation": 7,
+            "beforeStartRound": 0
+        }
+    },
+    "1503": {
+        "id": 1503,
+        "gameName": "KenoMini",
+        "serviceName": "mini-keno",
+        "supportMD5": true,
+        "socketInfo": {
+            "namespace": "kenomini",
+            "path": "minikeno"
+        },
+        "durations": {
+            "wholeRound": 52,
+            "placingBets": 40,
+            "lockingBet": 5,
+            "showResult": 8,
+            "resultAnimation": 5,
+            "beforeStartRound": 0
+        }
+    },
+    "1504": {
+        "id": 1504,
+        "gameName": "KenoMini2",
+        "serviceName": "mini-keno",
+        "supportMD5": true,
+        "socketInfo": {
+            "namespace": "kenomini2",
+            "path": "minikeno"
+        },
+        "durations": {
+            "wholeRound": 42,
+            "placingBets": 30,
+            "lockingBet": 5,
+            "showResult": 8,
+            "resultAnimation": 5,
+            "beforeStartRound": 0
+        }
+    },
+    "1505": {
+        "id": 1505,
+        "gameName": "KenoEast",
+        "serviceName": "mini-keno",
+        "supportMD5": true,
+        "socketInfo": {
+            "namespace": "kenoeast",
+            "path": "minikeno"
+        },
+        "durations": {
+            "wholeRound": 44,
+            "placingBets": 30,
+            "lockingBet": 5,
+            "showResult": 10,
+            "resultAnimation": 7,
+            "beforeStartRound": 0
+        }
+    },
+    "1506": {
+        "id": 1506,
+        "gameName": "KenoWest",
+        "serviceName": "mini-keno",
+        "supportMD5": true,
+        "socketInfo": {
+            "namespace": "kenowest",
+            "path": "minikeno"
+        },
+        "durations": {
+            "wholeRound": 44,
+            "placingBets": 30,
+            "lockingBet": 5,
+            "showResult": 10,
+            "resultAnimation": 7,
+            "beforeStartRound": 0
+        }
+    },
+    "1507": {
+        "id": 1507,
+        "gameName": "KenoSouth",
+        "serviceName": "mini-keno",
+        "supportMD5": true,
+        "socketInfo": {
+            "namespace": "kenosouth",
+            "path": "minikeno"
+        },
+        "durations": {
+            "wholeRound": 44,
+            "placingBets": 30,
+            "lockingBet": 5,
+            "showResult": 10,
+            "resultAnimation": 7,
+            "beforeStartRound": 0
+        }
+    },
+    "1508": {
+        "id": 1508,
+        "gameName": "KenoNorth",
+        "serviceName": "mini-keno",
+        "supportMD5": true,
+        "socketInfo": {
+            "namespace": "kenonorth",
+            "path": "minikeno"
+        },
+        "durations": {
+            "wholeRound": 44,
+            "placingBets": 30,
             "lockingBet": 5,
             "showResult": 10,
             "resultAnimation": 7,

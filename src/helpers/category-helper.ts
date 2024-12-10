@@ -28,13 +28,13 @@ export const Categories = {
 const KenoCategoryConfig = {
     [Categories.megakeno]: [
         GameIds.MegaKeno,
-        // GameIds.MegaKeno2,
-        // GameIds.KenoMini,
-        // GameIds.KenoMini2,
-        // GameIds.KenoEast,
-        // GameIds.KenoWest,
-        // GameIds.KenoSouth,
-        // GameIds.KenoNorth,
+        GameIds.MegaKeno2,
+        GameIds.KenoMini,
+        GameIds.KenoMini2,
+        GameIds.KenoEast,
+        GameIds.KenoWest,
+        GameIds.KenoSouth,
+        GameIds.KenoNorth,
     ],
     [Categories.keno]: [GameIds.KenoPower, GameIds.KenoPower2, GameIds.KenoSoccer, GameIds.KenoSoccer2],
 };
