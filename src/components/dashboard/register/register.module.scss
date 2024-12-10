@@ -9,14 +9,6 @@
 
 .wrapper-welcome {
     margin-top: 0.7rem;
-
-    &.highlight-system-4{
-       div:first-child{ 
-        strong:first-child{
-            color: blue;
-        }
-    }
-    }
 }
 
 .login-form {
@@ -195,7 +187,7 @@
         border-width: 0.8rem;
         border-style: solid;
         border-color: #ffdede transparent transparent transparent;
-    }   
+    }
 
     .icon-close-hint {
         position: absolute;
@@ -215,7 +207,7 @@
         color: #b11818;
         font-size: 1.4rem;
 
-        > li {
+        >li {
             margin-bottom: 0.4rem;
             line-height: 1.8rem;
 

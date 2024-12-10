@@ -89,33 +89,13 @@ export default function Register({ session, handleStateLogin }: Props) {
     const closeAvatarGallery = () => {
         setIsOpenGalleryAvatar(false);
     };
-    const highlightSystemClass = Styles[`highlight-system-${getAppSettings().appType}`];
 
     return (
         <FirstLoginContainer>
-            <div className={`${Styles["wrapper-welcome"]} ${highlightSystemClass}`}>
+            <div className={`${Styles["wrapper-welcome"]}`}>
                 <TextBlock>
                     <Trans t={t}>
-                        {t(
-                            `register:registerTitle1-${systemName}-apptype${getAppSettings().appType}`,
-                            { sabaMobileName: sabaMobileName }
-                        )}
-                    </Trans>
-                </TextBlock>
-                <TextBlock>
-                    <Trans t={t}>
-                        {t(
-                            `register:registerTitle2-${systemName}-apptype${getAppSettings().appType}`,
-                            { sabaMobileName: sabaMobileName, sabaClubName: sabaClubName }
-                        )}
-                    </Trans>
-                </TextBlock>
-                <TextBlock>
-                    <Trans t={t}>
-                        {t(
-                            `register:registerTitle3-${systemName}-apptype${getAppSettings().appType}`,
-                            { sabaClubName: sabaClubName }
-                        )}
+                        {t("register:registerTitle")}
                     </Trans>
                 </TextBlock>
             </div>
