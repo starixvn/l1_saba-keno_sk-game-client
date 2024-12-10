@@ -13,7 +13,7 @@ window.envConfig = {
         environment: "",
     },
     enableSourceMap: true,
-    subGuideDomain: "gn-guide",
+    subGuideDomain: "sk-guide-1",
     enableMsgpackParser: false,
     system: "GN",
     appType: 1,

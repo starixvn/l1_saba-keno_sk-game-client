@@ -1,18 +1,18 @@
 window.envConfig = {
-    socketGatewayPath: "gw",
+    subSocketGatewayDomain: "gateway",
     proxy: {
         ssl: true,
         subDomain: "proxy",
         path: "",
     },
     sentry: {
-        dsn: "https://65f2ba49d2e04240b998eb783efc9315@sentry.sabagame.com/156",
+        dsn: "https://707edaf283cc4eed88a563bc734b975f@sentry.sabagame.com/174",
         environment: "PROD",
     },
     enableSourceMap: false,
-    subGuideDomain: "guides",
-    googleAnalyticId: "G-F0WBQ2EZ5Q",
+    subGuideDomain: "skguide",
+    googleAnalyticId: "",
     enableMsgpackParser: true,
-    system: "L1",
-    appType: 4,
+    system: "GN",
+    appType: 1,
 };

@@ -1,18 +1,18 @@
 window.envConfig = {
-    socketGatewayPath: "l1gwsit",
+    subSocketGatewayDomain: "gateway",
     proxy: {
         ssl: true,
-        subDomain: "l1uatproxy",
+        subDomain: "gnuatproxy",
         path: "/sit",
     },
     sentry: {
-        dsn: "https://936d6f9d99064ccdab5bece39bc3bc07@scsentry.sgamesuat.com/258",
+        dsn: "https://937e616976cf45c581d1f39e07c133ab@scsentry.sgamesuat.com/284",
         environment: "SIT",
     },
     enableSourceMap: false,
-    subGuideDomain: "l1guidessit",
-    googleAnalyticId: "G-F0WBQ2EZ5Q",
+    subGuideDomain: "sksitguides",
+    googleAnalyticId: "",
     enableMsgpackParser: true,
-    system: "L1",
-    appType: 4,
+    system: "GN",
+    appType:1,
 };

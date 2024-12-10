@@ -8,7 +8,7 @@ import { GameIds } from "../../common/constants/gameIds";
 import { useAuthContext } from "../../contexts/auth";
 import { GetAllGameByCurrencyGroup } from "../../helpers/category-helper";
 
-const favoriteGamesSample = [GameIds.VipSeDie, GameIds.BigSmall, GameIds.VipBaccarat, GameIds.DragonTiger];
+const favoriteGamesSample = [];
 const favoriteBtnClass = "favorite-btn";
 const favoriteIconClass = "icon-favorite";
 

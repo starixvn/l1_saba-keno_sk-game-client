@@ -21,7 +21,7 @@ describe("Test UrlHelper", () => {
         },
         subGuideDomain: "guides",
         enableMsgpackParser: false,
-        system: "L1",
+        system: "sk",
         appType: 2,
         googleAnalyticId: "G-X1Q507KDPB",
         serverDomainMapper: [""],

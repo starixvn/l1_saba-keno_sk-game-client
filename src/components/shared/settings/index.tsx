@@ -4,7 +4,6 @@ import { isMobileOnly, isSafari } from "react-device-detect";
 
 import { getAppSettings } from "../../../common/app-settings";
 import { AppTypes } from "../../../common/constants";
-import { SystemType } from "../../../common/constants/system";
 import { FavoriteSetting } from "../../favorite-setting";
 import { getLogoName } from "../../header";
 import { Tooltip } from "../tooltip";
