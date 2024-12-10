@@ -10,7 +10,7 @@ window.envConfig = {
         environment: "LOCAL_1",
     },
     enableSourceMap: true,
-    subGuideDomain: "sk-guide-1",
+    subGuideDomain: "sk-guide1",
     enableMsgpackParser: false,
     system: "GN",
     appType:1,

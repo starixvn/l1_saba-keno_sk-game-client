@@ -18,6 +18,6 @@ window.envConfig = {
     system: "GN",
     appType: 1,
     useTolgeeStatic: false,
-    googleAnalyticId: "G-F4HZV0YQ73",
+    googleAnalyticId: "",
     socketGatewayPath: "gateway"
 };
