@@ -23,7 +23,7 @@ describe("Test UrlHelper", () => {
         enableMsgpackParser: false,
         system: "sk",
         appType: 2,
-        googleAnalyticId: "G-X1Q507KDPB",
+        analyticId: "G-X1Q507KDPB",
         serverDomainMapper: [""],
         gameSettings: {},
         subPromotionDomain: "guides",

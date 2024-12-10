@@ -1,7 +1,7 @@
 window.envConfig = {
     serverDomainMapper: {
         localhost: "lumigame.com",
-        "10.5.10.17": "lumigame.com"
+        "10.5.10.17": "lumigame.com",
     },
     proxy: {
         ssl: true,
@@ -18,6 +18,7 @@ window.envConfig = {
     system: "GN",
     appType: 1,
     useTolgeeStatic: false,
-    googleAnalyticId: "",
-    socketGatewayPath: "gateway"
+    analyticId: "67579a9a07b3365ec84e5638",
+    socketGatewayPath: "gateway",
+    enableAnalyticTool: true,
 };
