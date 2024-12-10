@@ -4,7 +4,7 @@ import { buildVersion } from "../../../common/constants";
 import Styles from "./container.module.scss";
 
 const FirstLoginContainer = ({ children }) => {
-    const logoTheme = "logo-custom-saba-orange";
+    const logoTheme = "logo-saba-keno";
 
     return (
         <div className={`${Styles["wrapper"]} ${isMobileOnly ? Styles["mobile"] : ""}`}>
