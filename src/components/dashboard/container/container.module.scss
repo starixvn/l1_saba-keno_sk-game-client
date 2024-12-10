@@ -1,7 +1,7 @@
 [data-theme="light"] .wrapper {
-    --page-background: #fff;
-    --page-border: #fff;
-    --page-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+    --page-background: #162644;
+    --page-border: #162644;
+    --page-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.3);
 }
 
 .wrapper {
@@ -19,8 +19,10 @@
     @media (max-width: 767px) {
         background-color: var(--page-background);
         align-items: initial;
+
         &.mobile {
             min-height: 76rem;
+
             .page-bg {
                 height: 76rem;
             }
