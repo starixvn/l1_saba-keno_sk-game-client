@@ -31,5 +31,14 @@
     "**/*.spec.tsx",
     "**/*.test.ts",
     "**/*.test.tsx"
-  ]
+  ],
+  "typeRoots": [
+    "node_modules/@types",
+    "node_modules/@testing-library"
+  ],
+  "types": [
+    "node",
+    "jest",
+    "@testing-library/jest-dom"
+  ],
 }

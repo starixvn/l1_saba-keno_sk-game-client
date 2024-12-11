@@ -15,17 +15,17 @@ export default {
     testPathIgnorePatterns: ["<rootDir>/node_modules/", "<rootDir>/.next/"],
     moduleFileExtensions: ["ts", "tsx", "js"],
     transform: {
-        "^.+\\.(js|jsx|ts|tsx)$": "<rootDir>/node_modules/babel-jest",
+        "^.+\\.(js|jsx|ts|tsx)$": [
+            "ts-jest",
+            {
+                tsconfig: "tsconfig.jest.json",
+            },
+        ],
     },
     testMatch: ["**/*.(test|spec).(ts|tsx)"],
-    globals: {
-        "ts-jest": {
-            useBabelrc: true,
-        },
-    },
     testEnvironment: "jsdom",
     coveragePathIgnorePatterns: ["node_modules", ".d.ts", ".next", "coverage", "public", ".config.ts", ".config.js"],
-    setupFilesAfterEnv: ["jest-extended", "@testing-library/jest-dom/extend-expect", "./__mocks__/global.js"],
+    setupFilesAfterEnv: ["jest-extended", "./setupAfterEnv.ts", "./__mocks__/global.js"],
     coverageReporters: ["json", "lcov", "text", "text-summary"],
     transformIgnorePatterns: ["/node_modules/", "^.+\\.module\\.(css|sass|scss)$"],
     testResultsProcessor: "jest-sonar-reporter",

@@ -1,24 +1,47 @@
 import { render } from "@testing-library/react";
 import React from "react";
-import * as rdd from "react-device-detect";
-
 import FirstLoginContainer from ".";
-jest.mock("../../../common/constants", () => ({
-    systemName: "sk",
+import '@testing-library/jest-dom';
+
+jest.mock('react-device-detect', () => ({
+    isMobileOnly: true,
 }));
-describe("FirstLoginContainer", () => {
-    test.each`
-        isMobile | className
-        ${true}  | ${".mobile"}
-        ${false} | ${".wrapper"}
-    `("should render class follow devices", ({ isMobile, className }) => {
-        // Arrange
-        rdd.isMobileOnly = isMobile;
 
-        // Act
-        render(<FirstLoginContainer />);
+jest.mock('../../../common/constants', () => ({
+    buildVersion: '1.0.0',
+}));
 
-        // Assert
-        expect(document.querySelector(className)).toBeTruthy();
+describe('FirstLoginContainer', () => {
+    const children = <div data-testid="children">Hello World!</div>;
+
+    it('renders with correct class names', () => {
+        const { getByTestId } = render(<FirstLoginContainer dataTestid="container" >{children}</FirstLoginContainer>);
+        expect(getByTestId('container')).toHaveClass('wrapper');
+    });
+
+    it('renders logo image with correct source', () => {
+        const { getByAltText } = render(<FirstLoginContainer >{children}</FirstLoginContainer>);
+        expect(getByAltText('logo')).toHaveAttribute('src', '/static/images/logo-saba-keno.svg?v=1.0.0');
+    });
+
+    it('renders children correctly', () => {
+        const { getByTestId } = render(<FirstLoginContainer>{children}</FirstLoginContainer>);
+        expect(getByTestId('children')).toBeInTheDocument();
+    });
+
+    it('renders with correct class names when isMobileOnly is true', () => {
+        jest.mock('react-device-detect', () => ({
+            isMobileOnly: true,
+        }));
+        const { getByTestId } = render(<FirstLoginContainer dataTestid="container">{children}</FirstLoginContainer>);
+        expect(getByTestId('container')).toHaveClass('wrapper mobile');
+    });
+
+    it('renders with correct class names when isMobileOnly is false', () => {
+        jest.mock('react-device-detect', () => ({
+            isMobileOnly: false,
+        }));
+        const { getByTestId } = render(<FirstLoginContainer dataTestid="container" >{children}</FirstLoginContainer>);
+        expect(getByTestId('container')).toHaveClass('wrapper');
     });
 });

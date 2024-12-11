@@ -3,11 +3,17 @@ import { isMobileOnly } from "react-device-detect";
 import { buildVersion } from "../../../common/constants";
 import Styles from "./container.module.scss";
 
-const FirstLoginContainer = ({ children }) => {
+interface FirstLoginContainerProps {
+    children: any;
+    dataTestid?: string;
+}
+
+const FirstLoginContainer = ({ children, dataTestid }: FirstLoginContainerProps) => {
     const logoTheme = "logo-saba-keno";
 
+    const aa = isMobileOnly;
     return (
-        <div className={`${Styles["wrapper"]} ${isMobileOnly ? Styles["mobile"] : ""}`}>
+        <div data-testid={dataTestid} className={`${Styles["wrapper"]} ${isMobileOnly ? Styles["mobile"] : ""}`}>
             <div className={Styles["page-bg"]}>
                 <div className={Styles["page-container"]}>
                     <div className={Styles["logo"]}>
