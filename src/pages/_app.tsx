@@ -31,7 +31,7 @@ export const AppTilte = () => {
     return (
         <Head>
             <title>SABA Keno</title>
-            <link rel="shortcut icon" href={`/favicon-${systemName}.ico?v=${buildVersion}`} />
+            <link rel="shortcut icon" href={`/favicon.ico?v=${buildVersion}`} />
         </Head>
     );
 };
