@@ -31,7 +31,6 @@ export const getLogoName = () => {
 };
 
 const Header: React.FC<Props> = (props) => {
-    // const logoName=
     return (
         <>
             <header className={`${Styles.header} ${isMobileOnly ? Styles["mobile"] : ""}`} data-testid="header">
