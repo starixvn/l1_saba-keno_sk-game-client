@@ -86,7 +86,6 @@ export const Games: React.FC<Props> = ({
 }) => {
     const { currencyGroup } = useAuthContext();
 
-    // const currencyGroup = "GrUSD";
     const [playPlaceBetSound] = useSound("./static/sounds/place-bet.mp3");
     const urlHashtag = window.location.hash.replace("#", "").split("_");
     const queryCategory = isJoinGame
@@ -168,14 +167,6 @@ export const Games: React.FC<Props> = ({
     };
 
     const connectSocket = () => {
-        // const { enableMsgpackParser } = getAppSettings();
-        // const socketGatewayUrl = buildSocketGatewayUrl();
-        // const socket = io(socketGatewayUrl, {
-        //     forceNew: true,
-        //     transports: ["websocket"],
-        //     upgrade: false,
-        //     parser: enableMsgpackParser ? MsgpackParser : undefined,
-        // });
         const { proxy, enableMsgpackParser, socketGatewayPath } = getAppSettings();
         const socketUri = buildUrl();
         const socketOption = {

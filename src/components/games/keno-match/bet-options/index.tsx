@@ -47,7 +47,10 @@ const KenoMatchBetOptions: React.FunctionComponent<KenoMatchBetOptionsProps> = (
     ];
 
     const getOddsByChoice = (choiceName: string) => {
-        if (odds) return liveOdds?.[choiceName] ?? odds[choiceName];
+        if (odds) {
+            return liveOdds?.[choiceName] ?? odds[choiceName];
+        }
+
         return 0;
     };
 

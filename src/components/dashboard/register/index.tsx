@@ -2,13 +2,9 @@ import { Trans, useTranslation } from "next-i18next";
 import React, { useState } from "react";
 import { AuthorizeResponse, Response, SSOResponse } from "sc-user-service-client/dist/auth";
 
-import { getAppSettings } from "../../../common/app-settings";
 import {
     Themes,
-    maximumAvatarId,
-    sabaClubName,
-    sabaMobileName,
-    systemName,
+    maximumAvatarId
 } from "../../../common/constants";
 import { GetLocalizedErrorMessage } from "../../../helpers/notice-helper";
 import { randomInteger } from "../../../helpers/number-helper";

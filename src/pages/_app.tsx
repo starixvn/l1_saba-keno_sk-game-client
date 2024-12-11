@@ -6,7 +6,7 @@ import { ThemeProvider } from "next-themes";
 import App, { AppProps } from "next/app";
 import Head from "next/head";
 
-import { buildVersion, systemName, Themes } from "../common/constants";
+import { buildVersion, Themes } from "../common/constants";
 import AnalyticTool from "../components/shared/tools/analytic-tool";
 
 interface KenoSoccerAppProps extends AppProps {

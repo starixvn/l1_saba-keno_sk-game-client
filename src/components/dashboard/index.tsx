@@ -219,7 +219,7 @@ class Dashboard extends React.PureComponent<Props, State> {
             let offeredGames = [];
             offeredGames = GetOfferedGames(
                 authorizeInfo.user.currencyGroup,
-                authorizeInfo.user.offerGames.map((game) => (game as any).gameId)
+                authorizeInfo.user.offerGames.map((game) => game.gameId)
             );
             this.setState({ offeredGames });
             this.checkOfferedGame(offeredGames);
