@@ -7,7 +7,6 @@ import App, { AppProps } from "next/app";
 import Head from "next/head";
 
 import { buildVersion, systemName, Themes } from "../common/constants";
-import { useEffect, useState } from "react";
 import AnalyticTool from "../components/shared/tools/analytic-tool";
 
 interface KenoSoccerAppProps extends AppProps {
@@ -29,13 +28,9 @@ class SabaMobiApp extends App<KenoSoccerAppProps> {
 }
 
 export const AppTilte = () => {
-    const [title, setTitle] = useState("");
-    useEffect(() => {
-        setTitle("SABA Keno");
-    }, []);
     return (
         <Head>
-            <title>{title}</title>
+            <title>SABA Keno</title>
             <link rel="shortcut icon" href={`/favicon-${systemName}.ico?v=${buildVersion}`} />
         </Head>
     );

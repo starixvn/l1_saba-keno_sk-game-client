@@ -6,7 +6,7 @@ export default function SplashScreen({ locale }) {
     return locale ? (
         <div className={`${Styles.page}`}>
             <img
-                src={`/static/images/splash-screen/${locale}/logo-${systemName}.svg?${buildVersion}`}
+                src={`/static/images/splash-screen/${locale}/logo-sk.svg?${buildVersion}`}
                 className={Styles["logo"]}
                 width="274"
                 height="96"
