@@ -51,10 +51,9 @@ const BetOption: React.FunctionComponent<Props> = ({
     const { enabledQuickBet, betValue, fractionalOddsFormat } = useSystemContext();
     const [highlightType, updateHighlightType] = useState<HighlightType>(HighlightType.None);
     const [totalBet, setTotalBet] = useState<number>(totalBets?.[choice] ?? 0);
-
-    const totalBetRef = useRef<HTMLDivElement>(null);
-    const { start, update } = useCountUp({ ref: totalBetRef, start: 0, end: 0, decimals: 1 });
+    const { countUp, update } = useCountUp({ start: 0, end: 0, decimals: 1 });
     const betChoiceRef = useRef<HTMLDivElement>(null);
+    const totalBetRef = useRef<HTMLDivElement>(null);
     const [isFocusChoice, setIsFocusChoice] = useState<boolean>(false);
 
     useEffect(() => {
@@ -73,7 +72,7 @@ const BetOption: React.FunctionComponent<Props> = ({
         actionByGameState[gameState] && actionByGameState[gameState]();
 
         setTotalBet(totalBets[choice]);
-        update(totalBet ?? 0);
+        update(totalBet);
     }, [gameState, totalBets?.[choice]]);
 
     const onClickBet = (event: any) => {
@@ -110,7 +109,7 @@ const BetOption: React.FunctionComponent<Props> = ({
                     <div className={Styles["total-bet"]} ref={totalBetRef}>
                         {isShowPoolStake &&
                             (gameState === GameState.BalancingBet
-                                ? convertStakeToString(+start, rate)
+                                ? convertStakeToString(+countUp, rate)
                                 : convertStakeToString(totalBet, rate))}
                     </div>
 
