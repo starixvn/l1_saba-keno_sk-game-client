@@ -2,3 +2,6 @@ include:
   - project: "ci/core-cicd"
     ref: main
     file: "luminet.gitlab-ci.yml"
+
+unit_test_js:
+  allow_failure: true

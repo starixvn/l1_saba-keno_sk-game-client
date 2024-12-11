@@ -6,9 +6,6 @@ export interface Props {
     toggleGuideModal: Function;
     toggleHistoryModal: Function;
     toggleAnnouncementModal: Function;
-    favoriteGames: number[];
-    offerGames: number[];
-    updateFavoriteGames: Function;
     enabledQuickBet?: boolean;
     updateEnabledQuickBet?: Function;
     isShowQuickBet?: boolean;

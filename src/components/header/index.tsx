@@ -16,9 +16,6 @@ type Props = {
     toggleHistoryModal: Function;
     toggleGuideModal: Function;
     toggleAnnouncementModal: Function;
-    updateFavoriteGames: Function;
-    favoriteGames: number[];
-    offerGames: number[];
     enabledQuickBet?: boolean;
     updateEnabledQuickBet?: Function;
     isShowBoostedOdds: boolean;
@@ -32,43 +29,34 @@ export const getLogoName = () => {
 
 const Header: React.FC<Props> = (props) => {
     return (
-        <>
-            <header className={`${Styles.header} ${isMobileOnly ? Styles["mobile"] : ""}`} data-testid="header">
-                <div className="game-container d-flex">
-                    <div className={Styles["header-container"]}>
-                        <a onClick={() => window.location.reload()} className={Styles["site-name"]}>
-                            <img
-                                className="header-logo"
-                                alt="UM"
-                                src={`/static/images/logo-desktop-${getLogoName()}.svg?v=${buildVersion}`}
+        <header className={`${Styles.header} ${isMobileOnly ? Styles["mobile"] : ""}`} data-testid="header">
+            <div className="game-container d-flex">
+                <div className={Styles["header-container"]}>
+                    <a onClick={() => window.location.reload()} className={Styles["site-name"]}>
+                        <img className="header-logo" alt="UM" src={`/static/images/logo-desktop-${getLogoName()}.svg?v=${buildVersion}`} />
+                    </a>
+                    <div className={Styles["header-right"]}>
+                        {
+                            <Settings
+                                enabledSound={props.enabledSound}
+                                enabledNotification={props.enabledNotification}
+                                onToggleSound={props.onToggleSound}
+                                onToggleNotification={props.onToggleNotification}
+                                toggleHistoryModal={props.toggleHistoryModal}
+                                toggleGuideModal={props.toggleGuideModal}
+                                toggleAnnouncementModal={props.toggleAnnouncementModal}
+                                enabledQuickBet={props.enabledQuickBet}
+                                updateEnabledQuickBet={props.updateEnabledQuickBet}
+                                isShowBoostedOdds={props.isShowBoostedOdds}
+                                promotionNotifications={props.promotionNotifications}
+                                isShowToolbarGuide={props.isShowToolbarGuide}
                             />
-                        </a>
-                        <div className={Styles["header-right"]}>
-                            {
-                                <Settings
-                                    enabledSound={props.enabledSound}
-                                    enabledNotification={props.enabledNotification}
-                                    onToggleSound={props.onToggleSound}
-                                    onToggleNotification={props.onToggleNotification}
-                                    toggleHistoryModal={props.toggleHistoryModal}
-                                    toggleGuideModal={props.toggleGuideModal}
-                                    toggleAnnouncementModal={props.toggleAnnouncementModal}
-                                    favoriteGames={props.favoriteGames}
-                                    offerGames={props.offerGames}
-                                    updateFavoriteGames={props.updateFavoriteGames}
-                                    enabledQuickBet={props.enabledQuickBet}
-                                    updateEnabledQuickBet={props.updateEnabledQuickBet}
-                                    isShowBoostedOdds={props.isShowBoostedOdds}
-                                    promotionNotifications={props.promotionNotifications}
-                                    isShowToolbarGuide={props.isShowToolbarGuide}
-                                />
-                            }
-                            {!isMobileOnly && <UserInfo user={props.user} />}
-                        </div>
+                        }
+                        {!isMobileOnly && <UserInfo user={props.user} />}
                     </div>
                 </div>
-            </header>
-        </>
+            </div>
+        </header>
     );
 };
 

@@ -1,8 +1,7 @@
 import { useTranslation } from "next-i18next";
-import React, { useMemo, useRef, useState } from "react";
+import React, { useMemo, useRef } from "react";
 import { isMobileOnly } from "react-device-detect";
 
-import { FavoriteSetting } from "../../favorite-setting";
 import { getLogoName } from "../../header";
 import { Tooltip } from "../tooltip";
 import { Menu } from "./menu";
@@ -19,27 +18,19 @@ export const Settings: React.FC<Props> = ({
     onToggleSound,
     enabledSound,
     toggleGuideModal,
-    favoriteGames,
-    offerGames,
-    updateFavoriteGames,
     isShowQuickBet = false,
     promotionNotifications,
     isShowToolbarGuide,
 }) => {
     const { t } = useTranslation();
-    const [showFavoriteSetting, setShowFavoriteSetting] = useState(false);
     const toggleHistoryBtnRef = useRef<HTMLDivElement>(null);
     const toggleAnnouncementBtnRef = useRef<HTMLDivElement>(null);
     const toggleSoundBtnRef = useRef<HTMLDivElement>(null);
-    const favoriteToggleBtnRef = useRef<HTMLDivElement>(null);
     const specialClassByDevice = !isMobileOnly ? "desktop-style" : "";
     return useMemo(() => {
         return (
             <div className={styles["settings-container"]}>
-                {isShowQuickBet && isMobileOnly && (
-                    <div className={styles["setting-left"]}>
-                    </div>
-                )}
+                {isShowQuickBet && isMobileOnly && <div className={styles["setting-left"]}></div>}
 
                 <div className={`${styles["setting-right"]} ${styles[getLogoName()]}`}>
                     <div
@@ -85,17 +76,7 @@ export const Settings: React.FC<Props> = ({
                         handleToggleGuideModal={toggleGuideModal}
                     />
                 </div>
-
-                {showFavoriteSetting && (
-                    <FavoriteSetting
-                        currentFavoriteGames={favoriteGames}
-                        offerGames={offerGames}
-                        onCloseModal={() => setShowFavoriteSetting(false)}
-                        updateFavorite={updateFavoriteGames}
-                        toggleBtnRef={favoriteToggleBtnRef}
-                    />
-                )}
             </div>
         );
-    }, [promotionNotifications, showFavoriteSetting, enabledSound, enabledNotification, isShowToolbarGuide]);
+    }, [promotionNotifications, enabledSound, enabledNotification, isShowToolbarGuide]);
 };
