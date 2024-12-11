@@ -50,10 +50,10 @@ const RenderBetOptionsGroup = (
 ) =>
     choices.map((choice) => {
         const isHighLight = gameState !== GameState.LockingBet && settlementResult[choice.name];
-
+        console.log({ odds })
         return (
             <div key={`choice-${choice.name}`} className={Styles[`choice-${choice.name}`]}>
-                {renderBetOptionByChoice(choice, t(choice.name), odds[choice.name], gameState, isHighLight, isShowWinningEffect)}
+                {odds && renderBetOptionByChoice(choice, t(choice.name), odds[choice.name] || 0, gameState, isHighLight, isShowWinningEffect)}
             </div>
         );
     });
