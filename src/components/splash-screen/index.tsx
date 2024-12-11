@@ -1,5 +1,5 @@
 import React from "react";
-import { buildVersion, locales, systemName } from "../../common/constants";
+import { buildVersion, locales } from "../../common/constants";
 import Styles from "./splash-screen.module.scss";
 
 export default function SplashScreen({ locale }) {

@@ -1,5 +1,5 @@
 [data-theme="light"] .header {
-    --header-background: #2D4976;    
+    --header-background: #2D4976;
     --header-background-mobi: linear-gradient(180deg, #ffffff 50%, #EAEAEA 100%);
     --header-text-color: var(--text-color);
     --header-balance-color: var(--primary-color);
@@ -40,21 +40,26 @@
         font-size: 1.8rem;
         color: var(--site-name-color);
         text-decoration: none;
+        display: flex;
 
         &:hover {
             text-decoration: none;
             cursor: pointer;
+        }
+
+        img {
+            height: 1.7rem;
         }
     }
 
     &.mobile {
         height: 3.8rem;
         position: initial;
-        
-        .site-name > img {
-            height: 3rem;
-        }        
-    }    
+
+        .site-name>img {
+            height: 1.3rem;
+        }
+    }
 }
 
 .icon-user {
@@ -85,6 +90,7 @@
 
     &:hover {
         cursor: pointer;
+
         &:after {
             transform: scale(1);
             opacity: 1;
