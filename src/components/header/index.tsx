@@ -7,7 +7,7 @@ import { Settings } from "../shared/settings";
 import { UserInfo } from "../user-info";
 import Styles from "./header.module.scss";
 
-type Props = {
+export type HeaderProps = {
     user: User;
     enabledSound: boolean;
     enabledNotification: boolean;
@@ -27,7 +27,7 @@ export const getLogoName = () => {
     return "saba-keno";
 };
 
-const Header: React.FC<Props> = (props) => {
+const Header: React.FC<HeaderProps> = (props) => {
     return (
         <header className={`${Styles.header} ${isMobileOnly ? Styles["mobile"] : ""}`} data-testid="header">
             <div className="game-container d-flex">
