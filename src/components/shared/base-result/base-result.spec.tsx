@@ -1,31 +1,71 @@
-import { render, waitFor } from "@testing-library/react";
-import React from "react";
-import { act } from "react-dom/test-utils";
+import React from 'react';
+import { render, act } from '@testing-library/react';
+import BaseResult, { HidingAnimationTimeInSecond } from './index';
 
-import BaseResult, { HidingAnimationTimeInSecond } from ".";
-
-describe("BaseResult", () => {
+describe('BaseResult', () => {
     beforeEach(() => {
         jest.useFakeTimers();
-        jest.spyOn(global, "setTimeout");
-    });
-    test("renders BaseResult component", async () => {
-        const showResultTimeInSecond = 3;
-        const { getByText } = render(<BaseResult showResultTimeInSecond={showResultTimeInSecond}>{"children"}</BaseResult>);
-
-        expect(getByText("children")).toBeInTheDocument();
-        expect(setTimeout).toHaveBeenCalledTimes(2);
-        expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), (showResultTimeInSecond - HidingAnimationTimeInSecond) * 1000);
     });
 
-    test("add class hide BaseResult component", async () => {
-        render(<BaseResult showResultTimeInSecond={3}>{"children"}</BaseResult>);
+    afterEach(() => {
+        jest.useRealTimers();
+    });
+
+    it('renders children correctly', () => {
+        const { getByText } = render(
+            <BaseResult showResultTimeInSecond={2}>
+                <div>Test Content</div>
+            </BaseResult>
+        );
+
+        expect(getByText('Test Content')).toBeInTheDocument();
+    });
+
+    it('starts without hide-result-animation class', () => {
+        const { container } = render(
+            <BaseResult showResultTimeInSecond={2}>
+                <div>Test Content</div>
+            </BaseResult>
+        );
+
+        expect(container.firstChild).not.toHaveClass('hide-result-animation');
+    });
+
+    it('adds hide-result-animation class after specified time', () => {
+        const showTime = 2;
+        const { container } = render(
+            <BaseResult showResultTimeInSecond={showTime}>
+                <div>Test Content</div>
+            </BaseResult>
+        );
+
+        // Calculate when the animation should start
+        const timeUntilHiding = (showTime - HidingAnimationTimeInSecond) * 1000;
+
+        // Fast-forward time just before the animation should start
         act(() => {
-            jest.runOnlyPendingTimers();
+            jest.advanceTimersByTime(timeUntilHiding - 1);
         });
+        expect(container.firstChild).not.toHaveClass('hide-result-animation');
 
-        await waitFor(() => {
-            expect(document.querySelector(".hide-result-animation")).toBeTruthy();
+        // Fast-forward time to when the animation should start
+        act(() => {
+            jest.advanceTimersByTime(1);
         });
+        expect(container.firstChild).toHaveClass('hide-result-animation');
+    });
+
+    it('cleans up timeout on unmount', () => {
+        jest.spyOn(global, 'clearTimeout');
+        const { unmount } = render(
+            <BaseResult showResultTimeInSecond={2}>
+                <div>Test Content</div>
+            </BaseResult>
+        );
+
+        unmount();
+
+        // Ensure setTimeout was cleared
+        expect(clearTimeout).toHaveBeenCalled();
     });
 });

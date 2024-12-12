@@ -1,40 +1,64 @@
-import { render } from "@testing-library/react";
-import React from "react";
+import React from 'react';
+import { render, screen, fireEvent } from '@testing-library/react';
+import BetHistoryDetailsContainer from './index';
 
-import BetHistoryDetailsContainer from ".";
-
-describe("BetHistoryDetailsContainer", () => {
-    // Arrange
-    const resource = {
-        renderBetLogsDetails: null,
-        renderResultDetail: null,
+describe('BetHistoryDetailsContainer', () => {
+    const mockProps = {
+        renderBetLogsDetails: jest.fn(() => <div>Bet Logs Details</div>),
+        renderResultDetail: <div>Result Detail</div>,
         isShowResultDetail: false,
-        closeModalBetHistory: null,
-        closeModalBetDetails: null,
-        translateText: { betDetails: "Bet Details" },
+        closeModalBetHistory: jest.fn(),
+        closeModalBetDetails: jest.fn(),
+        translateText: {
+            betDetails: 'Bet Details'
+        }
     };
 
-    test("should render correctly", () => {
-        // Act
-        const { getByTestId } = render(<BetHistoryDetailsContainer {...resource} />);
-
-        // Assert
-        expect(getByTestId("bet-history-details")).toBeInTheDocument();
+    beforeEach(() => {
+        jest.clearAllMocks();
     });
 
-    test("should render icon back", () => {
-        // Act
-        const { getByAltText } = render(<BetHistoryDetailsContainer {...resource} />);
+    it('renders the component correctly', () => {
+        render(<BetHistoryDetailsContainer {...mockProps} />);
 
-        // Assert
-        expect(getByAltText("arrow-left")).toBeInTheDocument();
+        expect(screen.getByTestId('bet-history-details')).toBeInTheDocument();
+        expect(screen.getByText('Bet Details')).toBeInTheDocument();
+        expect(screen.getByAltText('arrow-left')).toBeInTheDocument();
+        expect(mockProps.renderBetLogsDetails).toHaveBeenCalledTimes(1);
     });
 
-    test("should render icon close", () => {
-        // Act
-        const { getByTestId } = render(<BetHistoryDetailsContainer {...resource} />);
+    it('calls closeModalBetDetails when back arrow is clicked', () => {
+        render(<BetHistoryDetailsContainer {...mockProps} />);
 
-        // Assert
-        expect(getByTestId("icon-close")).toBeInTheDocument();
+        const backButton = screen.getByAltText('arrow-left').parentElement;
+        fireEvent.click(backButton!);
+
+        expect(mockProps.closeModalBetDetails).toHaveBeenCalledTimes(1);
+    });
+
+    it('calls closeModalBetHistory when close icon is clicked', () => {
+        render(<BetHistoryDetailsContainer {...mockProps} />);
+
+        const closeIcon = screen.getByTestId('icon-close');
+        fireEvent.click(closeIcon);
+
+        expect(mockProps.closeModalBetHistory).toHaveBeenCalledTimes(1);
+    });
+
+    it('renders result detail when isShowResultDetail is true', () => {
+        render(
+            <BetHistoryDetailsContainer
+                {...mockProps}
+                isShowResultDetail={true}
+            />
+        );
+
+        expect(screen.getByText('Result Detail')).toBeInTheDocument();
+    });
+
+    it('does not render result detail when isShowResultDetail is false', () => {
+        render(<BetHistoryDetailsContainer {...mockProps} />);
+
+        expect(screen.queryByText('Result Detail')).not.toBeInTheDocument();
     });
 });

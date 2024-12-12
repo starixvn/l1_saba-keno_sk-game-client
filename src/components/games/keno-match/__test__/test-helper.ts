@@ -2,8 +2,8 @@ import { GameState, ViewMode } from "../../../shared/game-base/type";
 
 const buildGameContext = (gameState = GameState.InRound) => {
     const gameSetting = {
-        id: 36,
-        gameName: "KenoMatch1",
+        id: 1511,
+        gameName: "KenoSoccer",
         socketInfo: {
             namespace: "kenosoccer",
             path: "kenosoccer",

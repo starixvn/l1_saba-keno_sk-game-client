@@ -1,39 +1,108 @@
-import { render } from "@testing-library/react";
-import React from "react";
-import * as rdd from "react-device-detect";
+import React from 'react';
+import { render, screen, fireEvent, act } from '@testing-library/react';
+import GameGuides from './index';
+import { useTheme } from 'next-themes';
+import { useTranslation } from 'next-i18next';
 
-import GameGuides from ".";
-import { AuthContextProvider } from "../../../../contexts/auth";
-import { authContextValue } from "../../__test__/test-helper";
+jest.mock('next-themes');
+jest.mock('react-device-detect', () => ({
+    isMobileOnly: false,
+    isIOS: false,
+    browserVersion: '16'
+}));
+jest.mock('next-i18next', () => ({
+    useTranslation: jest.fn()
+}));
 
-describe("GameGuides", () => {
-    [1, 22].forEach((gameId) => {
-        test("should render correctly", () => {
-            // Act
-            render(
-                <AuthContextProvider value={authContextValue}>
-                    <GameGuides gameId={gameId} userStakeLevel={null} />
-                </AuthContextProvider>
-            );
+describe('GameGuides', () => {
+    const mockProps = {
+        gameId: 123,
+        userStakeLevel: {
+            minBet: 10,
+            maxBet: 1000
+        },
+        gameConfigs: { someConfig: 'value' },
+        isInPromotionTime: true,
+        fractionalOddsFormat: false
+    };
 
-            // Assert
-            expect(document.querySelector(".container-guide")).toBeTruthy();
+    beforeEach(() => {
+        // Mock useTheme
+        (useTheme as jest.Mock).mockReturnValue({
+            theme: 'light'
         });
+
+        (useTranslation as jest.Mock).mockImplementation(() => ({
+            t: (key: string) => key,
+            i18n: { language: 'en' },
+        }));
+
+        // Mock window.postMessage
+        window.postMessage = jest.fn();
     });
 
-    test("should render is IOS browser with version 15", () => {
-        //Arrange
-        rdd.isIOS = true;
-        rdd.isMobileOnly = true;
-        rdd.browserVersion = 15;
-        // Act
-        render(
-            <AuthContextProvider value={authContextValue}>
-                <GameGuides gameId={1} userStakeLevel={null} />
-            </AuthContextProvider>
-        );
+    afterEach(() => {
+        jest.clearAllMocks();
+    })
+    it('renders loader initially', () => {
+        render(<GameGuides {...mockProps} />);
+        expect(screen.getByTestId('loader')).toBeInTheDocument();
+    });
 
-        // Assert
-        expect(document.querySelector(".container-guide")).toBeTruthy();
+    it('renders iframe with correct src', () => {
+        render(<GameGuides {...mockProps} />);
+        const iframe = screen.getByTestId('game-guide') as HTMLIFrameElement;
+
+        expect(iframe).toBeInTheDocument();
+        expect(iframe.src).toContain(`gId=${mockProps.gameId}`);
+        expect(iframe.src).toContain(`minBet=${mockProps.userStakeLevel.minBet}`);
+        expect(iframe.src).toContain(`maxBet=${mockProps.userStakeLevel.maxBet}`);
+        expect(iframe.src).toContain('fof=false');
+    });
+
+    it('hides loader after iframe loads', async () => {
+        jest.useFakeTimers();
+
+        render(<GameGuides {...mockProps} />);
+        const iframe = screen.getByTestId('game-guide');
+
+        fireEvent.load(iframe);
+
+        act(() => {
+            jest.advanceTimersByTime(300);
+        });
+
+        expect(screen.queryByTestId('loader')).not.toBeInTheDocument();
+
+        jest.useRealTimers();
+    });
+
+    it('adds resize event listener on mount and removes on unmount', () => {
+        const addEventListenerSpy = jest.spyOn(window, 'addEventListener');
+        const removeEventListenerSpy = jest.spyOn(window, 'removeEventListener');
+
+        const { unmount } = render(<GameGuides {...mockProps} />);
+
+        expect(addEventListenerSpy).toHaveBeenCalledWith('resize', expect.any(Function));
+
+        unmount();
+
+        expect(removeEventListenerSpy).toHaveBeenCalledWith('resize', expect.any(Function));
+    });
+
+    it('does add resize listener for iOS mobile version 15', () => {
+        jest.resetModules();
+        jest.unmock('react-device-detect');
+        jest.mock('react-device-detect', () => ({
+            isMobileOnly: true,
+            isIOS: true,
+            browserVersion: '15'
+        }));
+
+        const addEventListenerSpy = jest.spyOn(window, 'addEventListener');
+
+        render(<GameGuides {...mockProps} />);
+
+        expect(addEventListenerSpy).toHaveBeenCalledWith('resize', expect.any(Function));
     });
 });

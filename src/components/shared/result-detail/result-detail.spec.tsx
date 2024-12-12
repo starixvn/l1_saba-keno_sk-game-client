@@ -1,37 +1,56 @@
-import { render, waitFor } from "@testing-library/react";
-import React from "react";
-import { act } from "react-dom/test-utils";
+import React from 'react';
+import { render, act } from '@testing-library/react';
+import ResultDetail, { HidingAnimationDurationInSecond } from './index';
 
-import ResultDetail, { HidingAnimationDurationInSecond } from ".";
+jest.useFakeTimers();
 
-describe("ResultDetail", () => {
+describe('ResultDetail', () => {
+    const mockRenderSettlementInfo = jest.fn(() => <div>Test Settlement Info</div>);
+
     beforeEach(() => {
-        jest.useFakeTimers();
-        jest.spyOn(global, "setTimeout");
-    });
-    const showResultTimeInSecond = 3;
-    test("renders ResultDetail component", async () => {
-        const showResultTimeInSecond = 3;
-        const { getByText } = render(
-            <ResultDetail renderSettlementInfo={() => <span>{"children"}</span>} timeToShowInSecond={showResultTimeInSecond} />
-        );
-
-        expect(getByText("children")).toBeInTheDocument();
-        expect(setTimeout).toHaveBeenCalledTimes(2);
-        expect(setTimeout).toHaveBeenLastCalledWith(
-            expect.any(Function),
-            (showResultTimeInSecond - HidingAnimationDurationInSecond) * 1000
-        );
+        jest.clearAllMocks();
     });
 
-    test("add class hide ResultDetail component", async () => {
-        render(<ResultDetail renderSettlementInfo={() => <span>{"children"}</span>} timeToShowInSecond={showResultTimeInSecond} />);
+    it('should render settlement info initially without hide animation class', () => {
+        const { container } = render(
+            <ResultDetail
+                renderSettlementInfo={mockRenderSettlementInfo}
+                timeToShowInSecond={5}
+            />
+        );
+
+        expect(mockRenderSettlementInfo).toHaveBeenCalledTimes(1);
+        expect(container.firstChild).toHaveClass('result-detail-container');
+        expect(container.firstChild).not.toHaveClass('hide-result-animation');
+    });
+
+    it('should add hide animation class after specified time', () => {
+        const timeToShow = 5;
+        const { container } = render(
+            <ResultDetail
+                renderSettlementInfo={mockRenderSettlementInfo}
+                timeToShowInSecond={timeToShow}
+            />
+        );
+
         act(() => {
-            jest.runOnlyPendingTimers();
+            jest.advanceTimersByTime((timeToShow - HidingAnimationDurationInSecond) * 1000);
         });
 
-        await waitFor(() => {
-            expect(document.querySelector(".hide-result-animation")).toBeTruthy();
-        });
+        expect(container.firstChild).toHaveClass('hide-result-animation');
+    });
+
+    it('should clean up timeout on unmount', () => {
+        jest.spyOn(global, 'clearTimeout');
+        const { unmount } = render(
+            <ResultDetail
+                renderSettlementInfo={mockRenderSettlementInfo}
+                timeToShowInSecond={5}
+            />
+        );
+
+        unmount();
+
+        expect(clearTimeout).toHaveBeenCalled();
     });
 });

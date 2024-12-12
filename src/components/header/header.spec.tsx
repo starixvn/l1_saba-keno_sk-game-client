@@ -1,23 +1,15 @@
 import React from 'react';
-import { render } from '@testing-library/react';
-import Header, { HeaderProps } from './index';
+import { render, screen, fireEvent } from '@testing-library/react';
+import Header, { HeaderProps, getLogoName } from './index';
+import { isMobileOnly } from 'react-device-detect';
 import '@testing-library/jest-dom';
 
 jest.mock('react-device-detect', () => ({
-    isMobileOnly: true,
+    isMobileOnly: false
 }));
 
-jest.mock('../../common/constants', () => ({
-    buildVersion: '1.0.0',
-}));
-
-
-jest.mock('./index', () => ({
-    getLogoName: jest.fn().mockReturnValue('test'),
-}));
-
-describe('Header component', () => {
-    const props: HeaderProps = {
+describe('Header Component', () => {
+    const mockProps: HeaderProps = {
         user: {
             UID: 1,
             avatarId: 1,
@@ -48,35 +40,57 @@ describe('Header component', () => {
         isShowToolbarGuide: true,
     };
 
-    it('renders header with mobile layout', () => {
-        const { getByTestId } = render(<Header {...props} />);
-        expect(getByTestId('header')).toHaveClass('mobile');
+    beforeEach(() => {
+        jest.clearAllMocks();
     });
 
-    it('renders header with desktop layout', () => {
-        const { getByTestId } = render(<Header {...props} />);
-        expect(getByTestId('header')).not.toHaveClass('mobile');
+    test('renders header component', () => {
+        render(<Header {...mockProps} />);
+        const headerElement = screen.getByTestId('header');
+        expect(headerElement).toBeInTheDocument();
     });
 
-    it('checks logo image source', () => {
-        const { getByAltText } = render(<Header {...props} />);
-        expect(getByAltText('UM')).toHaveAttribute('src', `/static/images/logo-desktop-test.svg?v=1.0.0`);
+    test('renders logo with correct source', () => {
+        render(<Header {...mockProps} />);
+        const logoImage = screen.getByAltText('UM');
+        expect(logoImage).toHaveClass('header-logo');
+        expect(logoImage.getAttribute('src')).toContain('logo-desktop-saba-keno.svg');
     });
 
-    it('checks settings component props', () => {
-        const { getByText } = render(<Header {...props} />);
-        expect(getByText('Settings')).toBeInTheDocument();
-        expect(getByText('Sound')).toBeInTheDocument();
-        expect(getByText('Notification')).toBeInTheDocument();
+    test('logo click triggers page reload', () => {
+        const reloadMock = jest.fn();
+        Object.defineProperty(window, 'location', {
+            value: { reload: reloadMock },
+            writable: true
+        });
+
+        render(<Header {...mockProps} />);
+        const logo = screen.getByAltText('UM');
+        fireEvent.click(logo.parentElement!);
+        expect(reloadMock).toHaveBeenCalled();
     });
 
-    it('checks UserInfo component is rendered on desktop layout', () => {
-        const { getByText } = render(<Header {...props} />);
-        expect(getByText(props.user.name)).toBeInTheDocument();
+    test('renders UserInfo component when not mobile', () => {
+        render(<Header {...mockProps} />);
+        expect(screen.getByText(mockProps.user.name)).toBeInTheDocument();
     });
 
-    it('checks UserInfo component is not rendered on mobile layout', () => {
-        const { queryByText } = render(<Header {...props} />);
-        expect(queryByText(props.user.name)).not.toBeInTheDocument();
+    test('does not render UserInfo component on mobile', () => {
+        (isMobileOnly as boolean) = true;
+
+        render(<Header {...mockProps} />);
+        expect(screen.queryByText(mockProps.user.name)).not.toBeInTheDocument();
+    });
+
+    test('getLogoName returns correct value', () => {
+        expect(getLogoName()).toBe('saba-keno');
+    });
+
+    test('applies mobile class when on mobile device', () => {
+        (isMobileOnly as boolean) = true;
+
+        render(<Header {...mockProps} />);
+        const headerElement = screen.getByTestId('header');
+        expect(headerElement).toHaveClass('mobile');
     });
 });

@@ -53,6 +53,7 @@ export const GameGuideModal: React.FC<{
                 <div className={Styles["guide-content"]}>
                     {selectedGameId !== -1 && (
                         <GameGuides
+                            data-testid="game-guides"
                             gameId={selectedGameId}
                             userStakeLevel={userStakeLevel}
                             gameConfigs={gameConfigs}

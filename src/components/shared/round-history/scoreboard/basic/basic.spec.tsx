@@ -1,32 +1,49 @@
 import { render } from "@testing-library/react";
 import React from "react";
 
-import { GameContextProvider } from "../../../../../contexts/game-context/game-context";
 import ScoreboardBasic from ".";
 import { GameState } from "../../../../shared/game-base/type";
-import { roundHistory, gameContext } from "../../__tests__/test-helper";
+import { roundHistory } from "../../__tests__/test-helper";
 
-describe("ScoreboardBasic", () => {
-    const getDotDetails = () => {
-        <span>getDotDetails</span>;
-    };
+describe('ScoreboardBasic', () => {
+    const mockGetDotDetails = (round: any, roundId: number) => (
+        <div data-testid={`dot-${roundId}`}>
+            Value: {round.value}
+        </div>
+    );
 
-    test("should render ScoreboardBasic component", () => {
-        // Arrange
-        const resource = {
-            gameState: GameState.InRound,
-            roundHistory,
-            getDotDetails,
-        };
-
-        // Act
+    it('renders without crashing', () => {
         render(
-            <GameContextProvider value={gameContext as any}>
-                <ScoreboardBasic {...resource} />
-            </GameContextProvider>
+            <ScoreboardBasic
+                roundHistory={roundHistory}
+                getDotDetails={mockGetDotDetails}
+                gameState={GameState.InRound}
+            />
+        );
+    });
+
+    it('renders empty scoreboard when no rounds', () => {
+        const { container } = render(
+            <ScoreboardBasic
+                roundHistory={[]}
+                getDotDetails={mockGetDotDetails}
+                gameState={GameState.InRound}
+            />
         );
 
-        // Arrange
-        expect(document.querySelector(".score-board-container")).toBeTruthy();
+        expect(container.firstChild).toBeEmptyDOMElement();
+    });
+
+    it('applies correct CSS class', () => {
+        const { container } = render(
+            <ScoreboardBasic
+                roundHistory={roundHistory}
+                getDotDetails={mockGetDotDetails}
+                gameState={GameState.InRound}
+            />
+        );
+
+        expect(container.firstChild).toHaveClass('score-board-container');
     });
 });
+

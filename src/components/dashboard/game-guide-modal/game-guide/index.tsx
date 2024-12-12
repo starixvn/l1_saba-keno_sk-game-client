@@ -27,9 +27,8 @@ const GameGuides: React.FC<Props> = (props) => {
     const minMaxBetParams = `&minBet=${userStakeLevel?.minBet}&maxBet=${userStakeLevel?.maxBet}`;
     const oddsFormatParams = `&fof=${fractionalOddsFormat}`;
     const guideUrl = buildGameGuideUrl();
-    const srcPath = `${guideUrl}/${
-        i18n.language
-    }/?gId=${gameId}&t=${theme}${minMaxBetParams}&p=${isInPromotionTime}&dy=0&v=${Date.now()}${oddsFormatParams}`;
+    const srcPath = `${guideUrl}/${i18n.language
+        }/?gId=${gameId}&t=${theme}${minMaxBetParams}&p=${isInPromotionTime}&dy=0&v=${Date.now()}${oddsFormatParams}`;
     const handleResize = () => {
         if (wrapperRef?.current) {
             setHeightGuide(wrapperRef.current.clientHeight);
@@ -63,6 +62,7 @@ const GameGuides: React.FC<Props> = (props) => {
             )}
             <iframe
                 ref={wrapperIframeRef}
+                data-testid="game-guide"
                 key={uuidv4()}
                 className={Styles["guide-iframe"]}
                 src={srcPath}
