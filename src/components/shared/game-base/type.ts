@@ -26,7 +26,6 @@ export enum GameState {
 export enum PopupType {
     Rebet,
     Error,
-    PlaceBet,
 }
 
 export interface GameSettings {
@@ -77,7 +76,6 @@ export interface GameBaseState<Result, SettlementResult> {
     displayPopup?: PopupType;
     betPercentage?: object;
     errorMessage?: string | string[];
-    selectedBetChoice?: string;
     isProcessingBet?: boolean;
     viewMode: ViewMode;
     disabledMessage?: string;
@@ -93,9 +91,6 @@ export interface GameBaseState<Result, SettlementResult> {
     playResultAnimation: boolean;
     isShowBlink: boolean;
     notice: Notice;
-    removeBetChoiceFocus?: Function;
-    betOptionElement?: HTMLElement;
-    betChoiceElement?: HTMLElement;
     activeScoreboardTab?: number;
     md5?: string;
     md5ResultKey?: string;

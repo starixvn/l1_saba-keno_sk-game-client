@@ -28,7 +28,6 @@ import GameHeader from "../game-header";
 import GameLoading from "../game-loading";
 import { Notice } from "../notice";
 import OverlayMaskWhite from "../overlay-mask-white";
-import PlaceBetModal from "../place-bet-modal/place-bet-modal";
 import Rebet from "../rebet";
 import ResultDetail from "../result-detail";
 import SectionResultContainer from "../section-result-container";
@@ -92,9 +91,6 @@ abstract class GameBase<P extends GameBaseProps, S extends GameBaseState<any, an
         playResultAnimation: false,
         isShowBlink: false,
         notice: null,
-        removeBetChoiceFocus: null,
-        betOptionElement: null,
-        betChoiceElement: null,
         activeScoreboardTab: 0,
         md5: "",
         md5ResultKey: "",
@@ -111,7 +107,6 @@ abstract class GameBase<P extends GameBaseProps, S extends GameBaseState<any, an
         this.closePopup = this.closePopup.bind(this);
         this.openPopup = this.openPopup.bind(this);
         this.placeBet = this.placeBet.bind(this);
-        this.openPlaceBetModal = this.openPlaceBetModal.bind(this);
         this.updateViewMode = this.updateViewMode.bind(this);
         this.playAcceptedBetAnimation = this.playAcceptedBetAnimation.bind(this);
         this.closeNotice = this.closeNotice.bind(this);
@@ -486,16 +481,12 @@ abstract class GameBase<P extends GameBaseProps, S extends GameBaseState<any, an
     }
 
     getStateByNextGameState(nextGameState: any): any {
-        const { roundId, displayPopup, notice, removeBetChoiceFocus, result, settlementResult } = this.state;
+        const { roundId, displayPopup, notice, result, settlementResult } = this.state;
         const { durations } = this.props;
         const timeCounter = this.getTimeCounter(this.timeCounter, nextGameState);
 
         if (nextGameState === GameState.InRound) {
             this.betWin = 0;
-        }
-
-        if (nextGameState === GameState.LockingBet) {
-            removeBetChoiceFocus && removeBetChoiceFocus();
         }
 
         const newStateDetector = [
@@ -522,8 +513,8 @@ abstract class GameBase<P extends GameBaseProps, S extends GameBaseState<any, an
                 condition: nextGameState === GameState.LockingBet,
                 state: {
                     isShowBlink: true,
-                    displayPopup: [PopupType.Rebet, PopupType.PlaceBet].includes(displayPopup) ? null : displayPopup,
-                    notice: [PopupType.Rebet, PopupType.PlaceBet].includes(displayPopup) ? null : notice,
+                    displayPopup: displayPopup == PopupType.Rebet ? null : displayPopup,
+                    notice: displayPopup == PopupType.Rebet ? null : notice,
                     result: this.defaultResult ?? result,
                     settlementResult: this.defaultSettlementResult ?? settlementResult,
                 },
@@ -670,16 +661,6 @@ abstract class GameBase<P extends GameBaseProps, S extends GameBaseState<any, an
         LocalStorageManager.storeLocalStorageItem(reBetStorageKey, rebetStorage);
     }
 
-    openPlaceBetModal(betChoice: string, removeBetChoiceFocus: Function, betOptionElement: HTMLElement, betChoiceElement: HTMLElement) {
-        this.setState({
-            displayPopup: PopupType.PlaceBet,
-            selectedBetChoice: betChoice,
-            removeBetChoiceFocus,
-            betOptionElement,
-            betChoiceElement,
-        });
-    }
-
     placeBet(betChoice: string, amount: number, betPosition?: Position, betOptionBoundary?: Boundary) {
         const { displayPopup } = this.state;
 
@@ -758,29 +739,6 @@ abstract class GameBase<P extends GameBaseProps, S extends GameBaseState<any, an
             >
                 <Rebet getOddsByChoice={this.getOddsByChoice.bind(this)} gameId={this.props.id} onCloseModal={this.closePopup} />
             </BaseDialog>
-        );
-    }
-
-    renderPlaceBet() {
-        const { displayPopup, selectedBetChoice, roundId, removeBetChoiceFocus, betOptionElement, betChoiceElement } = this.state;
-        const { gameName } = this.props;
-
-        return (
-            <PlaceBetModal
-                isOpen={displayPopup === PopupType.PlaceBet}
-                onCloseModal={this.closePopup}
-                onPlaceBet={this.placeBet}
-                gameBaseContainerRef={this.gameBaseContainerRef}
-                betOptionElement={betOptionElement}
-                betChoiceElement={betChoiceElement}
-                removeBetChoiceFocus={removeBetChoiceFocus}
-                betChoiceInfo={{
-                    betChoice: selectedBetChoice,
-                    gameName: gameName,
-                    roundId: roundId,
-                    odd: this.getOddsByChoice(selectedBetChoice),
-                }}
-            />
         );
     }
 
@@ -904,8 +862,6 @@ abstract class GameBase<P extends GameBaseProps, S extends GameBaseState<any, an
                 return this.checkRenderRebet() && this.renderReBet();
             case PopupType.Error:
                 return this.renderErrorMessage();
-            case PopupType.PlaceBet:
-                return this.renderPlaceBet();
             default:
                 return null;
         }
@@ -1006,10 +962,10 @@ abstract class GameBase<P extends GameBaseProps, S extends GameBaseState<any, an
         const { md5, md5ResultKey, showMD5ResultKey } = this.state;
 
         let md5Text = (
-            <div>
-                <strong>{this.props.t("common:md5Key")}:</strong> {md5}
-            </div>
-        ),
+                <div>
+                    <strong>{this.props.t("common:md5Key")}:</strong> {md5}
+                </div>
+            ),
             md5ClassName = "md5-key";
         if ((showMD5ResultKey || !md5) && md5ResultKey) {
             md5Text = this.renderRawValueMD5();
@@ -1065,7 +1021,6 @@ abstract class GameBase<P extends GameBaseProps, S extends GameBaseState<any, an
             closePopup: this.closePopup,
             registerMessageHandler: this.messageTransmitter.register,
             unsubscribeMessageHandler: this.messageTransmitter.unsubscribe,
-            openPlaceBetModal: this.openPlaceBetModal,
             updateViewMode: this.updateViewMode,
             playAcceptedBetAnimation: this.playAcceptedBetAnimation,
             finishProcessingBet: () => {

@@ -53,7 +53,6 @@ const BetOption: React.FunctionComponent<Props> = ({
     const [totalBet, setTotalBet] = useState<number>(totalBets?.[choice] ?? 0);
     const { countUp, update } = useCountUp({ start: 0, end: 0, decimals: 1 });
     const betChoiceRef = useRef<HTMLDivElement>(null);
-    const totalBetRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         const actionByGameState = {
@@ -95,7 +94,7 @@ const BetOption: React.FunctionComponent<Props> = ({
                 <div className={betOptionClasses} onClick={onClickBet}>
                     {isDisplayOdd && <div className={oddsClass}>{odd ? oddsValue : ""}</div>}
 
-                    <div className={Styles["total-bet"]} ref={totalBetRef}>
+                    <div className={Styles["total-bet"]}>
                         {isShowPoolStake &&
                             (gameState === GameState.BalancingBet
                                 ? convertStakeToString(+countUp, rate)

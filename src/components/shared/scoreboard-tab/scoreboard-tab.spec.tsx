@@ -27,7 +27,6 @@ describe("Scoreboard tab", () => {
             closePopup: () => {},
             registerMessageHandler: Function,
             unsubscribeMessageHandler: Function,
-            openPlaceBetModal: Function,
             updateViewMode: null,
             playAcceptedBetAnimation: () => {},
             finishProcessingBet: () => {},

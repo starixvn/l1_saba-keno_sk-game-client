@@ -67,7 +67,6 @@ describe("GameHeader", () => {
         closePopup: jest.fn,
         registerMessageHandler: jest.fn,
         unsubscribeMessageHandler: jest.fn,
-        openPlaceBetModal: jest.fn,
         updateViewMode: jest.fn,
         playAcceptedBetAnimation: jest.fn,
         finishProcessingBet: null,
