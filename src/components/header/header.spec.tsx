@@ -33,8 +33,6 @@ describe('Header Component', () => {
         toggleHistoryModal: jest.fn(),
         toggleGuideModal: jest.fn(),
         toggleAnnouncementModal: jest.fn(),
-        enabledQuickBet: true,
-        updateEnabledQuickBet: jest.fn(),
         isShowBoostedOdds: true,
         promotionNotifications: [],
         isShowToolbarGuide: true,
