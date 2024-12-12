@@ -16,8 +16,6 @@ export type HeaderProps = {
     toggleHistoryModal: Function;
     toggleGuideModal: Function;
     toggleAnnouncementModal: Function;
-    enabledQuickBet?: boolean;
-    updateEnabledQuickBet?: Function;
     isShowBoostedOdds: boolean;
     promotionNotifications: [];
     isShowToolbarGuide: boolean;
@@ -45,8 +43,6 @@ const Header: React.FC<HeaderProps> = (props) => {
                                 toggleHistoryModal={props.toggleHistoryModal}
                                 toggleGuideModal={props.toggleGuideModal}
                                 toggleAnnouncementModal={props.toggleAnnouncementModal}
-                                enabledQuickBet={props.enabledQuickBet}
-                                updateEnabledQuickBet={props.updateEnabledQuickBet}
                                 isShowBoostedOdds={props.isShowBoostedOdds}
                                 promotionNotifications={props.promotionNotifications}
                                 isShowToolbarGuide={props.isShowToolbarGuide}

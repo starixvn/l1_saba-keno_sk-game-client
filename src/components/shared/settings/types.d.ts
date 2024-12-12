@@ -6,9 +6,6 @@ export interface Props {
     toggleGuideModal: Function;
     toggleHistoryModal: Function;
     toggleAnnouncementModal: Function;
-    enabledQuickBet?: boolean;
-    updateEnabledQuickBet?: Function;
-    isShowQuickBet?: boolean;
     isShowBoostedOdds: boolean;
     promotionNotifications: [];
     isShowToolbarGuide: boolean;

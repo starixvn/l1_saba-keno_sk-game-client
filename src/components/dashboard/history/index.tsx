@@ -7,6 +7,7 @@ import KenoProMaxBetHistory from "../../games/keno-pro-max/bet-history";
 import BaseDialog from "../../shared/base-dialog";
 import GameSelector from "../../shared/game-selector";
 import Styles from "./history.module.scss";
+import { GameIds } from "../../../common/constants/gameIds";
 
 export const HistoryModal: React.FC<{ onCloseModal: Function; offerGames: number[]; fractionalOddsFormat: boolean | undefined }> = ({
     onCloseModal,
@@ -21,20 +22,20 @@ export const HistoryModal: React.FC<{ onCloseModal: Function; offerGames: number
 
     const renderHistory = () => {
         switch (selectedGameId) {
-            case 14:
-            case 15:
-            case 16:
-            case 17:
-            case 18:
-            case 19:
-            case 52:
-            case 53:
+            case GameIds.MegaKeno:
+            case GameIds.MegaKeno2:
+            case GameIds.KenoMini:
+            case GameIds.KenoMini2:
+            case GameIds.KenoEast:
+            case GameIds.KenoWest:
+            case GameIds.KenoSouth:
+            case GameIds.KenoNorth:
                 return <KenoProMaxBetHistory key={selectedGameId} gameId={selectedGameId} fractionalOddsFormat={fractionalOddsFormat} />;
 
-            case 36:
-            case 37:
-            case 40:
-            case 41:
+            case GameIds.KenoSoccer:
+            case GameIds.KenoSoccer2:
+            case GameIds.KenoPower:
+            case GameIds.KenoPower2:
                 return (
                     <KenoBetHistory
                         key={selectedGameId}

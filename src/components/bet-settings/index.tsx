@@ -11,7 +11,6 @@ import { ChipImage } from "./chip-slider/chip-image";
 
 type Props = {
     updateBetValue: (betValue: number) => void;
-    updateEnabledQuickBet: (value: boolean) => void;
     user: User;
     toggleSlidingChip: () => void;
     isShowSlidingChip: boolean;
@@ -22,7 +21,6 @@ type Props = {
 
 const BetSettings: React.FC<Props> = ({
     updateBetValue,
-    updateEnabledQuickBet,
     user,
     toggleSlidingChip,
     isShowSlidingChip,
@@ -48,13 +46,6 @@ const BetSettings: React.FC<Props> = ({
                         <div className={Styles["wrapper-chips"]}>
                             {!isMobileOnly && (
                                 <>
-                                    {/* <QuickBetBtn
-                                        enabledQuickBet={enabledQuickBet}
-                                        updateEnabledQuickBet={updateEnabledQuickBet}
-                                        isHeaderSetting={false}
-                                        isShowToolbarGuide={isShowToolbarGuide}
-                                    /> */}
-
                                     {isNewPromotion && (
                                         <div className={Styles["promotion"]} onClick={() => toggleAnnouncementModal()}>
                                             <img
@@ -115,19 +106,11 @@ const BetSettings: React.FC<Props> = ({
                                 />
                             </div>
                         )}
-                        <div className={Styles["phone-quick-bet"]}>
-                            {/* <QuickBetBtn
-                                enabledQuickBet={enabledQuickBet}
-                                updateEnabledQuickBet={updateEnabledQuickBet}
-                                isHeaderSetting={false}
-                                isShowToolbarGuide={isShowToolbarGuide}
-                            /> */}
-                        </div>
                     </div>
                 )}
             </div>
         );
-    }, [user?.red, updateBetValue, updateEnabledQuickBet, isShowSlidingChip, isNewPromotion, isShowToolbarGuide, betValue, chipSettings]);
+    }, [user?.red, updateBetValue, isShowSlidingChip, isNewPromotion, isShowToolbarGuide, betValue, chipSettings]);
 };
 
 export default BetSettings;

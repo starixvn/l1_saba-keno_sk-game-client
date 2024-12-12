@@ -18,7 +18,6 @@ export const Settings: React.FC<Props> = ({
     onToggleSound,
     enabledSound,
     toggleGuideModal,
-    isShowQuickBet = false,
     promotionNotifications,
     isShowToolbarGuide,
 }) => {
@@ -30,8 +29,6 @@ export const Settings: React.FC<Props> = ({
     return useMemo(() => {
         return (
             <div className={styles["settings-container"]}>
-                {isShowQuickBet && isMobileOnly && <div className={styles["setting-left"]}></div>}
-
                 <div className={`${styles["setting-right"]} ${styles[getLogoName()]}`}>
                     <div
                         ref={toggleAnnouncementBtnRef}

@@ -11,7 +11,7 @@ let isSwipe = true;
 export const ChipSlider: React.FC<{
     updateBetValue: Function;
 }> = ({ updateBetValue }) => {
-    const { betValue, userStakeLevel, chipSettings, enabledQuickBet, enabledPlaySound } = useSystemContext();
+    const { betValue, userStakeLevel, chipSettings, enabledPlaySound } = useSystemContext();
     const [enabledPrevBtn, setEnabledPrevBtn] = useState(false);
     const [enabledNextBtn, setEnabledNextBtn] = useState(true);
     const [selectedChip, setSelectedChip] = useState(betValue);
@@ -164,9 +164,7 @@ export const ChipSlider: React.FC<{
         chipValues.length > 0 && (
             <React.Fragment>
                 <span
-                    className={`${Styles["icon-prev"]} ${!enabledPrevBtn && Styles["disabled"]} ${
-                        enabledQuickBet ? Styles["quick-bet"] : ""
-                    }`}
+                    className={`${Styles["icon-prev"]} ${Styles["quick-bet"]} ${!enabledPrevBtn && Styles["disabled"]}`}
                     onClick={onClickPrev}
                 ></span>
                 <Slider
@@ -187,9 +185,7 @@ export const ChipSlider: React.FC<{
                     ))}
                 </Slider>
                 <span
-                    className={`${Styles["icon-next"]} ${!enabledNextBtn && Styles["disabled"]} ${
-                        enabledQuickBet ? Styles["quick-bet"] : ""
-                    }`}
+                    className={`${Styles["icon-next"]} ${Styles["quick-bet"]} ${!enabledNextBtn && Styles["disabled"]}`}
                     onClick={onClickNext}
                 ></span>
             </React.Fragment>

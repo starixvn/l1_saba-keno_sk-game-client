@@ -28,7 +28,6 @@ export type State = {
     isShowAnnouncement: boolean;
     isShowGuide: boolean;
     favoriteGames: number[];
-    enabledQuickBet: boolean;
     betValue: number;
     isBlockUI: boolean;
     isShowSlidingChip: boolean;

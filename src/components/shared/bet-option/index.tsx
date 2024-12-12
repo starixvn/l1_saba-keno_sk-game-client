@@ -47,14 +47,13 @@ const BetOption: React.FunctionComponent<Props> = ({
     isBoostedOdds = false,
 }) => {
     const { totalBets, ownBets, rate, gameSetting } = useGameContext();
-    const { openPlaceBetModal, placeBet } = useGameActionContext();
-    const { enabledQuickBet, betValue, fractionalOddsFormat } = useSystemContext();
+    const { placeBet } = useGameActionContext();
+    const { betValue, fractionalOddsFormat } = useSystemContext();
     const [highlightType, updateHighlightType] = useState<HighlightType>(HighlightType.None);
     const [totalBet, setTotalBet] = useState<number>(totalBets?.[choice] ?? 0);
     const { countUp, update } = useCountUp({ start: 0, end: 0, decimals: 1 });
     const betChoiceRef = useRef<HTMLDivElement>(null);
     const totalBetRef = useRef<HTMLDivElement>(null);
-    const [isFocusChoice, setIsFocusChoice] = useState<boolean>(false);
 
     useEffect(() => {
         const actionByGameState = {
@@ -79,20 +78,10 @@ const BetOption: React.FunctionComponent<Props> = ({
         event.preventDefault();
         const betChoiceRect = betChoiceRef.current.getBoundingClientRect();
 
-        if (enabledQuickBet) {
-            placeBet(choice, betValue, { x: event.clientX, y: event.clientY }, { left: betChoiceRect.left, right: betChoiceRect.right });
-        } else {
-            setIsFocusChoice(true);
-            const betOptionElement = totalBetRef.current.nextElementSibling;
-            openPlaceBetModal(choice, removeBetChoiceFocus, betOptionElement, betChoiceRef.current);
-        }
+        placeBet(choice, betValue, { x: event.clientX, y: event.clientY }, { left: betChoiceRect.left, right: betChoiceRect.right });
     };
 
-    const removeBetChoiceFocus = () => {
-        setIsFocusChoice(false);
-    };
-
-    const betOptionClasses = `${Styles["bet-option"]} ${isFocusChoice ? Styles["focus"] : ""} 
+    const betOptionClasses = `${Styles["bet-option"]} 
         ${isHighlight && Styles[HighlightClassNameMapper[highlightType]]} 
         ${isHighlight && isShowWinningEffect && Styles["winning-effect"]} 
         ${gameState !== GameState.InRound && Styles["disallowed"]}

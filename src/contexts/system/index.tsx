@@ -9,7 +9,6 @@ type SystemContextType = {
     enabledPlaySound: boolean;
     userStakeLevel: UserStakeLevel;
     betValue: number;
-    enabledQuickBet: boolean;
     fractionalOddsFormat: boolean;
     chipSettings: ChipSettings;
     offeredGames: number[];

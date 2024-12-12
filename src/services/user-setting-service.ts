@@ -6,10 +6,6 @@ const userClientInstance = UserClientCommunication?.getUserClientInstance();
 const userSettingsService = userClientInstance?.userSettings;
 const chipSettings = userClientInstance?.setting;
 
-export const updateUserQuickBetSetting = (session: SSOResponse, value: boolean) => {
-    userSettingsService.updateUserQuickBetSetting(session.ss, session.username, value);
-};
-
 export const updateThemeSetting = async (userSession: SSOResponse, theme = Themes.light) => {
     return userSettingsService.updateUserThemeSetting(userSession.ss, userSession.username, theme);
 };

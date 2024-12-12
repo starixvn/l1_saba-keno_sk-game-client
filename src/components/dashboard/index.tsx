@@ -57,7 +57,6 @@ class Dashboard extends React.PureComponent<Props, State> {
             isShowHistory: false,
             isShowGuide: false,
             isShowAnnouncement: false,
-            enabledQuickBet: true,
             betValue: 0,
             isBlockUI: false,
             isShowSlidingChip: isMobileOnly ? false : true,
@@ -93,7 +92,6 @@ class Dashboard extends React.PureComponent<Props, State> {
         this.toggleGuideModal = this.toggleGuideModal.bind(this);
         this.setFavorite = this.setFavorite.bind(this);
         this.updateFavoriteGames = this.updateFavoriteGames.bind(this);
-        this.setEnabledQuickBet = this.setEnabledQuickBet.bind(this);
         this.setBetValue = this.setBetValue.bind(this);
         this.handleUpdateUserStakeLevel = this.handleUpdateUserStakeLevel.bind(this);
         this.signOut = this.signOut.bind(this);
@@ -417,10 +415,6 @@ class Dashboard extends React.PureComponent<Props, State> {
         storeLocalStorageItem(localStorageKeys.playSound, !enabledPlaySound);
     }
 
-    setEnabledQuickBet(enabled: boolean) {
-        this.setState({ enabledQuickBet: enabled });
-    }
-
     setBetValue(value: number) {
         this.setState({ betValue: value });
     }
@@ -485,7 +479,6 @@ class Dashboard extends React.PureComponent<Props, State> {
             userStakeLevel,
             favoriteGames,
             authorizeInfo,
-            enabledQuickBet,
             betValue,
             isBlockUI,
             isShowSlidingChip,
@@ -515,7 +508,6 @@ class Dashboard extends React.PureComponent<Props, State> {
                         favoriteGames,
                         enabledPlaySound,
                         userStakeLevel,
-                        enabledQuickBet,
                         betValue,
                         fractionalOddsFormat: authorizeInfo.user?.fractionalOddsFormat,
                         chipSettings,
@@ -533,8 +525,6 @@ class Dashboard extends React.PureComponent<Props, State> {
                                 toggleHistoryModal={this.toggleHistoryModal}
                                 toggleGuideModal={this.toggleGuideModal}
                                 toggleAnnouncementModal={this.toggleAnnouncementModal}
-                                enabledQuickBet={enabledQuickBet}
-                                updateEnabledQuickBet={this.setEnabledQuickBet}
                                 isShowBoostedOdds={isShowBoostedOdds}
                                 promotionNotifications={promotionNotifications}
                                 isShowToolbarGuide={isShowToolbarGuide}
@@ -554,7 +544,6 @@ class Dashboard extends React.PureComponent<Props, State> {
                                 openGameId={openGameId}
                             />
                             <BetSettings
-                                updateEnabledQuickBet={this.setEnabledQuickBet}
                                 updateBetValue={this.setBetValue}
                                 user={authorizeInfo.user}
                                 toggleSlidingChip={this.toggleSlidingChip}
