@@ -11,7 +11,6 @@ interface FirstLoginContainerProps {
 const FirstLoginContainer = ({ children, dataTestid }: FirstLoginContainerProps) => {
     const logoTheme = "logo-saba-keno";
 
-    const aa = isMobileOnly;
     return (
         <div data-testid={dataTestid} className={`${Styles["wrapper"]} ${isMobileOnly ? Styles["mobile"] : ""}`}>
             <div className={Styles["page-bg"]}>

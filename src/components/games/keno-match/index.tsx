@@ -475,8 +475,8 @@ export class KenoSoccer extends GameBase<KenoMatchProps, KenoMatchGameBaseState<
                 state: {
                     isShowBlinkFH: isFirstHalf,
                     isShowBlinkFT: !isFirstHalf,
-                    displayPopup: displayPopup == PopupType.Rebet ? null : displayPopup,
-                    notice: displayPopup == PopupType.Rebet ? null : notice,
+                    displayPopup: displayPopup === PopupType.Rebet ? null : displayPopup,
+                    notice: displayPopup === PopupType.Rebet ? null : notice,
                 },
             },
         ];

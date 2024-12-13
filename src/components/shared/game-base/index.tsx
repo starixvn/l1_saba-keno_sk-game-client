@@ -513,8 +513,8 @@ abstract class GameBase<P extends GameBaseProps, S extends GameBaseState<any, an
                 condition: nextGameState === GameState.LockingBet,
                 state: {
                     isShowBlink: true,
-                    displayPopup: displayPopup == PopupType.Rebet ? null : displayPopup,
-                    notice: displayPopup == PopupType.Rebet ? null : notice,
+                    displayPopup: displayPopup === PopupType.Rebet ? null : displayPopup,
+                    notice: displayPopup === PopupType.Rebet ? null : notice,
                     result: this.defaultResult ?? result,
                     settlementResult: this.defaultSettlementResult ?? settlementResult,
                 },
