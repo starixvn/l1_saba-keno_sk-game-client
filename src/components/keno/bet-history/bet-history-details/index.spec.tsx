@@ -1,6 +1,6 @@
 import { render, fireEvent } from "@testing-library/react";
 import { useTranslation } from "next-i18next";
-
+import '@testing-library/jest-dom';
 import BetLogsDetails from "./";
 
 describe("KenoSoccer bet-history bet logs detail", () => {
@@ -48,7 +48,7 @@ describe("KenoSoccer bet-history bet logs detail", () => {
 
         test("should render correctly", () => {
             // Act
-            const { getByTestId, getAllByTestId } = render(BetLogsDetails({ ...resource }));
+            const { getByTestId, getAllByTestId } = render(BetLogsDetails({ ...resource } as any));
 
             // Assert
 
@@ -61,7 +61,7 @@ describe("KenoSoccer bet-history bet logs detail", () => {
 
         test("should render class highlight", () => {
             // Act
-            render(BetLogsDetails({ ...resource }));
+            render(BetLogsDetails({ ...resource } as any));
 
             // Assert
             expect(document.querySelector(".highlight")).toBeTruthy();
@@ -69,7 +69,7 @@ describe("KenoSoccer bet-history bet logs detail", () => {
 
         test("click show result details", () => {
             // Act
-            const { getByTestId } = render(BetLogsDetails({ ...resource }));
+            const { getByTestId } = render(BetLogsDetails({ ...resource } as any));
             fireEvent.click(getByTestId("info-results-details"));
 
             // Assert
@@ -86,7 +86,7 @@ describe("KenoSoccer bet-history bet logs detail", () => {
 
         test("should render correctly", () => {
             // Act
-            render(BetLogsDetails({ ...resource }));
+            render(BetLogsDetails({ ...resource } as any));
 
             // Assert
             expect(document.querySelector(".bet-time")).toBeNull();
@@ -104,7 +104,7 @@ describe("KenoSoccer bet-history bet logs detail", () => {
 
         test("should render correctly", () => {
             // Act
-            render(BetLogsDetails({ ...resource }));
+            render(BetLogsDetails({ ...resource } as any));
 
             // Assert
             expect(document.querySelector(".bet-history-details")).toBeNull();
@@ -167,7 +167,7 @@ describe("KenoPower bet-history bet logs detail", () => {
 
         test("should render correctly", () => {
             // Act
-            const { getByTestId, getAllByTestId } = render(BetLogsDetails({ ...resource }));
+            const { getByTestId, getAllByTestId } = render(BetLogsDetails({ ...resource } as any));
 
             // Assert
 

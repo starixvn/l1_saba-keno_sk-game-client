@@ -4,7 +4,7 @@ import { useTranslation } from "next-i18next";
 import RenderRowKenoMatch from "./";
 import { GetTranslateMapping } from "../../../../keno/keno.helper";
 
-describe("KenoSoccer Info Bet History Detail", () => {
+describe("KenoPower Info Bet History Detail", () => {
     const tableRow = document.createElement("tr");
     const gameName = "kenopower";
     const odds = {
@@ -41,7 +41,7 @@ describe("KenoSoccer Info Bet History Detail", () => {
         const resource = { bet: { settlementResult, odds }, betDetail, translateMapping };
         test("should render correctly", () => {
             // Act
-            const { getAllByTestId } = render(RenderRowKenoMatch({ ...resource }), {
+            const { getAllByTestId } = render(RenderRowKenoMatch({ ...resource } as any), {
                 container: document.body.appendChild(tableRow),
             });
 
@@ -80,7 +80,7 @@ describe("KenoSoccer Info Bet History Detail", () => {
             const resource = { bet: { settlementResult, odds }, betDetail, translateMapping };
 
             // Act
-            const { getByTestId, getAllByTestId, container } = render(RenderRowKenoMatch({ ...resource }), {
+            const { getByTestId, getAllByTestId, container } = render(RenderRowKenoMatch({ ...resource } as any), {
                 container: document.body.appendChild(tableRow),
             });
 

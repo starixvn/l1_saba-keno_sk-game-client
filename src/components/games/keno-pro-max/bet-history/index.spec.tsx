@@ -5,6 +5,7 @@ import { useTranslation } from "next-i18next";
 import KenoProMaxBetHistory, { renderResult, renderResultDetail } from "./";
 import { AuthContextProvider } from "../../../../contexts/auth";
 import { DefaultGameContext, AuthContextValueDefault, DefaultResult, DefaultSettlementResult } from "../__tests__/test-helper";
+import "@testing-library/jest-dom";
 
 const gameName = "kenopromax";
 describe("KenoProMaxBetHistory BetHistory", () => {
@@ -14,8 +15,8 @@ describe("KenoProMaxBetHistory BetHistory", () => {
 
         // Act
         const { getByTestId } = render(
-            <AuthContextProvider value={AuthContextValueDefault}>
-                <KenoProMaxBetHistory gameId={gameId}></KenoProMaxBetHistory>
+            <AuthContextProvider value={AuthContextValueDefault as any}>
+                <KenoProMaxBetHistory gameId={gameId} fractionalOddsFormat={false}></KenoProMaxBetHistory>
             </AuthContextProvider>
         );
 
@@ -56,11 +57,11 @@ describe("renderResult BetHistory", () => {
     test("should render empty children correctly", () => {
         // Arrange
         const { t } = useTranslation(["bethistory", gameName]);
-        const betLogs = null;
+        const betLogs = {};
         const roundId = 1;
 
         // Act
-        render(renderResult(betLogs, roundId, jest.fn, jest.fn, t));
+        render(renderResult(betLogs as any, roundId, jest.fn, jest.fn, t));
 
         // Assert
         expect(document.querySelector(".detail")).toBeNull();

@@ -2,6 +2,7 @@ import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import { GameGuideModal } from "./index";
 import { useTranslation } from "next-i18next";
+import '@testing-library/jest-dom';
 
 // Mock the dependencies
 jest.mock("next-i18next", () => ({

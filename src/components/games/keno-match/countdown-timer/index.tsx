@@ -70,9 +70,9 @@ export function GameStatusAndShowResult() {
 export const GameStatusAndTimer = ({ duration, initialRemainingTime, lockingBet, isStarBetting }: GameStatusWithTimerProps) => {
     const { t } = useTranslation("common");
     const content = isStarBetting ? (
-        <div className={Styles["start-betting"]}>{t("startBetting")}</div>
+        <div data-testid="start-betting" className={Styles["start-betting"]}>{t("startBetting")}</div>
     ) : (
-        <div className={Styles["no-more-bets"]}>{t("noMoreBets")}</div>
+        <div data-testid="no-more-bets" className={Styles["no-more-bets"]}>{t("noMoreBets")}</div>
     );
 
     return (

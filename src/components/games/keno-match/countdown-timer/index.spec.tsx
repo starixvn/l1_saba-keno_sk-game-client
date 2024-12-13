@@ -1,88 +1,108 @@
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
+import { useTranslation } from "next-i18next";
 import React from "react";
-import { GameContextProvider } from "../../../../contexts/game-context/game-context";
+import { CountdownCircleTimer } from "react-countdown-circle-timer";
+
+import { useGameContext } from "../../../../contexts/game-context/game-context";
 import { GameState } from "../../../shared/game-base/type";
-import KenoCountdownTimer, { GameStatus, Timer, GameStatusAndTimer, GameStatusAndShowResult } from "./";
-import buildGameContext from "../__test__/test-helper";
+import KenoCountdownTimer from ".";
 
-test("GameStatus should be render correctly", () => {
-    const content = <div className={"start-betting"}>start Betting</div>;
-    render(<GameStatus> {content} </GameStatus>);
+jest.mock("next-i18next", () => ({
+    useTranslation: jest.fn(),
+}));
 
-    expect(document.querySelector(".game-status")).toBeTruthy();
-    expect(document.querySelector(".start-betting")).toBeTruthy();
-    expect(document.querySelector(".start-betting").innerHTML).toEqual("start Betting");
-});
+jest.mock("react-countdown-circle-timer", () => ({
+    CountdownCircleTimer: jest.fn(({ children }) => children({ remainingTime: 10 })),
+}));
 
-const buildTimerProps = (lockingBet = true) => {
-    return {
-        duration: 27,
-        initialRemainingTime: 15,
-        lockingBet,
-    };
-};
-
-describe("Timer", () => {
-    test("should be render correctly", () => {
-        render(<Timer {...buildTimerProps()} />);
-        expect(document.querySelector(".timer")).toBeTruthy();
-    });
-
-    test.each`
-        lockingBet | expectedColor
-        ${true}    | ${"#FF7B7B"}
-        ${false}   | ${"#15e84b"}
-    `("always render color correctly", ({ lockingBet, expectedColor }) => {
-        render(<Timer {...buildTimerProps(lockingBet)} />);
-        expect(document.querySelectorAll('div[aria-hidden="true"]')[0]).toHaveStyle(`color: ${expectedColor}`);
-    });
-});
-
-const buildGameStatusWithTimerProps = (isStarBetting = true) => {
-    return {
-        duration: 27,
-        initialRemainingTime: 15,
-        lockingBet: false,
-        isStarBetting,
-    };
-};
-
-describe("GameStatusAndTimer", () => {
-    test.each`
-        isStarBetting | expectedClassName   | expectedText
-        ${true}       | ${".start-betting"} | ${"startBetting"}
-        ${false}      | ${".no-more-bets"}  | ${"noMoreBets"}
-    `("always render css and content correctly", ({ isStarBetting, expectedClassName, expectedText }) => {
-        render(<GameStatusAndTimer {...buildGameStatusWithTimerProps(isStarBetting)} />);
-        expect(document.querySelector(expectedClassName)).toBeTruthy();
-        expect(document.querySelector(expectedClassName)).toHaveTextContent(expectedText);
-        expect(document.querySelector(".game-status")).toBeTruthy();
-    });
-});
-
-test("GameStatusAndShowResult should be render correctly", () => {
-    render(<GameStatusAndShowResult />);
-    expect(document.querySelector(".loader-show-result")).toBeTruthy();
-    expect(document.querySelector(".open-result")).toBeTruthy();
-    expect(document.querySelector(".open-result")).toHaveTextContent("openResult");
-});
+jest.mock("../../../../contexts/game-context/game-context", () => ({
+    useGameContext: jest.fn(),
+}));
 
 describe("KenoCountdownTimer", () => {
-    test.each`
-        gameState                     | expectedRenderTimer | expectedRenderOpenResult | expectedRenderLoader
-        ${GameState.InRound}          | ${1}                | ${0}                     | ${0}
-        ${GameState.LockingBet}       | ${1}                | ${0}                     | ${0}
-        ${GameState.DisplayResult}    | ${0}                | ${1}                     | ${0}
-        ${GameState.None}             | ${0}                | ${0}                     | ${1}
-        ${GameState.BeforeStartRound} | ${0}                | ${0}                     | ${0}
-    `("always render timer", ({ gameState, expectedRenderTimer, expectedRenderOpenResult, expectedRenderLoader }) => {
-        render(
-            <GameContextProvider value={buildGameContext(gameState) as any}>
-                <KenoCountdownTimer isFistHalf={true} />
-            </GameContextProvider>
+    const mockTranslation = {
+        t: (key: string) => key,
+    };
+
+    const mockGameContext = {
+        gameState: GameState.InRound,
+        remainingTime: 30,
+        gameSetting: {
+            durations: {
+                halfTimePlacingBets: 60,
+                showHalfTimeResult: 10,
+                fullTimePlacingBets: 60,
+                showFullTimeResult: 10,
+            },
+        },
+    };
+
+    beforeEach(() => {
+        (useTranslation as jest.Mock).mockReturnValue(mockTranslation);
+        (useGameContext as jest.Mock).mockReturnValue(mockGameContext);
+    });
+
+    it("renders timer in InRound state for first half", () => {
+        render(<KenoCountdownTimer isFistHalf={true} />);
+
+        expect(screen.queryAllByTestId("start-betting")).toBeTruthy();
+        expect(CountdownCircleTimer).toHaveBeenCalledWith(
+            expect.objectContaining({
+                duration: 50, // halfTimePlacingBets - showHalfTimeResult
+                initialRemainingTime: 20, // remainingTime - timeResult
+                colors: [["#15e84b", 1]],
+            }),
+            expect.any(Object)
         );
-        expect(document.getElementsByClassName("timer").length).toEqual(expectedRenderTimer);
-        expect(document.getElementsByClassName("open-result").length).toEqual(expectedRenderOpenResult);
-        expect(document.getElementsByClassName("loader").length).toEqual(expectedRenderLoader);
+    });
+
+    it("renders timer in LockingBet state", () => {
+        (useGameContext as jest.Mock).mockReturnValue({
+            ...mockGameContext,
+            gameState: GameState.LockingBet,
+        });
+
+        render(<KenoCountdownTimer isFistHalf={true} />);
+
+        expect(screen.queryAllByTestId("no-more-bets")).toBeTruthy();
+        expect(CountdownCircleTimer).toHaveBeenCalledWith(
+            expect.objectContaining({
+                colors: [["#FF7B7B", 1]],
+            }),
+            expect.any(Object)
+        );
+    });
+
+    it("renders loader in None state", () => {
+        (useGameContext as jest.Mock).mockReturnValue({
+            ...mockGameContext,
+            gameState: GameState.None,
+        });
+
+        render(<KenoCountdownTimer isFistHalf={true} />);
+
+        expect(screen.getByTestId("loader")).toBeInTheDocument();
+    });
+
+    it("renders nothing in BeforeStartRound state", () => {
+        (useGameContext as jest.Mock).mockReturnValue({
+            ...mockGameContext,
+            gameState: GameState.BeforeStartRound,
+        });
+
+        const { container } = render(<KenoCountdownTimer isFistHalf={true} />);
+
+        expect(container.firstChild).toBeNull();
+    });
+
+    it("renders result screen in ShowResult state", () => {
+        (useGameContext as jest.Mock).mockReturnValue({
+            ...mockGameContext,
+            gameState: GameState.DisplayResult,
+        });
+
+        render(<KenoCountdownTimer isFistHalf={true} />);
+
+        expect(screen.getByText("openResult")).toBeInTheDocument();
     });
 });

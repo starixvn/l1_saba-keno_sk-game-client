@@ -82,7 +82,7 @@ export const session = {
     umInfo: { startTime: new Date("2022-09-16"), endTime: new Date("2022-09-19") },
 };
 
-export const AuthContextValueDefault = { session: session, setBalance: jest.fn, signOut: jest.fn };
+export const AuthContextValueDefault = { currencyGroup: "test", session: session, setBalance: jest.fn, signOut: jest.fn };
 
 export const SystemContextValue = {
     setFavorite: jest.fn,
@@ -99,17 +99,17 @@ export const kenoProps = {
     gameName: "KenoProMax",
     socketInfo: gameSetting.socketInfo,
     durations: gameSetting.durations,
-    notifyWinStreak: () => {},
-    playPlaceBetSound: () => {},
+    notifyWinStreak: () => { },
+    playPlaceBetSound: () => { },
     viewMode: ViewMode.full,
-    setApiErrorMessage: () => {},
+    setApiErrorMessage: () => { },
     supportMD5: false,
     userStakeLevel: userStakeLevel,
-    updateUserStakeLevel: () => {},
+    updateUserStakeLevel: () => { },
     socketGateway: null,
     socketGatewayState: 0,
-    retryConnectSocket: () => {},
+    retryConnectSocket: () => { },
     them: "light",
-    unsubscribeGlobalMessageEvent: () => {},
-    registerGlobalMessageEvent: () => {},
+    unsubscribeGlobalMessageEvent: () => { },
+    registerGlobalMessageEvent: () => { },
 };

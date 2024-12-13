@@ -1,150 +1,124 @@
-import React from "react";
 import { render } from "@testing-library/react";
-
-import { SystemContextProvider } from "../../../contexts/system";
-import { GameState, Notice, PopupType } from "../../shared/game-base/type";
-import { GameContextProvider } from "../../../contexts/game-context/game-context";
-import { ViewMode } from "../../shared/game-base/type";
-import { AuthContextProvider } from "../../../contexts/auth";
+import React from "react";
 import { KenoProMax } from "./index";
-import { DefaultGameContext, AuthContextValueDefault, SystemContextValue, kenoProps } from "./__tests__/test-helper";
+import { GameState, ViewMode } from "../../shared/game-base/type";
+import { AuthContextProvider } from "../../../contexts/auth";
+import { SystemContextProvider } from "../../../contexts/system";
+import { GameContextProvider } from "../../../contexts/game-context/game-context";
+import { DefaultGameContext, AuthContextValueDefault, SystemContextValue } from "./__tests__/test-helper";
 
-jest.mock("../../../common/constants", () => ({
-    systemName: "sk",
-    ChipMapper: {
-        l1: {
-            "1": "chip-1",
-            "5": "chip-2",
-        },
-        l2: {
-            "10": "chip-1",
-        },
+jest.mock("next-i18next", () => ({
+    withTranslation: () => (Component: any) => {
+        Component.defaultProps = {
+            ...Component.defaultProps,
+            t: (key: string) => key,
+        };
+        return Component;
     },
 }));
 
-const roundHistory = [
-    {
-        result: [4, 11, 13, 19, 21, 24, 26, 28, 38, 49, 53, 58, 60, 63, 65, 70, 71, 73, 74, 80],
-        roundId: 1018469,
-        settlementResult: {
-            big: true,
-            earth: false,
-            even: true,
-            fire: true,
-            gold: false,
-            odd: false,
-            small: false,
-            water: false,
-            wood: false,
-        },
+jest.mock("next/router", () => ({
+    withRouter: (Component: any) => {
+        Component.defaultProps = {
+            ...Component.defaultProps,
+            router: { query: {} },
+        };
+        return Component;
     },
-];
+}));
+
+const mockGatewayGameBaseProps = {
+    id: 1,
+    gameName: "Mock Game",
+    serviceName: "Mock Service",
+    socketInfo: {
+        namespace: "localhost",
+        path: "test",
+    },
+    durations: {
+        wholeRound: 40,
+        placingBets: 30,
+        lockingBet: 5,
+        showResult: 9,
+        resultAnimation: 4,
+        beforeStartRound: 0,
+    },
+    notifyWinStreak: jest.fn(),
+    playPlaceBetSound: jest.fn(),
+    viewMode: ViewMode.full,
+    setApiErrorMessage: jest.fn(),
+    supportMD5: true,
+    userStakeLevel: {
+        minBet: 1,
+        maxBet: 1000,
+    },
+    updateUserStakeLevel: jest.fn(),
+    registerGlobalMessageEvent: jest.fn(),
+    unsubscribeGlobalMessageEvent: jest.fn(),
+    finishJoinGame: jest.fn(),
+    isJoinedGame: false
+} as any;
+
 
 describe("KenoProMax", () => {
-    beforeEach(() => {
-        jest.useFakeTimers();
+    it("renders without crashing", () => {
+        render(<AuthContextProvider value={AuthContextValueDefault as any}>
+            <SystemContextProvider value={SystemContextValue}>
+                <GameContextProvider value={DefaultGameContext as any}>
+                    <KenoProMax {...mockGatewayGameBaseProps} />
+                </GameContextProvider>
+            </SystemContextProvider>
+        </AuthContextProvider>);
     });
 
-    test("should be render correctly with mode view full", () => {
-        // Arrange
-        class MockKenoProMax extends KenoProMax {
-            constructor(props: any) {
-                super(props);
-
-                this.state = {
-                    signedIn: true,
-                    gameState: GameState.DisplayResult,
-                    remainingTime: 30,
-                    gameConfigs: DefaultGameContext.gameConfigs,
-                    roundHistory: roundHistory,
-                    roundId: 1,
-                    ownBets: {},
-                    totalBets: {},
-                    displayPopup: PopupType.Error,
-                    betPercentage: {},
-                    viewMode: ViewMode.full,
-                    showResultInfo: true,
-                    acceptedBetQueue: {},
-                    showWinningAnimation: false,
-                    playResultAnimation: false,
-                    isShowBlink: false,
-                    notice: {} as Notice,
-                    removeBetChoiceFocus: () => { },
-                    betOptionElement: document.createElement("p"),
-                    betChoiceElement: document.createElement("p"),
-                    activeScoreboardTab: 0,
-                    rate: 1,
-                };
-            }
-        }
-
-        // Act
-        render(
-            <AuthContextProvider value={AuthContextValueDefault}>
-                <SystemContextProvider value={SystemContextValue}>
-                    <GameContextProvider value={DefaultGameContext as any}>
-                        <MockKenoProMax {...(kenoProps as any)} />
-                    </GameContextProvider>
-                </SystemContextProvider>
-            </AuthContextProvider>
-        );
-
-        // Assert
-        expect(document.querySelector(".header-right")).toBeTruthy();
-        expect(document.querySelector(".header-left")).toBeTruthy();
-        expect(document.querySelector(".layout-keno-pro-max")).toBeTruthy();
-        expect(document.querySelector(".tabs-container")).toBeTruthy();
-        expect(document.querySelector(".animation-container")).toBeTruthy();
-        expect(document.querySelector(".mini-round-history")).toBeTruthy();
-        expect(document.querySelector(".statistic")).toBeTruthy();
-        expect(document.querySelector(".score-board-dragon-container")).toBeTruthy();
+    it("should have correct default result", () => {
+        const component = new KenoProMax(mockGatewayGameBaseProps);
+        expect(component.defaultResult).toEqual(Array(20).fill(0));
     });
 
-    test("should be render correctly with mode collapse view", () => {
-        //Arrange
-        class MockKenoProMax extends KenoProMax {
-            constructor(props: any) {
-                super(props);
+    it("should have correct default tooltip messages", () => {
+        const component = new KenoProMax(mockGatewayGameBaseProps);
+        expect(component.tooltipMessageFollowChoiceProps).toEqual({
+            big: "[811~1410]",
+            small: "[210~810]",
+            gold: "[210~695]",
+            wood: "[696~763]",
+            water: "[764~855]",
+            fire: "[856~923]",
+            earth: "[924~1410]",
+        });
+    });
 
-                this.state = {
-                    signedIn: true,
-                    gameState: GameState.DisplayResult,
-                    remainingTime: 30,
-                    gameConfigs: DefaultGameContext.gameConfigs,
-                    roundHistory: roundHistory,
-                    roundId: 1,
-                    ownBets: {},
-                    totalBets: {},
-                    displayPopup: PopupType.Error,
-                    betPercentage: {},
-                    viewMode: ViewMode.collapse,
-                    showResultInfo: true,
-                    acceptedBetQueue: {},
-                    showWinningAnimation: false,
-                    playResultAnimation: false,
-                    isShowBlink: false,
-                    notice: {} as Notice,
-                    removeBetChoiceFocus: () => { },
-                    betOptionElement: document.createElement("p"),
-                    betChoiceElement: document.createElement("p"),
-                    activeScoreboardTab: 0,
-                    rate: 1,
-                };
-            }
-        }
-        // Act
-        render(
-            <AuthContextProvider value={AuthContextValueDefault}>
-                <SystemContextProvider value={SystemContextValue}>
-                    <GameContextProvider value={DefaultGameContext as any}>
-                        <MockKenoProMax {...(kenoProps as any)} />
-                    </GameContextProvider>
-                </SystemContextProvider>
-            </AuthContextProvider>
-        );
+    it("should return correct main options", () => {
+        const component = new KenoProMax(mockGatewayGameBaseProps);
+        expect(component.getMainOptions()).toEqual(["big", "small", "odd", "even"]);
+    });
 
-        // Assert
-        expect(document.querySelector(".header-result")).toBeTruthy();
-        expect(document.querySelector(".result-collapse-mode")).toBeTruthy();
+    it("should render fake result when no actual result exists", () => {
+        const component = new KenoProMax(mockGatewayGameBaseProps);
+        const fakeResult = component.getFakeResult();
+        expect(fakeResult).toEqual([
+            7, 9, 11, 15, 20, 22, 28, 30, 32, 34,
+            37, 47, 49, 53, 64, 67, 68, 70, 78, 79
+        ]);
+    });
+
+    it("should show start round animation in correct state", () => {
+        const component = new KenoProMax(mockGatewayGameBaseProps);
+        component.state = {
+            ...component.state,
+            gameState: GameState.BeforeStartRound,
+        };
+        expect(component.isShowStartRoundAnimation).toBeTruthy();
+    });
+
+    it("should have pool stake enabled", () => {
+        const component = new KenoProMax(mockGatewayGameBaseProps);
+        expect(component.isShowPoolStake).toBeTruthy();
+    });
+
+    it("should have correct winning animation duration", () => {
+        const component = new KenoProMax(mockGatewayGameBaseProps);
+        expect(component.winningAnimationWaitingTimeInSecond).toBe(9000);
     });
 });

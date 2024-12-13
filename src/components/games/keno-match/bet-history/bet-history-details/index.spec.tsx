@@ -44,7 +44,7 @@ describe("KenoSoccer Info Bet History Detail", () => {
 
         test("should render correctly", () => {
             // Act
-            const { getByTestId, getAllByTestId } = render(RenderRowKenoPower({ ...resource }), {
+            const { getByTestId, getAllByTestId } = render(RenderRowKenoPower({ ...resource } as any), {
                 container: document.body.appendChild(tableRow),
             });
 
@@ -58,7 +58,7 @@ describe("KenoSoccer Info Bet History Detail", () => {
 
         test("should render class highlight", () => {
             // Act
-            render(RenderRowKenoPower({ ...resource }), {
+            render(RenderRowKenoPower({ ...resource } as any), {
                 container: document.body.appendChild(tableRow),
             });
 

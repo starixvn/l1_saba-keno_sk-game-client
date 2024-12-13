@@ -72,7 +72,7 @@ abstract class GameBase<P extends GameBaseProps, S extends GameBaseState<any, an
     private userStakeLevelListener: string;
     private disconnectTimeout: NodeJS.Timeout;
 
-    private readonly defaultGameConfig = { odds: {}, minBet: 0, maxBet: 0, maxBetPerChoices: {}, enableFreeBet: false, boostedChoices: [] };
+    protected readonly defaultGameConfig = { odds: {}, minBet: 0, maxBet: 0, maxBetPerChoices: {}, enableFreeBet: false, boostedChoices: [] };
     protected readonly defaultState = {
         signedIn: false,
         gameState: GameState.None,
@@ -156,7 +156,7 @@ abstract class GameBase<P extends GameBaseProps, S extends GameBaseState<any, an
 
     protected initSocket() {
         const { socketInfo } = this.props;
-        const { session } = this.context as any;
+        const { session } = this.context as AuthContextModel;
         const { proxy, enableMsgpackParser } = getAppSettings();
         const socketUri = buildServerUrl(socketInfo.namespace);
         const socket = io(socketUri, {
@@ -962,10 +962,10 @@ abstract class GameBase<P extends GameBaseProps, S extends GameBaseState<any, an
         const { md5, md5ResultKey, showMD5ResultKey } = this.state;
 
         let md5Text = (
-                <div>
-                    <strong>{this.props.t("common:md5Key")}:</strong> {md5}
-                </div>
-            ),
+            <div>
+                <strong>{this.props.t("common:md5Key")}:</strong> {md5}
+            </div>
+        ),
             md5ClassName = "md5-key";
         if ((showMD5ResultKey || !md5) && md5ResultKey) {
             md5Text = this.renderRawValueMD5();
