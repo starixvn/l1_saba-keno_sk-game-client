@@ -81,6 +81,7 @@ const BaseDialog: React.FC<Props> = ({
         <>
             {enableBackdrop && !isMobileOnly && <div className={`overlay-mask ${Styles["overlay"]}`}></div>}
             <div
+                data-testid="base-dialog"
                 style={getCustomStyle({ betContainerPosition })}
                 ref={wrapperRef}
                 className={`${Styles.popup} ${Styles[classModal]} ${isMobileOnly ? Styles["isMobile"] : ""} ${getClassFollowDevice()} ${extraClass}`}

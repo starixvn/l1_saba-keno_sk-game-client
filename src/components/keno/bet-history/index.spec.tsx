@@ -1,30 +1,77 @@
-import { render } from "@testing-library/react";
 import React from "react";
+import { render, screen } from "@testing-library/react";
+import KenoBetHistory from "./index";
+import BetHistoryContainer from "../../dashboard/history/bet-history";
+import "@testing-library/jest-dom";
 
-import { authContextValue } from "../__tests__/test-helper";
-import KenoMatchBetHistory from "./";
-import { AuthContextProvider } from "../../../contexts/auth";
+jest.mock("../../dashboard/history/bet-history", () => {
+    return jest.fn(() => <div data-testid="bet-history-container">Mocked BetHistoryContainer</div>);
+});
 
-describe("KenoSoccer BetHistory", () => {
-    test("should render correctly", () => {
-        // Arrange
-        const resource = {
-            gameId: 36,
-            isRefund: false,
-            renderResultDetail: null,
-            closeModal: null,
-            renderBetLogsDetail: null,
-            nameHeaderOnTable: ["roundTime", "round", "totalStake", "onlyRefund", "win"],
-        };
+describe("KenoBetHistory", () => {
+    const defaultProps = {
+        gameId: 123,
+        fractionalOddsFormat: false,
+        closeModal: jest.fn(),
+    };
 
-        // Act
-        const { getByTestId } = render(
-            <AuthContextProvider value={authContextValue}>
-                <KenoMatchBetHistory {...resource}></KenoMatchBetHistory>
-            </AuthContextProvider>
+    beforeEach(() => {
+        jest.clearAllMocks();
+    });
+
+    test("renders BetHistoryContainer with correct props", () => {
+        render(<KenoBetHistory {...defaultProps} />);
+
+        expect(BetHistoryContainer).toHaveBeenCalledWith(
+            {
+                gameId: 123,
+                isRefund: false,
+                renderResultDetail: expect.any(Function),
+                closeModal: expect.any(Function),
+                renderBetLogsDetails: expect.any(Function),
+                fractionalOddsFormat: false,
+                nameHeaderOnTable: ["roundTime", "round", "totalStake", "onlyRefund", "win"],
+            },
+            {}
         );
+    });
 
-        // Assert
-        expect(getByTestId("bet-history-loading")).toBeInTheDocument();
+    test("renders with fractionalOddsFormat as true", () => {
+        render(<KenoBetHistory {...defaultProps} fractionalOddsFormat={true} />);
+
+        expect(BetHistoryContainer).toHaveBeenCalledWith(
+            expect.objectContaining({
+                fractionalOddsFormat: true,
+            }),
+            {}
+        );
+    });
+
+    test("renders with fractionalOddsFormat as undefined", () => {
+        render(<KenoBetHistory {...defaultProps} fractionalOddsFormat={undefined} />);
+
+        expect(BetHistoryContainer).toHaveBeenCalledWith(
+            expect.objectContaining({
+                fractionalOddsFormat: undefined,
+            }),
+            {}
+        );
+    });
+
+    test("passes closeModal function to BetHistoryContainer", () => {
+        const mockCloseModal = jest.fn();
+        render(<KenoBetHistory {...defaultProps} closeModal={mockCloseModal} />);
+
+        expect(BetHistoryContainer).toHaveBeenCalledWith(
+            expect.objectContaining({
+                closeModal: mockCloseModal,
+            }),
+            {}
+        );
+    });
+
+    test("component renders without crashing", () => {
+        render(<KenoBetHistory {...defaultProps} />);
+        expect(screen.getByTestId("bet-history-container")).toBeInTheDocument();
     });
 });

@@ -1,127 +1,129 @@
-import { render, fireEvent } from "@testing-library/react";
 import React from "react";
-import * as rdd from "react-device-detect";
+import { render, screen, fireEvent } from '@testing-library/react';
+import { GameHeader } from '.';
 
-import GameHeader from ".";
-import { GameContextProvider } from "../../../contexts/game-context/game-context";
-import { SystemContextProvider } from "../../../contexts/system";
-import { GameState, ViewMode } from "../game-base/type";
-import { GameActionsContextProvider } from "../../../contexts/game-actions-context";
+import { useGameContext } from '../../../contexts/game-context/game-context';
+import { useSystemContext } from '../../../contexts/system';
+import { useGameActionContext } from '../../../contexts/game-actions-context';
+import { ViewMode } from '../game-base/type';
+import { isMobileOnly } from 'react-device-detect';
 
-describe("GameHeader", () => {
-    // Arrange
-    const isShowCollapse = false;
-    const isUpdateDisableRebet = false;
-    const countdownTimerComponent = null;
-    const gameSetting = {
-        id: 1,
-        gameName: "BigSmall",
-        socketInfo: {
-            namespace: "bigsmall",
-            path: "bigsmall",
+// Mock the hooks and dependencies
+jest.mock('../../../contexts/game-context/game-context');
+jest.mock('../../../contexts/system');
+jest.mock('../../../contexts/game-actions-context');
+jest.mock('react-device-detect', () => ({
+    isMobileOnly: false
+}));
+jest.mock('next-i18next', () => ({
+    useTranslation: () => ({ t: (key: string) => key })
+}));
+
+describe('GameHeader', () => {
+    const mockGameContext = {
+        roundId: 123,
+        gameSetting: {
+            id: 'game1',
+            gameName: 'TestGame'
         },
-        durations: {
-            wholeRound: 62,
-            placingBets: 50,
-            lockingBet: 5,
-            showResult: 8,
-            resultAnimation: 3,
-            beforeStartRound: 0,
-            balancingBet: 3,
-        },
-        notifyWinStreak: jest.fn,
-        playPlaceBetSound: jest.fn,
         viewMode: ViewMode.full,
-        setApiErrorMessage: jest.fn,
-        supportMD5: false,
-        userStakeLevel: null,
-        updateUserStakeLevel: jest.fn,
-    };
-    const gameContext = {
-        gameSetting: gameSetting as any,
-        totalBets: {},
-        ownBets: {},
-        roundId: 1,
-        remainingTime: 1,
-        gameConfigs: null,
-        gameState: GameState.DisplayResult,
-        viewMode: ViewMode.full,
-        isShowBlink: false,
-        playResultAnimation: true,
-        supportMD5: false,
+        gameState: 'BETTING',
+        ownBets: {}
     };
 
-    const systemContext = {
-        setFavorite: jest.fn,
-        favoriteGames: [],
-        enabledPlaySound: true,
-        gamesOrder: [],
-        userStakeLevel: { minBet: 1, maxBet: 2000 },
-        betValue: 10,
-        enabledQuickBet: true,
+    const mockSystemContext = {
+        favoriteGames: ['game2'],
+        setFavorite: jest.fn()
     };
 
-    const gameActionsContext = {
-        placeBet: jest.fn,
-        openPopup: jest.fn,
-        closePopup: jest.fn,
-        registerMessageHandler: jest.fn,
-        unsubscribeMessageHandler: jest.fn,
-        updateViewMode: jest.fn,
-        playAcceptedBetAnimation: jest.fn,
-        finishProcessingBet: null,
-        renderResultCollapse: null,
-        setActiveScoreboardTab: jest.fn,
-        updateStatusShowResult: jest.fn,
+    const mockGameActionContext = {
+        updateViewMode: jest.fn(),
+        renderResultCollapse: jest.fn(),
+        updateStatusShowResult: jest.fn(),
+        openPopup: jest.fn()
     };
 
-    test("renders GameHeader component", () => {
-        rdd.isMobileOnly = true;
-
-        // Act
-        const { getByTestId } = render(
-            <SystemContextProvider value={systemContext}>
-                <GameContextProvider value={gameContext}>
-                    <GameActionsContextProvider value={gameActionsContext}>
-                        <GameHeader
-                            isShowCollapse={isShowCollapse}
-                            isUpdateDisableRebet={isUpdateDisableRebet}
-                            countdownTimerComponent={countdownTimerComponent}
-                        />
-                    </GameActionsContextProvider>
-                </GameContextProvider>
-            </SystemContextProvider>
-        );
-        fireEvent.click(getByTestId("header"));
-        fireEvent.click(getByTestId("favorite-btn"));
-        fireEvent.click(getByTestId("rebet-btn"));
-
-        // Assert
-        expect(getByTestId("header")).toBeInTheDocument();
-        expect(document.querySelector(".header-right")).toBeTruthy();
+    beforeEach(() => {
+        (useGameContext as jest.Mock).mockReturnValue(mockGameContext);
+        (useSystemContext as jest.Mock).mockReturnValue(mockSystemContext);
+        (useGameActionContext as jest.Mock).mockReturnValue(mockGameActionContext);
     });
 
-    test("render GameHeader on desktop", () => {
-        rdd.isMobileOnly = false;
+    afterEach(() => {
+        jest.clearAllMocks();
+    });
 
-        // Act
-        const { getByTestId } = render(
-            <SystemContextProvider value={systemContext}>
-                <GameContextProvider value={gameContext}>
-                    <GameActionsContextProvider value={gameActionsContext}>
-                        <GameHeader
-                            isShowCollapse={isShowCollapse}
-                            isUpdateDisableRebet={isUpdateDisableRebet}
-                            countdownTimerComponent={countdownTimerComponent}
-                        />
-                    </GameActionsContextProvider>
-                </GameContextProvider>
-            </SystemContextProvider>
+    it('renders game header with correct round ID', () => {
+        render(
+            <GameHeader
+                isShowCollapse={false}
+                isUpdateDisableRebet={false}
+                countdownTimerComponent={<div>Timer</div>}
+            />
         );
-        fireEvent.click(getByTestId("header"));
 
-        // Assert
-        expect(getByTestId("header")).toBeInTheDocument();
-        expect(document.querySelector(".header-right")).toBeTruthy();
+        expect(screen.getByText('#123')).toBeInTheDocument();
+    });
+
+    it('handles favorite button click', () => {
+        render(
+            <GameHeader
+                isShowCollapse={false}
+                isUpdateDisableRebet={false}
+                countdownTimerComponent={<div>Timer</div>}
+            />
+        );
+
+        const favoriteBtn = screen.getByTestId('favorite-btn');
+        fireEvent.click(favoriteBtn);
+
+        expect(mockSystemContext.setFavorite).toHaveBeenCalledWith('game1', true);
+    });
+
+    it('handles mobile view mode toggle', () => {
+        (isMobileOnly as boolean) = true;
+
+        render(
+            <GameHeader
+                isShowCollapse={false}
+                isUpdateDisableRebet={false}
+                countdownTimerComponent={<div>Timer</div>}
+            />
+        );
+
+        const header = screen.getByTestId('header');
+        fireEvent.click(header);
+
+        expect(mockGameActionContext.updateViewMode).toHaveBeenCalledWith(ViewMode.collapse);
+        expect(mockGameActionContext.updateStatusShowResult).toHaveBeenCalled();
+    });
+
+    it('renders rebet button in full view mode', () => {
+        render(
+            <GameHeader
+                isShowCollapse={false}
+                isUpdateDisableRebet={false}
+                countdownTimerComponent={<div>Timer</div>}
+            />
+        );
+
+        expect(screen.getByTestId('rebet-btn')).toBeInTheDocument();
+    });
+
+    it('does not render rebet button in collapse view mode', () => {
+        (useGameContext as jest.Mock).mockReturnValue({
+            ...mockGameContext,
+            viewMode: ViewMode.collapse
+        });
+
+        render(
+            <GameHeader
+                isShowCollapse={false}
+                isUpdateDisableRebet={false}
+                countdownTimerComponent={<div>Timer</div>}
+            />
+        );
+
+        expect(screen.queryByTestId('rebet-btn')).not.toBeInTheDocument();
     });
 });

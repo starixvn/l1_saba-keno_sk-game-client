@@ -1,61 +1,100 @@
-import { fireEvent, render, waitFor } from "@testing-library/react";
-import React from "react";
+import React from 'react';
+import { render, screen, fireEvent } from '@testing-library/react';
+import { HistoryModal } from './index';
+import { GameIds } from '../../../common/constants/gameIds';
+import "@testing-library/jest-dom";
 
-import { HistoryModal } from ".";
-import { AuthContextProvider } from "../../../contexts/auth";
-import { authContextValue, offerGames } from "../__test__/test-helper";
-
-jest.mock("axios");
-jest.mock("../../../common/constants", () => ({
-    systemName: () => {
-        "sk";
-    },
+// Mock the translation hook
+jest.mock('next-i18next', () => ({
+    useTranslation: () => ({
+        t: (key: string) => {
+            const translations: { [key: string]: string } = {
+                'popupTitleHistory': 'History',
+                'common:game': 'Game'
+            };
+            return translations[key] || key;
+        }
+    })
 }));
-describe("HistoryModal", () => {
-    test("should render correctly", async () => {
-        // Act
-        const { getByTestId, getAllByTestId } = render(
-            <AuthContextProvider value={authContextValue}>
-                <HistoryModal onCloseModal={jest.fn} offerGames={offerGames} />
-            </AuthContextProvider>
+
+// Mock the child components
+jest.mock('../../keno/bet-history', () => {
+    return function MockKenoBetHistory() {
+        return <div data-testid="keno-bet-history">Keno Bet History</div>;
+    };
+});
+
+jest.mock('../../games/keno-pro-max/bet-history', () => {
+    return function MockKenoProMaxBetHistory() {
+        return <div data-testid="keno-pro-max-bet-history">Keno Pro Max Bet History</div>;
+    };
+});
+
+jest.mock('../../shared/game-selector', () => {
+    return function MockGameSelector({ onChangeGame }: { onChangeGame: (gameId: number) => void }) {
+        return (
+            <select data-testid="game-selector" onChange={(e) => onChangeGame(Number(e.target.value))}>
+                <option value={GameIds.MegaKeno}>MegaKeno</option>
+                <option value={GameIds.KenoSoccer}>KenoSoccer</option>
+            </select>
         );
-        fireEvent.click(getByTestId("icon-close"));
+    };
+});
 
-        // Assert
+describe('HistoryModal', () => {
+    const mockOnCloseModal = jest.fn();
+    const defaultProps = {
+        onCloseModal: mockOnCloseModal,
+        offerGames: [GameIds.MegaKeno, GameIds.KenoSoccer],
+        fractionalOddsFormat: false
+    };
 
-        await waitFor(() => expect(document.querySelector(".history-content")).toBeTruthy());
+    beforeEach(() => {
+        jest.clearAllMocks();
     });
 
-    test.each`
-        optionOrder | expectedResult
-        ${0}        | ${"vipsedie:game_name"}
-        ${1}        | ${"sedie:game_name"}
-        ${2}        | ${"minisedie:game_name"}
-        ${3}        | ${"bigsmall:game_name"}
-        ${4}        | ${"txturbo:game_name"}
-        ${5}        | ${"kenopromax:game_name"}
-        ${6}        | ${"specialsedie:game_name"}
-        ${7}        | ${"fishprawncrab:game_name"}
-        ${8}        | ${"dragontiger:game_name"}
-        ${9}        | ${"vipbaccarat:game_name"}
-        ${10}       | ${"baccarat:game_name"}
-        ${11}       | ${"threecards:game_name"}
-        ${12}       | ${"kenosoccer:game_name"}
-        ${13}       | ${"kenosoccer2:game_name"}
-    `("render each Component History when selected game selector", async ({ optionOrder, expectedResult }) => {
-        // Act
-        const { getByTestId, getAllByTestId } = render(
-            <AuthContextProvider value={authContextValue}>
-                <HistoryModal onCloseModal={jest.fn} offerGames={offerGames} />
-            </AuthContextProvider>
-        );
-        fireEvent.click(getByTestId("selected-item"));
-        const dropdownGameName = getAllByTestId("dropdown-item");
-        fireEvent.click(dropdownGameName[optionOrder]);
+    it('renders the history modal with title', () => {
+        render(<HistoryModal {...defaultProps} />);
+        expect(screen.getByText('History')).toBeInTheDocument();
+    });
 
-        // Assert
-        await waitFor(() => {
-            expect(getByTestId("selected-item")).toHaveTextContent(expectedResult);
-        });
+    it('closes modal when close icon is clicked', () => {
+        render(<HistoryModal {...defaultProps} />);
+        const closeIcon = screen.getByTestId('icon-close');
+        fireEvent.click(closeIcon);
+        expect(mockOnCloseModal).toHaveBeenCalled();
+    });
+
+    it('renders KenoProMaxBetHistory for MegaKeno game', () => {
+        render(<HistoryModal {...defaultProps} />);
+        expect(screen.getByTestId('keno-pro-max-bet-history')).toBeInTheDocument();
+    });
+
+    it('renders KenoBetHistory when switching to KenoSoccer game', () => {
+        render(<HistoryModal {...defaultProps} />);
+
+        const gameSelector = screen.getByTestId('game-selector');
+        fireEvent.change(gameSelector, { target: { value: GameIds.KenoSoccer } });
+
+        expect(screen.getByTestId('keno-bet-history')).toBeInTheDocument();
+    });
+
+    it('sets initial selected game from offerGames', () => {
+        const customProps = {
+            ...defaultProps,
+            offerGames: [GameIds.KenoSoccer]
+        };
+        render(<HistoryModal {...customProps} />);
+        expect(screen.getByTestId('keno-bet-history')).toBeInTheDocument();
+    });
+
+    it('handles empty offerGames array', () => {
+        const customProps = {
+            ...defaultProps,
+            offerGames: []
+        };
+        render(<HistoryModal {...customProps} />);
+        expect(screen.queryByTestId('keno-bet-history')).not.toBeInTheDocument();
+        expect(screen.queryByTestId('keno-pro-max-bet-history')).not.toBeInTheDocument();
     });
 });
