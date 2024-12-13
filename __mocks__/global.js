@@ -55,262 +55,237 @@ jest.mock("next/config", () => () => ({
             uri: "localhost",
             path: "",
         },
-        gameSettings: {
-            1: {
-                id: 1,
-                gameName: "BigSmall",
-                socketInfo: {
-                    namespace: "bigsmall",
-                    path: "bigsmall",
+        gameSettings:{
+            "1501": {
+                "id": 1501,
+                "gameName": "MegaKeno",
+                "serviceName": "mini-keno",
+                "supportMD5": true,
+                "socketInfo": {
+                    "namespace": "megakeno",
+                    "path": "minikeno"
                 },
-                durations: {
-                    wholeRound: 62,
-                    placingBets: 50,
-                    lockingBet: 5,
-                    showResult: 6,
-                    resultAnimation: 2,
-                    beforeStartRound: 2,
-                    balancingBet: 3,
-                },
+                "durations": {
+                    "wholeRound": 59,
+                    "placingBets": 45,
+                    "lockingBet": 5,
+                    "showResult": 10,
+                    "resultAnimation": 7,
+                    "beforeStartRound": 0
+                }
             },
-            2: {
-                id: 2,
-                gameName: "SeDie",
-                socketInfo: {
-                    namespace: "sedie",
-                    path: "sedie",
+            "1502": {
+                "id": 1502,
+                "gameName": "MegaKeno2",
+                "serviceName": "mini-keno",
+                "supportMD5": true,
+                "socketInfo": {
+                    "namespace": "megakeno2",
+                    "path": "minikeno"
                 },
-                durations: {
-                    wholeRound: 40,
-                    placingBets: 30,
-                    lockingBet: 5,
-                    showResult: 7,
-                    resultAnimation: 2,
-                    beforeStartRound: 2,
-                },
+                "durations": {
+                    "wholeRound": 44,
+                    "placingBets": 30,
+                    "lockingBet": 5,
+                    "showResult": 10,
+                    "resultAnimation": 7,
+                    "beforeStartRound": 0
+                }
             },
-            3: {
-                id: 3,
-                gameName: "FishPrawnCrab",
-                socketInfo: {
-                    namespace: "fishprawncrab",
-                    path: "fishprawncrab",
+            "1503": {
+                "id": 1503,
+                "gameName": "KenoMini",
+                "serviceName": "mini-keno",
+                "supportMD5": true,
+                "socketInfo": {
+                    "namespace": "kenomini",
+                    "path": "minikeno"
                 },
-                durations: {
-                    wholeRound: 41,
-                    placingBets: 30,
-                    lockingBet: 5,
-                    showResult: 10,
-                    resultAnimation: 2,
-                    beforeStartRound: 0,
-                },
+                "durations": {
+                    "wholeRound": 52,
+                    "placingBets": 40,
+                    "lockingBet": 5,
+                    "showResult": 8,
+                    "resultAnimation": 5,
+                    "beforeStartRound": 0
+                }
             },
-            4: {
-                id: 4,
-                gameName: "TXTurbo",
-                socketInfo: {
-                    namespace: "txturbo",
-                    path: "turbobigsmall",
+            "1504": {
+                "id": 1504,
+                "gameName": "KenoMini2",
+                "serviceName": "mini-keno",
+                "supportMD5": true,
+                "socketInfo": {
+                    "namespace": "kenomini2",
+                    "path": "minikeno"
                 },
-                durations: {
-                    wholeRound: 38,
-                    placingBets: 30,
-                    lockingBet: 5,
-                    showResult: 3,
-                    resultAnimation: 2,
-                    beforeStartRound: 2,
-                    balancingBet: 2,
-                },
+                "durations": {
+                    "wholeRound": 42,
+                    "placingBets": 30,
+                    "lockingBet": 5,
+                    "showResult": 8,
+                    "resultAnimation": 5,
+                    "beforeStartRound": 0
+                }
             },
-            7: {
-                id: 7,
-                gameName: "DragonTiger",
-                socketInfo: {
-                    namespace: "dragontiger",
-                    path: "dragontiger",
+            "1505": {
+                "id": 1505,
+                "gameName": "KenoEast",
+                "serviceName": "mini-keno",
+                "supportMD5": true,
+                "socketInfo": {
+                    "namespace": "kenoeast",
+                    "path": "minikeno"
                 },
-                durations: {
-                    wholeRound: 37,
-                    placingBets: 30,
-                    lockingBet: 5,
-                    showResult: 6,
-                    resultAnimation: 2,
-                    beforeStartRound: 0,
-                },
+                "durations": {
+                    "wholeRound": 44,
+                    "placingBets": 30,
+                    "lockingBet": 5,
+                    "showResult": 10,
+                    "resultAnimation": 7,
+                    "beforeStartRound": 0
+                }
             },
-            8: {
-                id: 8,
-                gameName: "KenoProMax",
-                socketInfo: {
-                    namespace: "kenopromax",
-                    path: "kenopromax",
+            "1506": {
+                "id": 1506,
+                "gameName": "KenoWest",
+                "serviceName": "mini-keno",
+                "supportMD5": true,
+                "socketInfo": {
+                    "namespace": "kenowest",
+                    "path": "minikeno"
                 },
-                durations: {
-                    wholeRound: 40,
-                    placingBets: 30,
-                    lockingBet: 5,
-                    showResult: 9,
-                    resultAnimation: 4,
-                    beforeStartRound: 0,
-                },
+                "durations": {
+                    "wholeRound": 44,
+                    "placingBets": 30,
+                    "lockingBet": 5,
+                    "showResult": 10,
+                    "resultAnimation": 7,
+                    "beforeStartRound": 0
+                }
             },
-            9: {
-                id: 9,
-                gameName: "MiniSeDie",
-                socketInfo: {
-                    namespace: "minisedie",
-                    path: "minisedie",
+            "1507": {
+                "id": 1507,
+                "gameName": "KenoSouth",
+                "serviceName": "mini-keno",
+                "supportMD5": true,
+                "socketInfo": {
+                    "namespace": "kenosouth",
+                    "path": "minikeno"
                 },
-                durations: {
-                    wholeRound: 38,
-                    placingBets: 30,
-                    lockingBet: 5,
-                    showResult: 5,
-                    resultAnimation: 2,
-                    beforeStartRound: 2,
-                },
+                "durations": {
+                    "wholeRound": 44,
+                    "placingBets": 30,
+                    "lockingBet": 5,
+                    "showResult": 10,
+                    "resultAnimation": 7,
+                    "beforeStartRound": 0
+                }
             },
-            10: {
-                id: 10,
-                gameName: "Baccarat",
-                socketInfo: {
-                    namespace: "baccarat",
-                    path: "baccarat",
+            "1508": {
+                "id": 1508,
+                "gameName": "KenoNorth",
+                "serviceName": "mini-keno",
+                "supportMD5": true,
+                "socketInfo": {
+                    "namespace": "kenonorth",
+                    "path": "minikeno"
                 },
-                durations: {
-                    wholeRound: 46,
-                    placingBets: 30,
-                    lockingBet: 5,
-                    showResult: 15,
-                    resultAnimation: 4,
-                    beforeStartRound: 0,
-                },
+                "durations": {
+                    "wholeRound": 44,
+                    "placingBets": 30,
+                    "lockingBet": 5,
+                    "showResult": 10,
+                    "resultAnimation": 7,
+                    "beforeStartRound": 0
+                }
             },
-            22: {
-                id: 22,
-                gameName: "VipSeDie",
-                socketInfo: {
-                    namespace: "vipsedie",
-                    path: "vsedie",
+            "1509": {
+                "id": 1509,
+                "gameName": "KenoPower",
+                "socketInfo": {
+                    "namespace": "kenopower",
+                    "path": "kenopower"
                 },
-                durations: {
-                    wholeRound: 40,
-                    placingBets: 30,
-                    lockingBet: 5,
-                    showResult: 7,
-                    resultAnimation: 2,
-                    beforeStartRound: 2,
-                },
+                "supportMD5": true,
+                "durations": {
+                    "wholeRound": 51,
+                    "placingBets": 42,
+                    "lockingBet": 5,
+                    "showResult": 8,
+                    "resultAnimation": 4,
+                    "beforeStartRound": 0
+                }
             },
-            24: {
-                id: 24,
-                gameName: "SpecialSeDie",
-                socketInfo: {
-                    namespace: "specialsedie",
-                    path: "specialsedie",
+            "1510": {
+                "id": 1510,
+                "gameName": "KenoPower2",
+                "socketInfo": {
+                    "namespace": "kenopower2",
+                    "path": "kenopower"
                 },
-                durations: {
-                    wholeRound: 40,
-                    placingBets: 30,
-                    lockingBet: 5,
-                    showResult: 5,
-                    resultAnimation: 2,
-                    beforeStartRound: 2,
-                    balancingBet: 2,
-                },
+                "supportMD5": true,
+                "durations": {
+                    "wholeRound": 55,
+                    "placingBets": 42,
+                    "lockingBet": 5,
+                    "showResult": 12,
+                    "resultAnimation": 4,
+                    "beforeStartRound": 0
+                }
             },
-            27: {
-                id: 27,
-                gameName: "VipBaccarat",
-                socketInfo: {
-                    namespace: "vipbaccarat",
-                    path: "vipbaccarat",
+            "1511": {
+                "id": 1511,
+                "gameName": "KenoSoccer",
+                "socketInfo": {
+                    "namespace": "kenosoccer",
+                    "path": "kenosoccer"
                 },
-                durations: {
-                    wholeRound: 46,
-                    placingBets: 30,
-                    lockingBet: 5,
-                    showResult: 15,
-                    resultAnimation: 4,
-                    beforeStartRound: 0,
-                },
+                "supportMD5": true,
+                "durations": {
+                    "wholeRound": 78,
+                    "showFullTimeSettlementResult": 73,
+                    "halfTimePlacingBets": 69,
+                    "halfTimeLockingBet": 39,
+                    "showHalfTimeResult": 34,
+                    "showHalfTimeSettlementResult": 30,
+                    "beforeStartFullTimePlacingBet": 26,
+                    "fullTimePlacingBets": 25,
+                    "fullTimeLockingBet": 5,
+                    "showFullTimeResult": 0,
+                    "showResult": 6,
+                    "halfTimeDuration": 35,
+                    "fullTimeDuration": 25,
+                    "resultAnimation": 8,
+                    "settlementWinning": 6
+                }
             },
-            35: {
-                id: 35,
-                gameName: "ThreeCards",
-                socketInfo: {
-                    namespace: "threecards",
-                    path: "threecards",
+            "1512": {
+                "id": 1512,
+                "gameName": "KenoSoccer2",
+                "socketInfo": {
+                    "namespace": "kenosoccer2",
+                    "path": "kenosoccer"
                 },
-                durations: {
-                    wholeRound: 40,
-                    placingBets: 30,
-                    lockingBet: 5,
-                    showResult: 9,
-                    resultAnimation: 3,
-                    beforeStartRound: 0,
-                },
-            },
-            36: {
-                id: 36,
-                gameName: "KenoMatch1",
-                socketInfo: {
-                    namespace: "kenosoccer",
-                    path: "kenosoccer",
-                },
-                supportMD5: false,
-                durations: {
-                    wholeRound: 62,
-                    showFullTimeSettlementResult: 58,
-                    highLightFullTime: 55,
-
-                    halfTimePlacingBets: 54,
-                    resetResult: 35,
-                    halfTimeLockingBet: 32,
-                    showHalfTimeResult: 27,
-                    showHalfTimeSettlementResult: 23,
-                    highLightFirstHalf: 20,
-
-                    beforeStartFullTimePlacingBet: 19,
-                    fullTimePlacingBets: 18,
-                    fullTimeLockingBet: 4,
-                    showFullTimeResult: 0,
-
-                    halfTimeDuration: 27,
-                    fullTimeDuration: 18,
-                    resultAnimation: 3,
-                },
-            },
-            37: {
-                id: 37,
-                gameName: "KenoMatch2",
-                socketInfo: {
-                    namespace: "kenosoccer2",
-                    path: "kenosoccer",
-                },
-                supportMD5: true,
-                durations: {
-                    wholeRound: 70,
-                    showFullTimeSettlementResult: 66,
-                    highLightFullTime: 59,
-
-                    halfTimePlacingBets: 58,
-                    resetResult: 39,
-                    halfTimeLockingBet: 36,
-                    showHalfTimeResult: 31,
-                    showHalfTimeSettlementResult: 27,
-                    highLightFirstHalf: 20,
-
-                    beforeStartFullTimePlacingBet: 19,
-                    fullTimePlacingBets: 18,
-                    fullTimeLockingBet: 4,
-                    showFullTimeResult: 0,
-
-                    halfTimeDuration: 27,
-                    fullTimeDuration: 18,
-                    resultAnimation: 3,
-                },
-            },
+                "supportMD5": true,
+                "durations": {
+                    "wholeRound": 86,
+                    "showFullTimeSettlementResult": 81,
+                    "halfTimePlacingBets": 73,
+                    "halfTimeLockingBet": 43,
+                    "showHalfTimeResult": 38,
+                    "showHalfTimeSettlementResult": 34,
+                    "beforeStartFullTimePlacingBet": 26,
+                    "fullTimePlacingBets": 25,
+                    "fullTimeLockingBet": 5,
+                    "showFullTimeResult": 0,
+                    "showResult": 6,
+                    "halfTimeDuration": 35,
+                    "fullTimeDuration": 25,
+                    "resultAnimation": 8,
+                    "settlementWinning": 6
+                }
+            }
         },
         guideUrl: "https://l1-guide.lumigame.com",
         appType: 1,
