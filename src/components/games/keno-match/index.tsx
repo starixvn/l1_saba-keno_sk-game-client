@@ -426,15 +426,11 @@ export class KenoSoccer extends GameBase<KenoMatchProps, KenoMatchGameBaseState<
     }
 
     getStateByNextGameState(nextGameState): any {
-        const { displayPopup, notice, removeBetChoiceFocus, isFirstHalf, ownBets } = this.state;
+        const { displayPopup, notice, isFirstHalf, ownBets } = this.state;
         const timeCounter = this.getTimeCounter(this.timeCounter, nextGameState);
 
         if (nextGameState === GameState.InRound) {
             this.betWin = 0;
-        }
-
-        if (nextGameState === GameState.LockingBet) {
-            removeBetChoiceFocus && removeBetChoiceFocus();
         }
 
         const newStateDetector = [
