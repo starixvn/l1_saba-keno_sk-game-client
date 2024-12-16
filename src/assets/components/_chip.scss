@@ -1,15 +1,19 @@
 .chip-container {
     --ratio: 1;
-    --chip-width: calc(4rem * var(--ratio));
-    --chip-height: calc(4.174rem * var(--ratio));
+    --chip-original-width: 4.2rem;
+    --chip-original-height: 4.2rem;
+    --chip-width: calc(var(--chip-original-width) * var(--ratio));
+    --chip-height: calc(var(--chip-original-height) * var(--ratio));
     --chip-value-font-size: calc(1.6rem * var(--ratio));
 
     position: relative;
     display: grid !important;
     grid-template-columns: var(--chip-width);
-    grid-template-rows: var(--chip-height);
+    grid-template-rows: calc(var(--chip-height) + 1.4rem);
     justify-content: center;
     align-items: center;
+    place-items: center; /* Centers items in both directions */
+    place-content: center; /* Centers the grid content itself */
     width: var(--chip-width);
     height: var(--chip-height);
     border-radius: 50%;
@@ -17,8 +21,8 @@
     margin-top: 0.8rem;
 
     @media (min-width: 768px) {
-        --chip-width: calc(4.6rem * var(--ratio));
-        --chip-height: calc(4.8rem * var(--ratio));
+        --chip-original-width: 5.4rem;
+        --chip-original-height: 5.4rem;
         margin-top: 0;
     }
 
@@ -38,7 +42,7 @@
         text-align: center;
         font-family: var(--font-money);
         font-size: var(--chip-value-font-size);
-        color: #2c2f3e;
+        color: #fff;
         z-index: 1;
     }
 }
