@@ -23,7 +23,7 @@ const BetContainer: React.FC<Props> = (props) => {
 
     useEffect(() => {
         if (props.gameState === GameState.InRound) {
-            setCustomStyle({ cursor: `url(${cursorImage}), url(/static/images/chips/cursor/chip-default.png?v=1), auto` });
+            setCustomStyle({ cursor: `url(${cursorImage}), url(/static/images/chips/cursor/chip-default.png?v=2), auto` });
         } else {
             setCustomStyle({ cursor: "not-allowed" });
         }

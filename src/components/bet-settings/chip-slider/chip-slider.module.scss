@@ -83,16 +83,16 @@
             bottom: calc(-0.6rem * var(--ratio));
             top: calc(-0.6rem * var(--ratio));
             background-repeat: no-repeat;
-            background-image: url("/static/images/chips/active/chip-active.png");
+            background-image: url("/static/images/chips/active/chip-active.png?v=1");
             background-image: -webkit-image-set(
-                url("/static/images/chips/active/chip-active.png") 1x,
-                url("/static/images/chips/active/chip-active@2x.png") 2x,
-                url("/static/images/chips/active/chip-active@3x.png") 3x
+                url("/static/images/chips/active/chip-active.png?v=1") 1x,
+                url("/static/images/chips/active/chip-active@2x.png?v=1") 2x,
+                url("/static/images/chips/active/chip-active@3x.png?v=1") 3x
             );
             background-image: image-set(
-                url("/static/images/chips/active/chip-active.png") 1x,
-                url("/static/images/chips/active/chip-active@2x.png") 2x,
-                url("/static/images/chips/active/chip-active@3x.png") 3x
+                url("/static/images/chips/active/chip-active.png?v=1") 1x,
+                url("/static/images/chips/active/chip-active@2x.png?v=1") 2x,
+                url("/static/images/chips/active/chip-active@3x.png?v=1") 3x
             );
             background-size: 100%;
         }
@@ -114,16 +114,16 @@
                 right: calc(-0.6rem * var(--ratio));
                 bottom: calc(-0.6rem * var(--ratio));
                 top: calc(-0.6rem * var(--ratio));
-                background-image: url("/static/images/chips/active/chip-active.png");
+                background-image: url("/static/images/chips/active/chip-active.png?v=1");
                 background-image: -webkit-image-set(
-                    url("/static/images/chips/active/chip-active.png") 1x,
-                    url("/static/images/chips/active/chip-active@2x.png") 2x,
-                    url("/static/images/chips/active/chip-active@3x.png") 3x
+                    url("/static/images/chips/active/chip-active.png?v=1") 1x,
+                    url("/static/images/chips/active/chip-active@2x.png?v=1") 2x,
+                    url("/static/images/chips/active/chip-active@3x.png?v=1") 3x
                 );
                 background-image: image-set(
-                    url("/static/images/chips/active/chip-active.png") 1x,
-                    url("/static/images/chips/active/chip-active@2x.png") 2x,
-                    url("/static/images/chips/active/chip-active@3x.png") 3x
+                    url("/static/images/chips/active/chip-active.png?v=1") 1x,
+                    url("/static/images/chips/active/chip-active@2x.png?v=1") 2x,
+                    url("/static/images/chips/active/chip-active@3x.png?v=1") 3x
                 );
                 background-size: 100%;
             }
