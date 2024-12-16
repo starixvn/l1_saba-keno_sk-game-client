@@ -1,5 +1,5 @@
 window.envConfig = {
-    subSocketGatewayDomain: "gateway",
+    socketGatewayPath: "gateway",
     proxy: {
         ssl: true,
         subDomain: "proxy",
@@ -13,6 +13,6 @@ window.envConfig = {
     subGuideDomain: "skguide",
     analyticId: "",
     enableMsgpackParser: true,
-    system: "GN",
+    system: "SK",
     appType: 1,
 };

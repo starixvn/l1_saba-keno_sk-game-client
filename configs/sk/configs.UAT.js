@@ -1,18 +1,18 @@
 window.envConfig = {
-    subSocketGatewayDomain: "gateway",
+    socketGatewayPath: "gateway",
     proxy: {
         ssl: true,
-        subDomain: "gnuatproxy",
+        subDomain: "skuatproxy",
         path: "/uat",
     },
     sentry: {
-        dsn: "https://937e616976cf45c581d1f39e07c133ab@scsentry.sgamesuat.com/284",
+        dsn: "https://a21d7cab68b44eb09600df23903e3d3f@scsentry.sgamesuat.com/302",
         environment: "UAT",
     },
     enableSourceMap: false,
     subGuideDomain: "skuatguides",
     analyticId: "",
     enableMsgpackParser: true,
-    system: "GN",
+    system: "SK",
     appType: 1,
 };
