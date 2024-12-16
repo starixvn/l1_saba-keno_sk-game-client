@@ -17,6 +17,7 @@
         "obfuscator-config-file": "node ./configs/config-obfuscator.js"
     },
     "dependencies": {
+        "@fingerprintjs/fingerprintjs": "3.4.2",
         "@sentry/nextjs": "6.19.6",
         "axios": "^1.7.8",
         "i18next": "^24.0.2",

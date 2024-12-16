@@ -2,8 +2,25 @@ import { SSOResponse } from "sc-user-service-client/dist/auth";
 
 import { getLocalStorageItem, localStorageKeys, removeLocalStorageItem, storeLocalStorageItem } from "../common/local-storage";
 import { UserClientCommunication } from "./user-client-communication";
+import FingerprintJS from "@fingerprintjs/fingerprintjs";
 
 const authService = UserClientCommunication?.getUserClientInstance()?.auth;
+
+const trackingPlayer = async (userSession: SSOResponse) => {
+    try {
+        const fp = await FingerprintJS.load();
+        const visitorId = (await fp.get()).visitorId;
+
+        await UserClientCommunication?.getUserClientInstance()?.tracking.track(
+            userSession.ss,
+            userSession.username,
+            visitorId,
+            navigator.userAgent
+        );
+    } catch (error) {
+        console.error("Error tracking player:", error);
+    }
+};
 
 export const sso = async (token: string, appType: number): Promise<SSOResponse> => {
     const userSession = await authService.sso(token, appType);
@@ -30,6 +47,11 @@ export const verifySession = async (): Promise<SSOResponse> => {
         userSession.umInfo = verifySessionResponse.umInfo;
 
         verifySessionResponse.isSuccessful && storeLocalStorageItem<SSOResponse>(localStorageKeys.session, userSession);
+    }
+
+    if (verifySessionResponse.isSuccessful) {
+        // Fire and forget - no await
+        trackingPlayer(userSession);
     }
 
     return verifySessionResponse.isSuccessful || userSession.isUM ? userSession : null;
