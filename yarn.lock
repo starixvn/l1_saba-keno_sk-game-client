@@ -8014,10 +8014,10 @@ saxes@^6.0.0:
   dependencies:
     xmlchars "^2.2.0"
 
-sc-user-service-client@1.8.0:
-  version "1.8.0"
-  resolved "http://npm.lumigame.com/sc-user-service-client/-/sc-user-service-client-1.8.0.tgz#a427a63c71f6413254ddc7c93c2b400338afff76"
-  integrity sha512-keQUmnBBj8zCBTKEN3b/Qku5AHkj6bd5XWLEamOsoo1yUAV2smbEE4HUQ1gAq/8gHghfJoioxQs7CCF/1sz4xw==
+sc-user-service-client@1.8.2-beta.0:
+  version "1.8.2-beta.0"
+  resolved "https://npm.lumigame.com/sc-user-service-client/-/sc-user-service-client-1.8.2-beta.0.tgz#ef843ee0e2fb1b4da06fe686895f35ccb541f71c"
+  integrity sha512-KdBbzmYz4judi2WZ6dA3XX5y9PyAZgehAx+iEp3Ob7KmE/eQO/+fNzZO6EIh9848W6xC11zyhnoh5GdeVPAUdA==
   dependencies:
     axios "^0.28.1"
 

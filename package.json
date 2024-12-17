@@ -32,7 +32,7 @@
         "react-router-dom": "^7.0.1",
         "react-slick": "^0.30.2",
         "sass": "^1.81.0",
-        "sc-user-service-client": "1.8.0",
+        "sc-user-service-client": "1.8.2-beta.0",
         "slick-carousel": "^1.8.1",
         "socket.io-client": "^4.8.1",
         "socket.io-msgpack-parser": "^3.0.2",
