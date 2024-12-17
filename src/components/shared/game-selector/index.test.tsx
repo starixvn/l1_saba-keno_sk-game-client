@@ -24,7 +24,7 @@ describe("GameSelector", () => {
     });
 
     it("renders correctly and handles game selection", () => {
-        const { getByTestId, getByText } = render(
+        const { getByTestId } = render(
             <GameSelector
                 onChangeGame={mockOnChangeGame}
                 selectedGame={mockSelectedGame}
