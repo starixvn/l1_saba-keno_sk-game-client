@@ -41,7 +41,7 @@ export const GameSelector: React.FC<{ onChangeGame: Function; selectedGame: numb
             {isShowOptions && (
                 <div className={`${Styles["dropdown-menu"]} ${isMobileOnly ? Styles["mobile"] : ""}`} data-testid="dropdown-menu">
                     {offerGames.map((id) => (
-                        <div className={Styles["dropdown-item"]} key={id} onClick={() => onSelectOption(id)} data-testid="dropdown-item">
+                        <div className={Styles["dropdown-item"]} key={id} onClick={() => onSelectOption(id)} data-testid={`dropdown-item-${id}`}>
                             {t(`${getAppSettings()?.gameSettings[id]?.gameName.toLocaleLowerCase()}:${GameResourceKeys.GAME_NAME}`)}
                         </div>
                     ))}

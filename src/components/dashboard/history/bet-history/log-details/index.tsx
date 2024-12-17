@@ -15,7 +15,7 @@ const BetHistoryDetailsContainer: React.FC<Props> = ({
     return (
         <BaseDialog onCloseModal={closeModalBetDetails} enableBackdrop={true}>
             <div className={Styles["bet-log-details"]} data-testid="bet-history-details">
-                <div className={Styles["back"]} onClick={closeModalBetDetails}>
+                <div data-testid="back-button" className={Styles["back"]} onClick={closeModalBetDetails}>
                     <img src={`/static/images/arrow-left.svg`} className={Styles["arrow-left"]} alt="arrow-left" />
                 </div>
                 <div className={Styles["details"]}> {translateText.betDetails}</div>
