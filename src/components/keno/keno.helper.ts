@@ -1,6 +1,5 @@
 import { TFunction } from "next-i18next";
 
-export const KenoMatchId = [36, 37];
 export const Choices = {
     blue: "blue",
     red: "red",

@@ -1,5 +1,5 @@
 export interface Props {
-    renderBetLogsDetails: Function;
+    renderBetLogsDetails: JSX.Element;
     renderResultDetail: any;
     isShowResultDetail: boolean;
     closeModalBetHistory: () => void;

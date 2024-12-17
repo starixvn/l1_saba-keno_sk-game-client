@@ -3,10 +3,11 @@ import React from "react";
 import { RenderHeaderRows } from "../../../dashboard/history/bet-history";
 import RenderRowKenoMatch from "../../../games/keno-match/bet-history/bet-history-details";
 import RenderRowKenoPower from "../../../games/keno-power/bet-history/bet-history-details";
-import { KenoMatchId, GetTranslateMapping } from "../../keno.helper";
+import { GetTranslateMapping } from "../../keno.helper";
 import Styles from "../bet-history.module.scss";
+import { GameIds } from "../../../../common/constants/gameIds";
 
-export const RenderCell: React.FC<{ isHighligh: boolean; name: string, children: any }> = ({ isHighligh, name, children }) => {
+export const RenderCell: React.FC<{ isHighligh: boolean; name: string; children: any }> = ({ isHighligh, name, children }) => {
     const classHighligh = isHighligh ? "highlight" : "";
     return (
         <td className={`${Styles[name]} ${classHighligh}`} data-testid={name}>
@@ -35,7 +36,7 @@ const BetLogsDetails = ({ betLog, gameName, t, setIsShowResultDetail, gameId, fr
         const { bet, roundId } = betLog;
         const { betLogDetails } = bet ?? [];
         const headerName = ["roundTime", "betType", "betChoice", "refund"];
-        const renderRow = KenoMatchId.includes(gameId) ? RenderRowKenoMatch : RenderRowKenoPower;
+        const renderRow = [GameIds.KenoSoccer, GameIds.KenoSoccer2].includes(gameId) ? RenderRowKenoMatch : RenderRowKenoPower;
 
         const clickOpenDetails = () => {
             setIsShowResultDetail(true);
