@@ -30,6 +30,11 @@ export const sso = async (token: string, appType: number): Promise<SSOResponse> 
         removeLocalStorageItem(localStorageKeys.isTournamentPopupAutoOpened);
     }
 
+    if (userSession.isAuthenticated) {
+        // Fire and forget - no await
+        trackingPlayer(userSession);
+    }
+
     return userSession;
 };
 
