@@ -1,6 +1,6 @@
 import React from "react";
 import { render, screen, waitFor } from "@testing-library/react";
-import Custom404, { getStaticProps } from "../404";
+import Custom404, { getStaticProps } from "../src/pages/404";
 import { useRouter } from "next/router";
 import { useTheme } from "next-themes";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
