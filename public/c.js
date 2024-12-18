@@ -18,7 +18,7 @@ window.envConfig = {
     system: "GN",
     appType: 1,
     useTolgeeStatic: false,
-    analyticId: "67579a9a07b3365ec84e5638",
+    analyticId: "G-B0EYV4T752",
     socketGatewayPath: "gateway",
     enableAnalyticTool: true,
 };

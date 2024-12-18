@@ -13,7 +13,21 @@ const AnalyticTool = () => {
     }, [analyticId]);
 
     return shouldRender ? (
-        <Script data-project={analyticId} src="https://cdn.jsdelivr.net/gh/litlyx/litlyx-js/browser/litlyx.js"></Script>
+        <>
+            <Script async src={`https://www.googletagmanager.com/gtag/js?id=${analyticId}`}></Script>
+            <Script
+                dangerouslySetInnerHTML={{
+                    __html: `
+                            window.dataLayer = window.dataLayer || [];
+                            function gtag(){dataLayer.push(arguments);}
+                            gtag('js', new Date());
+                            gtag('config', '${analyticId}', {
+                            page_path: window.location.pathname,
+                            });
+                        `,
+                }}
+            />
+        </>
     ) : (
         <></>
     );

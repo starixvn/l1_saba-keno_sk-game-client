@@ -14,6 +14,6 @@ window.envConfig = {
     enableMsgpackParser: false,
     system: "SK",
     appType: 1,
-    analyticId: "67579a9a07b3365ec84e5638",
+    analyticId: "G-B0EYV4T752",
     enableAnalyticTool: true,
 };
