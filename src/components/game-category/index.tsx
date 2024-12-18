@@ -63,6 +63,7 @@ export const GameCategory: React.FC<{
             <ul className={`${styles["category-list"]} ${styles[appTypeClass]}`}>
                 {Object.keys(gameCategoryConfigs).map((categoryKey) => (
                     <li
+                        data-testid={categoryKey}
                         className={`${styles["category-item"]} 
                             ${selectedCategory === GameCategoryType[categoryKey] ? styles["selected"] : ""}
                         `}
