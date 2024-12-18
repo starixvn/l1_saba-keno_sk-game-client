@@ -12,7 +12,7 @@ export default {
         https://jestjs.io/docs/webpack#handling-static-assets */
         "^.+\\.(jpg|jpeg|png|gif|webp|svg)$": "<rootDir>/__mocks__/fileMock.js",
     },
-    testPathIgnorePatterns: ["<rootDir>/node_modules/", "<rootDir>/.next/"],
+    testPathIgnorePatterns: ["<rootDir>/node_modules/", "<rootDir>/.next/", ".*\\.test\\.(tsx|ts)$",],
     moduleFileExtensions: ["ts", "tsx", "js"],
     transform: {
         "^.+\\.(js|jsx|ts|tsx)$": [
