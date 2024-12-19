@@ -12,7 +12,7 @@ export default {
         https://jestjs.io/docs/webpack#handling-static-assets */
         "^.+\\.(jpg|jpeg|png|gif|webp|svg)$": "<rootDir>/__mocks__/fileMock.js",
     },
-    testPathIgnorePatterns: ["<rootDir>/node_modules/", "<rootDir>/.next/", ".*\\.test\\.(tsx|ts)$",],
+    testPathIgnorePatterns: ["<rootDir>/node_modules/", "<rootDir>/.next/",],
     moduleFileExtensions: ["ts", "tsx", "js"],
     transform: {
         "^.+\\.(js|jsx|ts|tsx)$": [
@@ -24,7 +24,7 @@ export default {
     },
     testMatch: ["**/*.(test|spec).(ts|tsx)"],
     testEnvironment: "jsdom",
-    coveragePathIgnorePatterns: ["node_modules", ".d.ts", ".next", "coverage", "public", ".config.ts", ".config.js"],
+    coveragePathIgnorePatterns: ["node_modules", ".d.ts", ".next", "coverage", "public", ".config.ts", ".config.js", ".test.ts", ".test.tsx"],
     setupFilesAfterEnv: ["jest-extended", "./setupAfterEnv.ts", "./__mocks__/global.js"],
     coverageReporters: ["json", "lcov", "text", "text-summary"],
     transformIgnorePatterns: ["/node_modules/", "^.+\\.module\\.(css|sass|scss)$"],

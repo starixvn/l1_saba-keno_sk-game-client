@@ -38,16 +38,15 @@ const BetSettings: React.FC<Props> = ({
         return (
             <div className={`${Styles["bet-settings"]} ${deviceClass}`}>
                 <div
-                    className={`${Styles["settings-container"]} ${
-                        isShowSlidingChip ? Styles["open-animation"] : Styles["close-animation"]
-                    }`}
+                    className={`${Styles["settings-container"]} ${isShowSlidingChip ? Styles["open-animation"] : Styles["close-animation"]
+                        }`}
                 >
                     <div className={`game-container ${Styles["container"]}`}>
                         <div className={Styles["wrapper-chips"]}>
                             {!isMobileOnly && (
                                 <>
                                     {isNewPromotion && (
-                                        <div className={Styles["promotion"]} onClick={() => toggleAnnouncementModal()}>
+                                        <div data-testid="promotion" className={Styles["promotion"]} onClick={() => toggleAnnouncementModal()}>
                                             <img
                                                 className={Styles["promo-light"]}
                                                 src={`/static/images/promotion-light.svg?v=1`}
@@ -76,11 +75,10 @@ const BetSettings: React.FC<Props> = ({
                         <div className={Styles["user-info"]}>
                             <UserInfo user={user} customizeClass={"footer"} />
                         </div>
-                        <div className={`${Styles["chip-container"]} `} onClick={toggleSlidingChip}>
+                        <div data-testid="chip-container" className={`${Styles["chip-container"]} `} onClick={toggleSlidingChip}>
                             <div
-                                className={`${Styles["chip-toggle"]} ${
-                                    isShowSlidingChip ? Styles["open-animation"] : Styles["close-animation"]
-                                }`}
+                                className={`${Styles["chip-toggle"]} ${isShowSlidingChip ? Styles["open-animation"] : Styles["close-animation"]
+                                    }`}
                             >
                                 <img className={Styles["chip-default"]} src={`/static/images/chips/chip-close.svg`} alt="Chip" />
                                 <ChipImage

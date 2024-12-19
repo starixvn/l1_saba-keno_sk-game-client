@@ -14,7 +14,7 @@ export const Choices = {
 };
 const elements = ["gold", "wood", "water", "fire", "earth"];
 
-const StatisticRuleEntriesBigSmall = Object.entries({
+export const StatisticRuleEntriesBigSmall = Object.entries({
     [Choices.big]: (countResult: object, total: number) =>
         countResult[Choices.big] ? Math.round((countResult[Choices.big] * 100) / total) : 0,
 
@@ -22,7 +22,7 @@ const StatisticRuleEntriesBigSmall = Object.entries({
         100 - (countResult[Choices.big] ? Math.round((countResult[Choices.big] * 100) / total) : 0),
 });
 
-const StatisticRuleEntriesOddEven = Object.entries({
+export const StatisticRuleEntriesOddEven = Object.entries({
     [Choices.even]: (countResult: object, total: number) =>
         countResult[Choices.even] ? Math.round((countResult[Choices.even] * 100) / total) : 0,
 
@@ -30,7 +30,7 @@ const StatisticRuleEntriesOddEven = Object.entries({
         100 - (countResult[Choices.even] ? Math.round((countResult[Choices.even] * 100) / total) : 0),
 });
 
-const StatisticRuleEntriesFiveElements = Object.entries({
+export const StatisticRuleEntriesFiveElements = Object.entries({
     [Choices.gold]: (countResult: object, total: number) =>
         countResult[Choices.gold] ? Math.round((countResult[Choices.gold] * 100) / total) : 0,
     [Choices.wood]: (countResult: object, total: number) =>

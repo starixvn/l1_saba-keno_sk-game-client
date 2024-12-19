@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useTheme } from "next-themes";
 import { useRouter } from "next/router";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
@@ -8,15 +8,11 @@ const TimeOut = () => {
     const { t } = useTranslation("common");
     const router = useRouter();
     const { theme } = useTheme();
-    const [isLoading, setIsLoading] = useState(true);
 
-    useEffect(() => {
-        setIsLoading(false);
-    }, [router.isReady]);
-
-    if (isLoading) {
-        return <></>;
+    if (!router.isReady) {
+        return null;
     }
+
     return (
         <div className="error-page">
             <img alt="SessionTimeout" className="error-background" src={`/static/images/error-session-${theme}.svg`} />
@@ -27,6 +23,7 @@ const TimeOut = () => {
         </div>
     );
 };
+
 export const getStaticProps = async ({ locale }) => {
     return {
         props: {

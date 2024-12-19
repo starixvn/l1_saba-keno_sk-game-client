@@ -1,7 +1,7 @@
 import React from "react";
 // import '@testing-library/jest-dom/jest-globals';
 // import "@testing-library/jest-dom";
-
+import "@testing-library/jest-dom";
 const hasChildren = (node) => node && (node.children || (node.props && node.props.children));
 
 const getChildren = (node) => (node && node.children ? node.children : node.props && node.props.children);
