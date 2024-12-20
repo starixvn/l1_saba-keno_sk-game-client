@@ -3,6 +3,7 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import RenderCellOnTable from "../../../../../../src/components/dashboard/history/bet-history/bet-row/index";
 import { TFunction } from "next-i18next";
 import { BetLogs } from "../../../../../../src/components/dashboard/history/bet-history/bet-history.d";
+import "@testing-library/jest-dom";
 const fakeDate = new Date('2024-12-20T00:00:00.000Z');
 
 const mockBetHistoryItem = {
