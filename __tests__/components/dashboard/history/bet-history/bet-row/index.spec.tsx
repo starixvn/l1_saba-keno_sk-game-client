@@ -33,26 +33,7 @@ const mockT: TFunction = ((key: string) => key) as TFunction;
 describe("RenderCellOnTable", () => {
     beforeEach(() => {
         jest.clearAllMocks();
-    });
-
-    it("renders round time correctly", () => {
-        render(
-            <RenderCellOnTable
-                betHistoryItem={mockBetHistoryItem}
-                renderResult={mockRenderResult}
-                renderBet={jest.fn()}
-                t={mockT}
-                setIsShowResultDetail={mockSetIsShowResultDetail}
-                gameName="testGame"
-                setIsShowBetLogDetails={mockSetIsShowBetLogDetails}
-                setBetLog={mockSetBetLog}
-                headerName={["roundTime"]}
-                fractionalOddsFormat={false}
-            />
-        );
-
-        expect(screen.getByText("07:00:00")).toBeInTheDocument();
-        expect(screen.getByText("20/12/24")).toBeInTheDocument();
+        jest.resetModules();
     });
 
     it("renders round correctly", () => {

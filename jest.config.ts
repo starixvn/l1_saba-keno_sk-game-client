@@ -24,7 +24,7 @@ export default {
     },
     testMatch: ["**/*.(test|spec).(ts|tsx)"],
     testEnvironment: "jsdom",
-    coveragePathIgnorePatterns: ["node_modules", ".d.ts", ".next", "coverage", "public", ".config.ts", ".config.js", ".test.ts", ".test.tsx"],
+    coveragePathIgnorePatterns: ["node_modules", ".d.ts", ".next", "coverage", "public", ".config.ts", ".config.js", ".test.ts", ".test.tsx", "__tests__", "configs"],
     setupFilesAfterEnv: ["jest-extended", "./setupAfterEnv.ts", "./__mocks__/global.js"],
     coverageReporters: ["json", "lcov", "text", "text-summary"],
     transformIgnorePatterns: ["/node_modules/", "^.+\\.module\\.(css|sass|scss)$"],
