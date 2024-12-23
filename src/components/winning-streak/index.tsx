@@ -68,7 +68,11 @@ export const WinningStreak = forwardRef((props, ref) => {
                         <span>
                             x <span className={styles["number"]}>{streak}</span>
                         </span>
-                        <span className={`icon-close ${styles["icon-close"]}`} onClick={() => removeWinStreakNotification(key)}></span>
+                        <span
+                            className={`icon-close ${styles["icon-close"]}`}
+                            data-testid="close-button"
+                            onClick={() => removeWinStreakNotification(key)}
+                        ></span>
                     </div>
                 );
             })}
