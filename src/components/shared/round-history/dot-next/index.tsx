@@ -5,8 +5,8 @@ import { Props } from "./types";
 
 export const MiniItemNext = () => {
     return (
-        <div>
-            <div className={`${Styles["dot-next"]} ${Styles.blink}`}></div>
+        <div >
+            <div data-testid="mini-item-next" className={`${Styles["dot-next"]} ${Styles.blink}`}></div>
         </div>
     );
 };
