@@ -6,12 +6,12 @@ import { GameBaseState, GameState, GatewayGameBaseProps } from "./type";
 import { AuthContextModel } from "../../../contexts/auth";
 
 export default abstract class GatewayGameBase<P extends GatewayGameBaseProps, S extends GameBaseState<any, any>> extends GameBase<P, S> {
-    initSocket() {
+    async initSocket() {
         return this.props.socketGateway;
     }
 
-    onStart() {
-        super.onStart();
+    async onStart() {
+        await super.onStart();
         const { gameName, serviceName } = this.props;
         const { session } = this.context as AuthContextModel;
 

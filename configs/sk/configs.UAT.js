@@ -2,7 +2,7 @@ window.envConfig = {
     socketGatewayPath: "gateway",
     proxy: {
         ssl: true,
-        subDomain: "skuatproxy",
+        subDomain: "gnuatproxy-k8s",
         path: "/uat",
     },
     sentry: {

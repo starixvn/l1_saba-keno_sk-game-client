@@ -45,7 +45,7 @@ import {
     ViewMode,
     WinStreakCollectorModel,
 } from "./type";
-import { buildServerUrl } from "../../../helpers/url-helper";
+import { buildGameServiceProxy } from "../../../helpers/url-helper";
 
 const { rebet: reBetStorageKey } = LocalStorageManager.localStorageKeys;
 
@@ -116,10 +116,10 @@ abstract class GameBase<P extends GameBaseProps, S extends GameBaseState<any, an
         this.copyToClipboard = this.copyToClipboard.bind(this);
     }
 
-    componentDidMount() {
+    async componentDidMount() {
         this.registerMessageHandler();
         document.addEventListener("visibilitychange", this.onVisibilityChange);
-        this.onStart();
+       await this.onStart();
     }
 
     componentWillUnmount() {
@@ -139,7 +139,7 @@ abstract class GameBase<P extends GameBaseProps, S extends GameBaseState<any, an
         this.clearDisconnectTimeout();
     }
 
-    onStart() {
+    async onStart() {
         const { registerGlobalMessageEvent } = this.props;
 
         this.isConnectFailed = false;
@@ -150,15 +150,15 @@ abstract class GameBase<P extends GameBaseProps, S extends GameBaseState<any, an
             this.props.updateUserStakeLevel(userStakeLevel)
         );
         this.clearDisconnectTimeout();
-        this.socket = this.initSocket();
+        this.socket = await this.initSocket();
         this.socket && this.socket.off(this.props.gameName).on(this.props.gameName, this.messageTransmitter.broadcast.bind(this));
     }
 
-    protected initSocket() {
-        const { socketInfo } = this.props;
+    protected async initSocket() {
+        const { socketInfo, id } = this.props;
         const { session } = this.context as AuthContextModel;
         const { proxy, enableMsgpackParser } = getAppSettings();
-        const socketUri = buildServerUrl(socketInfo.namespace);
+        const socketUri = await buildGameServiceProxy(socketInfo.namespace, id);
         const socket = io(socketUri, {
             transports: ["websocket"],
             upgrade: false,

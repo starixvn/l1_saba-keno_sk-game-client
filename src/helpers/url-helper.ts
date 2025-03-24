@@ -1,5 +1,6 @@
+import * as Sentry from "@sentry/nextjs";
+import axios from "axios";
 import { getAppSettings } from "../common/app-settings";
-
 
 export const buildUrl = (subDomain = getAppSettings().proxy?.subDomain, path = "/") => {
     const { proxy } = getAppSettings();
@@ -35,4 +36,55 @@ export const buildServerUrl = (path: string) => {
 
 export const buildUrlWithPath = (path: string) => {
     return buildUrl(getAppSettings().proxy?.subDomain, path);
+};
+
+export type ProxyConfiguration = {
+    subDomainSK: string;
+    defaultSubDomainSK: string;
+    gameIds: number[];
+    subPath: string;
+};
+
+export const buildGameServiceProxy = async (path: string, gameId: number): Promise<string> => {
+    const { proxy } = getAppSettings();
+    const domain = getRootDomain();
+
+    const url = buildUrlWithPath("/game/proxy/");
+    let proxyConfiguration: ProxyConfiguration;
+    let retryCount = 0;
+
+    while (retryCount < 3) {
+        console.log("Try load configuration ", retryCount + 1);
+        proxyConfiguration = await axios
+            .get(url)
+            .then((response) => response.data)
+            .catch(() => {});
+
+        if (proxyConfiguration) {
+            break;
+        }
+        retryCount++;
+        await delayTime(3);
+    }
+
+    if (!proxyConfiguration || Object.keys(proxyConfiguration).length === 0) {
+        Sentry.captureException(new Error(`Can not load game proxy`));
+        return buildServerUrl(path);
+    }
+
+    const isGameUsingDefaultSubDomain = !proxyConfiguration.gameIds.includes(gameId);
+    const subPath = proxyConfiguration.subPath;
+
+    const socketGameServicePath = `${subPath ? "/" + subPath : ""}/user/${path}`;
+
+    const subDomain = isGameUsingDefaultSubDomain ? proxyConfiguration.defaultSubDomainSK : proxyConfiguration.subDomainSK;
+    const subDomainText = `${subDomain}.`;
+
+    return `${proxy.ssl ? "https" : "http"}://${subDomain === "" ? "" : subDomainText}${domain}${socketGameServicePath}`;
+};
+
+const delayTime = (seconds: number) => {
+    return new Promise<void>((resolve) => {
+        setTimeout(resolve, seconds * 1000);
+    });
 };

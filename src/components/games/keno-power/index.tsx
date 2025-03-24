@@ -40,8 +40,8 @@ class KenoPower extends GameBase<GameBaseProps, KenoPowerGameState> {
         return {};
     }
 
-    onStart() {
-        super.onStart();
+    async onStart() {
+        await super.onStart();
 
         this.socket && this.socket.off("message").on("message", this.handleRestrictPermission.bind(this));
     }

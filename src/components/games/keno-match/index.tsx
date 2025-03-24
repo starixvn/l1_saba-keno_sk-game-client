@@ -91,8 +91,8 @@ export class KenoSoccer extends GameBase<KenoMatchProps, KenoMatchGameBaseState<
         this.onStart();
     };
 
-    onStart() {
-        super.onStart();
+    async onStart() {
+        await super.onStart();
 
         this.socket && this.socket.off("message").on("message", this.handleRestrictPermission.bind(this));
     }
