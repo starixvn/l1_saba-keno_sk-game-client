@@ -10,7 +10,7 @@ window.envConfig = {
         environment: "PROD",
     },
     enableSourceMap: false,
-    subGuideDomain: "skguide",
+    subGuideDomain: "guides",
     analyticId: "",
     enableMsgpackParser: true,
     system: "SK",
