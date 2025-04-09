@@ -32,6 +32,7 @@ const ErrorCodeDictionary = {
     "4012": "userNotFound",
     "5002": "networkError",
     "5003": "sysMaintenance",
+    "7019": "sessionTimeout",
     SB0001: "errorOccurred",
     SB0002: "sessionTimeout",
     SB0003: "playOnOtherDevice",

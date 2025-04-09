@@ -307,7 +307,7 @@ abstract class GameBase<P extends GameBaseProps, S extends GameBaseState<any, an
     };
 
     handleKickOut(errorCode: string) {
-        (errorCode === "1001" || errorCode === "1002") &&
+        (errorCode === "1001" || errorCode === "1002" || errorCode === "7019") &&
             setTimeout(() => {
                 (this.context as AuthContextModel).signOut();
             }, 10000);
