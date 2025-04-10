@@ -12,6 +12,10 @@ jest.mock("next-i18next", () => ({
     useTranslation: jest.fn(),
 }));
 
+jest.mock("next-i18next/serverSideTranslations", () => ({
+    serverSideTranslations: jest.fn(),
+}));
+
 jest.mock("next/router", () => ({
     useRouter: jest.fn(),
 }));
@@ -53,11 +57,16 @@ describe("TimeOut Component", () => {
 
 describe("getStaticProps", () => {
     it("returns translations for the specified locale", async () => {
-        const result = await getStaticProps({ locale: "en" });
+        const locale = "en";
+        const mockTranslations = { common: "mocked-translations" };
+        (serverSideTranslations as jest.Mock).mockResolvedValueOnce(mockTranslations);
+
+        const result = await getStaticProps({ locale });
+
+        expect(serverSideTranslations).toHaveBeenCalledWith(locale, ["common"]);
         expect(result).toEqual({
             props: {
-                // Check if serverSideTranslations is called correctly
-                ...(await serverSideTranslations("en", ["common"])),
+                ...mockTranslations,
             },
         });
     });
