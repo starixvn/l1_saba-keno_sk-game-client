@@ -70,6 +70,7 @@ const Timer = () => {
         initialRemainingTime: ctx.gameState === GameState.BeforeStartRound ? durations.placingBets : ctx.remainingTime,
         duration: durations.placingBets,
         rotation: "counterclockwise" as Rotation,
+        
     };
 
     return (
