@@ -19,7 +19,7 @@ export const ChipSlider: React.FC<{
     let sliderRef = null;
     const [playSound] = useSound("./static/sounds/chip-click.mp3");
     const chipValues = useMemo(() => {
-        if (userStakeLevel?.minBet != undefined && userStakeLevel?.maxBet != undefined && chipSettings?.chips) {
+        if (userStakeLevel?.minBet !== undefined && userStakeLevel?.maxBet !== undefined && chipSettings?.chips) {
             const maxBet = Math.min(userStakeLevel.maxBet, chipSettings.maxBet);
             const minBet = Math.max(userStakeLevel.minBet, chipSettings.minBet);
             return chipSettings?.chips?.map((chip) => +chip).filter((value) => value >= minBet && value <= maxBet) || [];
